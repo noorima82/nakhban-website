@@ -178,45 +178,16 @@
   .pill.on{border-color:var(--yellow);background:var(--yellow-soft)}
   .pill.on svg{color:var(--yellow)}
   .pill.on span{color:#3D4C5C;font-weight:700}
-  /* ---------- custom dropdown ---------- */
-  .dd{position:relative}
-  .dd-toggle{width:100%;display:flex;align-items:center;gap:10px;
-    border:1px solid var(--border);border-radius:8px;padding:10px 14px;
-    background:#fff;font-family:inherit;font-size:15px;color:#4E5B6B;cursor:pointer;
-    text-align:right;transition:border-color .2s,box-shadow .2s}
-  .dd-toggle:hover{border-color:#C4CBD4}
-  .dd.open .dd-toggle{border-color:var(--yellow);box-shadow:0 0 0 3px rgba(252,190,17,.14)}
-  .dd-ic{width:28px;height:28px;border-radius:8px;background:#F1F3F6;display:flex;
-    align-items:center;justify-content:center;flex:0 0 auto;transition:background .2s}
-  .dd-ic svg{width:15px;height:15px;color:#8494A7;transition:color .2s}
-  .dd.selected .dd-ic{background:var(--yellow-soft)}
-  .dd.selected .dd-ic svg{color:var(--yellow)}
-  .dd.selected .dd-label{color:#1E2933;font-weight:700}
-  .dd-chev{width:17px;height:17px;color:#B9C3CE;margin-right:auto;transition:transform .25s}
-  .dd.open .dd-chev{transform:rotate(180deg)}
-  .dd-menu{position:absolute;top:calc(100% + 8px);right:0;left:0;background:#fff;
-    border:1px solid #ECEFF2;border-radius:12px;box-shadow:0 16px 44px rgba(38,60,85,.18);
-    overflow:hidden;z-index:50;opacity:0;transform:translateY(-8px) scale(.98);
-    pointer-events:none;transition:opacity .22s,transform .22s;transform-origin:top center}
-  .dd.open .dd-menu{opacity:1;transform:none;pointer-events:auto}
-  .dd-opt{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;
-    background:none;border:0;font-family:inherit;font-size:14.5px;color:var(--gray);
-    cursor:pointer;text-align:right;transition:background .15s}
-  .dd-opt:hover{background:var(--yellow-soft)}
-  .dd-opt .dd-opt-ic{width:30px;height:30px;border-radius:9px;background:#F1F3F6;
-    display:flex;align-items:center;justify-content:center;flex:0 0 auto;transition:background .15s}
-  .dd-opt .dd-opt-ic svg{width:16px;height:16px;color:#8494A7;transition:color .15s}
-  .dd-opt:hover .dd-opt-ic{background:rgba(252,190,17,.16)}
-  .dd-opt:hover .dd-opt-ic svg{color:var(--yellow)}
-  .dd-opt .dd-check{width:16px;height:16px;color:var(--yellow);margin-right:auto;
-    opacity:0;transform:scale(.5);transition:opacity .2s,transform .2s}
-  .dd-opt.sel .dd-check{opacity:1;transform:none}
-  .dd-opt.sel{font-weight:700;color:#3D4C5C}
-  .dd-opt.sel .dd-opt-ic{background:var(--yellow-soft)}
-  .dd-opt.sel .dd-opt-ic svg{color:var(--yellow)}
-  .dd.error .dd-toggle{border-color:var(--danger);box-shadow:0 0 0 3px rgba(234,84,85,.10)}
-  /* mobile-only progress bar (hidden on desktop) */
-  .m-progress{display:none}
+  /* select */
+  .select-wrap{position:relative}
+  .select-wrap select{
+    appearance:none;-webkit-appearance:none;padding-left:36px;cursor:pointer;
+  }
+  .select-wrap::after{
+    content:'';position:absolute;left:14px;top:50%;
+    width:8px;height:8px;border-left:1.8px solid #B9C3CE;border-bottom:1.8px solid #B9C3CE;
+    transform:translateY(-70%) rotate(-45deg);pointer-events:none;
+  }
   /* buttons */
   .actions{display:flex;justify-content:flex-end;margin-top:44px}
   .btn-wrap{width:50%;min-width:230px}
@@ -240,44 +211,23 @@
   .success .actions{justify-content:center;margin-top:40px}
   /* ---------- responsive ---------- */
   @media (max-width:767px){
-    /* === dedicated mobile template: navy hero header + floating panel + sticky CTA === */
-    body{display:block;padding:0 0 118px;font-size:14px;
-      background:linear-gradient(180deg,#F0F1F4 0%,#F6F7F9 100%)}
+    body{padding:16px 12px 40px;font-size:14px}
     body::before{width:280px;height:280px;top:-110px;right:-110px}
     body::after{width:300px;height:300px;bottom:-140px;left:-130px}
-    .card{max-width:none;margin:0;background:transparent;border-radius:0;box-shadow:none;overflow:visible}
-    .card-head{background:linear-gradient(165deg,#0C1E46 0%,#081431 75%);
-      padding:36px 20px 64px;border-radius:0 0 26px 26px;position:relative;overflow:hidden}
-    .card-head::after{content:'';position:absolute;inset:0;pointer-events:none;
-      background:radial-gradient(420px 160px at 12% 0%,rgba(252,190,17,.22),transparent 65%),
-                 radial-gradient(380px 150px at 88% 12%,rgba(90,130,220,.18),transparent 65%)}
-    .card-head .brand,.card-head h5,.card-head p{position:relative;z-index:1}
-    .brand .logo{height:clamp(72px,20vw,92px)}
-    .card-head h5{color:#fff;font-size:19px;font-weight:800;margin-top:14px}
-    .card-head p{color:#AEB8CC;font-size:12.5px;padding:0 10px}
-
-    .m-progress{display:block;padding:18px 20px 2px}
-    .m-top{display:flex;align-items:baseline;justify-content:space-between}
-    .m-top b{font-size:16px;font-weight:800;color:#1E2933}
-    .m-top span{font-size:12px;color:var(--muted)}
-    .m-bar{height:6px;border-radius:99px;background:#E7E9EE;margin-top:10px;overflow:hidden}
-    .m-bar span{display:block;height:100%;width:25%;border-radius:99px;
-      background:linear-gradient(90deg,#F7D678,#FCBE11);
-      transition:width .45s cubic-bezier(.22,.8,.35,1)}
-
-    .stepper-col{display:none}
-    .content-col{padding:14px 16px 0}
-    .panel{position:relative;margin-top:-44px;background:#fff;border-radius:18px;
-      box-shadow:0 10px 30px rgba(38,60,85,.12);padding:20px 18px 18px}
-    .actions{position:fixed;bottom:0;right:0;left:0;z-index:40;margin-top:0;
-      padding:12px 16px calc(12px + env(safe-area-inset-bottom));
-      background:rgba(246,247,249,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-      border-top:1px solid #E5E8EC}
+    .card-head{padding:28px 16px 22px}
+    .card-body{flex-direction:column}
+    .stepper-col{flex:none;padding:4px 16px 0}
+    .stepper{flex-direction:row;gap:18px;overflow-x:auto;padding-bottom:10px;align-items:center}
+    .step{flex:0 0 auto;text-align:right;gap:10px}
+    .step-circle{flex:0 0 46px;width:46px;height:46px;border-radius:8px}
+    .step-circle svg{width:24px;height:24px}
+    .step-line{display:none}
+    .step-texts{align-items:flex-start}
+    .step-sub{display:none}
+    .step-title{font-size:13px;white-space:nowrap}
+    .content-col{padding:10px 20px 36px}
     .btn-wrap{width:100%;min-width:0}
-    .btn{padding:14px 22px;border-radius:14px;font-size:16px}
     .grid2{grid-template-columns:1fr;gap:0}
-    .dd-menu{max-height:46vh;overflow:auto}
-    textarea{min-height:104px}
   }
 </style>
 </head>
@@ -340,12 +290,6 @@
     </div>
     <h5>درخواست خود را ثبت کنید</h5>
     <p>پس از ثبت درخواست و بررسی تیم پشتیبانی با شما تماس خواهیم گرفت</p>
-  </div>
-
-  <!-- mobile-only step progress -->
-  <div class="m-progress">
-    <div class="m-top"><b id="m-title">شماره موبایل</b><span id="m-count">مرحله ۱ از ۴</span></div>
-    <div class="m-bar"><span id="m-fill"></span></div>
   </div>
 
   <div class="card-body">
@@ -422,41 +366,14 @@
         <div class="section-title">نوع درخواست خود را انتخاب کنید</div>
         <div class="field">
           <label class="form-label" for="reqtype">نوع درخواست</label>
-          <div class="dd" id="dd">
-            <button type="button" class="dd-toggle" id="dd-toggle" aria-haspopup="listbox">
-              <span class="dd-ic" id="dd-ic" hidden><svg><use id="dd-ic-use" href="#i-chat"/></svg></span>
-              <span class="dd-label" id="dd-label">انتخاب کنید</span>
-              <svg class="dd-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></svg>
-            </button>
-            <div class="dd-menu" id="dd-menu" role="listbox">
-              <button type="button" class="dd-opt" data-v="مشاوره">
-                <span class="dd-opt-ic"><svg><use href="#i-chat"/></svg></span>مشاوره
-                <svg class="dd-check"><use href="#i-check"/></svg>
-              </button>
-              <button type="button" class="dd-opt" data-v="ثبت درخواست پشتیبانی">
-                <span class="dd-opt-ic"><svg><use href="#i-support"/></svg></span>ثبت درخواست پشتیبانی
-                <svg class="dd-check"><use href="#i-check"/></svg>
-              </button>
-              <button type="button" class="dd-opt" data-v="پیگیری درخواست قبلی">
-                <span class="dd-opt-ic"><svg><use href="#i-search"/></svg></span>پیگیری درخواست قبلی
-                <svg class="dd-check"><use href="#i-check"/></svg>
-              </button>
-              <button type="button" class="dd-opt" data-v="انتقاد و پیشنهاد">
-                <span class="dd-opt-ic"><svg><use href="#i-star"/></svg></span>انتقاد و پیشنهاد
-                <svg class="dd-check"><use href="#i-check"/></svg>
-              </button>
-              <button type="button" class="dd-opt" data-v="سایر">
-                <span class="dd-opt-ic"><svg><use href="#i-dots"/></svg></span>سایر
-                <svg class="dd-check"><use href="#i-check"/></svg>
-              </button>
-            </div>
-            <select id="reqtype" style="display:none" tabindex="-1" aria-hidden="true">
-              <option value=""></option>
-              <option value="مشاوره">مشاوره</option>
-              <option value="ثبت درخواست پشتیبانی">ثبت درخواست پشتیبانی</option>
-              <option value="پیگیری درخواست قبلی">پیگیری درخواست قبلی</option>
-              <option value="انتقاد و پیشنهاد">انتقاد و پیشنهاد</option>
-              <option value="سایر">سایر</option>
+          <div class="select-wrap">
+            <select id="reqtype">
+              <option value="">انتخاب کنید</option>
+              <option>مشاوره</option>
+              <option>ثبت درخواست پشتیبانی</option>
+              <option>پیگیری درخواست قبلی</option>
+              <option>انتقاد و پیشنهاد</option>
+              <option>سایر</option>
             </select>
           </div>
           <div class="err" id="err-reqtype">یکی از گزینه ها را انتخاب کنید</div>
@@ -513,10 +430,6 @@
     if(e) e.classList.toggle('show', !!on);
     var f = document.getElementById(id);
     if(f) f.classList.toggle('invalid', !!on);
-    if(id === 'reqtype'){
-      var ddEl = document.getElementById('dd');
-      if(ddEl) ddEl.classList.toggle('error', !!on);
-    }
   }
 
   function goTo(n){
@@ -530,13 +443,6 @@
     panels.forEach(function(p){
       p.classList.toggle('active', +p.dataset.panel === n);
     });
-    /* mobile progress bar */
-    var mFill = document.getElementById('m-fill');
-    if(mFill){
-      mFill.style.width = ((n+1)*25)+'%';
-      document.getElementById('m-title').textContent = ['شماره موبایل','اطلاعات فردی','نوع درخواست','ثبت و ارسال'][n];
-      document.getElementById('m-count').textContent = 'مرحله '+toFaDigits(n+1)+' از ۴';
-    }
     var card = document.querySelector('.card');
     if(card.getBoundingClientRect().top < 0){
       card.scrollIntoView({behavior:'smooth', block:'start'});
@@ -579,41 +485,6 @@
     });
   });
 
-  /* custom dropdown */
-  var dd = document.getElementById('dd');
-  var ddToggle = document.getElementById('dd-toggle');
-  var ddLabel = document.getElementById('dd-label');
-  var ddIc = document.getElementById('dd-ic');
-  var reqSel = document.getElementById('reqtype');
-  var ddIcons = {
-    'مشاوره': '#i-chat',
-    'ثبت درخواست پشتیبانی': '#i-support',
-    'پیگیری درخواست قبلی': '#i-search',
-    'انتقاد و پیشنهاد': '#i-star',
-    'سایر': '#i-dots'
-  };
-  function ddClose(){ dd.classList.remove('open'); }
-  ddToggle.addEventListener('click', function(e){
-    e.stopPropagation();
-    dd.classList.toggle('open');
-  });
-  document.addEventListener('click', function(e){ if(!dd.contains(e.target)) ddClose(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') ddClose(); });
-  document.querySelectorAll('.dd-opt').forEach(function(opt){
-    opt.addEventListener('click', function(){
-      var v = opt.dataset.v;
-      reqSel.value = v;
-      reqSel.dispatchEvent(new Event('change'));
-      ddLabel.textContent = v;
-      ddIc.hidden = false;
-      ddIc.querySelector('use').setAttribute('href', ddIcons[v] || '#i-chat');
-      document.querySelectorAll('.dd-opt').forEach(function(o){ o.classList.toggle('sel', o === opt); });
-      dd.classList.add('selected');
-      dd.classList.remove('error');
-      ddClose();
-    });
-  });
-
   /* step 3 */
   document.getElementById('reqtype').addEventListener('change', function(){ setErr('reqtype', false); });
   document.getElementById('btn-submit').addEventListener('click', function(){
@@ -632,11 +503,6 @@
     document.getElementById('lname').value = '';
     document.getElementById('desc').value = '';
     document.getElementById('reqtype').value = '';
-    /* reset the custom dropdown UI too */
-    ddLabel.textContent = 'انتخاب کنید';
-    ddIc.hidden = true;
-    dd.classList.remove('selected', 'error');
-    document.querySelectorAll('.dd-opt').forEach(function(o){ o.classList.remove('sel'); });
     document.querySelectorAll('.pill input').forEach(function(cb){
       cb.checked = false; cb.closest('.pill').classList.remove('on');
     });
