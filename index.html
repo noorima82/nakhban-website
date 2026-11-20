@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>مدرسه کنکور نخبان</title>
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23E9B94A" d="M12 1l9 4v6c0 5.5-3.8 10.4-9 12-5.2-1.6-9-6.5-9-12V5l9-4z"/></svg>'>
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23E9B94A" d="M12 5.6C10 4 7.5 3.6 4 3.8c-.55.03-1 .48-1 1.03v12.9c0 .6.5 1.06 1.1 1.03 3.1-.16 5.4.3 7.4 1.77.3.23.7.23 1 0 2-1.47 4.3-1.93 7.4-1.77.6.03 1.1-.43 1.1-1.03V4.83c0-.55-.45-1-1-1.03-3.5-.2-6 .2-8 1.8z"/><path d="M12 5.6v14.4" stroke="%230A1631" stroke-width="1.4" fill="none"/></svg>'>
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
 <style>
   /* ===== tokens ===== */
@@ -24,7 +24,7 @@
     /* cards breathe: a clear, confident gap like the reference */
     --gap-cards: clamp(24px, 3.4vh, 40px);
     /* offer banner keeps the exact natural ratio of the artwork (1261x106, band = 94.3%) */
-    --offer-ratio: 1261 / 106;
+    --offer-ratio: 1240 / 100;
     --band-h: 94.3%;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -88,6 +88,8 @@
     padding:clamp(10px,1.6vh,16px) 0}
   .brand{display:flex;align-items:center;gap:var(--sp-2);flex:0 0 auto}
   .brand .img-slot{width:clamp(44px,6.4vh,54px);height:clamp(44px,6.4vh,54px);flex:0 0 auto}
+  .brand .img-slot.logo-book{display:grid;place-items:center;color:var(--gold)}
+  .brand .img-slot.logo-book svg{width:82%;height:82%}
   .brand-text h1{font-size:clamp(15px,2.2vh,17px);font-weight:800;color:#fff;line-height:1.4}
   .brand-text p{font-size:clamp(10px,1.5vh,11.5px);color:#C8B57C;font-weight:500}
   .menu{display:flex;align-items:center;gap:var(--sp-1);margin-right:var(--sp-2);
@@ -277,7 +279,7 @@
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(16,28,51,.08)}
     .m-nav{width:min(100% - 28px,600px);margin:auto;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .m-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;color:var(--mink);white-space:nowrap}
-    .m-brand img{width:36px;height:36px;object-fit:contain}
+    .m-brand .logo-book{width:36px;height:36px;color:var(--gold)}
     .m-actions{display:flex;align-items:center;gap:8px}
     .m-menu-btn{width:38px;height:38px;border:1px solid rgba(16,28,51,.12);background:#fff;border-radius:11px;
       color:var(--mink);font-size:19px;display:flex;align-items:center;justify-content:center}
@@ -300,15 +302,10 @@
     .m-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);
       background:rgba(255,255,255,.08);padding:6px 12px;border-radius:99px;color:#EFE6C8;font-size:11px;font-weight:700}
     .m-eyebrow i{width:7px;height:7px;border-radius:50%;background:#8DF0C8;box-shadow:0 0 0 4px rgba(141,240,200,.15)}
-    .m-hero h1{font-size:29px;line-height:1.55;margin:14px 0 8px;font-weight:800}
+    .m-hero h1{font-size:29px;line-height:1.55;margin:14px 0 18px;font-weight:800}
     .m-hero h1 span{color:var(--gold-2)}
-    .m-hero p{color:#D1D6E5;font-size:12.5px;line-height:1.9;margin:0 0 18px}
     .m-hero-btns{display:flex;gap:10px;flex-wrap:wrap}
     .m-hero-btns .m-btn{padding:12px 18px}
-    .m-note{display:flex;align-items:center;gap:9px;margin-top:20px;color:#BFC4D8;font-size:10.5px}
-    .m-avatars{display:flex;direction:ltr}
-    .m-avatars span{width:24px;height:24px;margin-left:-6px;border:2px solid rgba(255,255,255,.25);border-radius:50%;
-      background:linear-gradient(135deg,#F7D678,#D8A22B);display:grid;place-items:center;color:#131F3D;font-size:9px;font-weight:800}
 
     /* discount: the exact artwork, cut from its navy bg, text lives in the artwork's empty middle */
     .m-discount{margin-top:16px;background:#fff;border:1px solid #ECECF4;border-radius:20px;padding:16px 12px;
@@ -325,24 +322,18 @@
     .m-cd .cd-box span{font-size:8.5px;color:#8A7A45;margin-top:2px}
 
     .m-section{margin-top:28px}
-    .m-sec-head{margin-bottom:14px}
-    .m-kicker{font-size:10.5px;font-weight:800;color:var(--mgold);letter-spacing:.2px}
-    .m-sec-head h2{font-size:20px;font-weight:800;margin:4px 0 0;color:var(--mink)}
-    .m-sec-head p{margin:2px 0 0;color:var(--mmuted);font-size:11px}
     .m-course{background:#fff;border:1px solid #ECECF4;border-radius:20px;overflow:hidden;
       box-shadow:0 10px 30px rgba(16,28,51,.07);margin-bottom:14px}
     .m-course > img{display:block;width:100%;height:118px;object-fit:cover}
     .m-course-body{padding:16px}
-    .m-tag{display:inline-block;font-size:10px;font-weight:800;color:#8A6A14;background:#FFF4D6;border-radius:99px;padding:5px 10px}
-    .m-tag.mint{color:#168C66;background:#DFF8EF}
+    .m-tag{font-size:11px;font-weight:500;color:#8494A7}
     .m-course h3{font-size:17.5px;font-weight:800;color:var(--mink);margin:10px 0 5px}
     .m-course p{font-size:11.5px;color:var(--mmuted);line-height:1.9;margin:0}
-    .m-course-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;
-      margin-top:18px;padding-top:14px;border-top:1px solid #EEF0F5}
-    .m-price-label{display:block;color:var(--mmuted);font-size:9.5px}
-    .m-price{font-size:17px;font-weight:800;color:var(--mink)}
-    .m-price small{font-size:9.5px;color:var(--mmuted);font-weight:500}
-    .m-course-bottom .m-btn{padding:10px 14px;flex:0 0 auto;white-space:nowrap}
+    .m-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .m-chip{display:inline-flex;align-items:center;gap:6px;background:#F4F5F8;border:1px solid #E7E9F0;
+      border-radius:10px;padding:6px 10px;font-size:10.5px;font-weight:700;color:#55627A}
+    .m-chip svg{width:13px;height:13px;color:var(--gold)}
+    .m-course .m-btn{width:100%;margin-top:12px}
 
     .m-support{background:linear-gradient(110deg,#FFF7E2,#FFFDF5 55%,#EFF8F2);border:1px solid #F2E7C8;
       border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;margin-top:26px}
@@ -356,7 +347,6 @@
     .m-footer{margin-top:32px;background:linear-gradient(180deg,#0A142E,#060F24);color:#C9D2E2;
       padding:26px 20px 18px}
     .m-footer .m-brand{color:#fff}
-    .m-footer > p{font-size:10.5px;color:#9EA0BD;line-height:1.9;max-width:340px;margin:10px 0 0}
     .m-foot-links{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;margin-top:14px}
     .m-foot-links a:hover{color:var(--gold-2)}
     .m-foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;
@@ -377,7 +367,7 @@
 
 <!-- preloader: a calm, branded load-in -->
 <div class="preloader" id="preloader" aria-hidden="true">
-  <div class="pl-logo"><svg><use href="#i-shield"/></svg></div>
+  <div class="pl-logo"><svg><use href="#i-book"/></svg></div>
   <div class="pl-name">مدرسه کنکور نخبان</div>
   <div class="pl-sub">یادگیری هدفمند. آینده‌ای روشن</div>
   <div class="pl-bar"><span></span></div>
@@ -442,10 +432,7 @@
   <div class="wrap header-inner">
 
     <a class="brand" href="#">
-      <span class="img-slot">
-        <img src="assets/logo-shield.png" alt="لوگوی مدرسه کنکور نخبان" onerror="this.parentNode.classList.add('missing')">
-        <span class="fallback"><svg><use href="#i-shield"/></svg></span>
-      </span>
+      <span class="img-slot logo-book"><svg><use href="#i-book"/></svg></span>
       <span class="brand-text">
         <h1>مدرسه کنکور نخبان</h1>
         <p>یادگیری هدفمند. آینده‌ای روشن</p>
@@ -476,7 +463,7 @@
 
   <!-- offer banner: artwork at its exact natural size; the cap's 3D pop is fully visible -->
   <section class="offer reveal" style="--d:.2s">
-    <img class="bg-slot" src="assets/offer-banner.png" alt="" onerror="this.style.display='none'">
+    <img class="bg-slot" src="assets/offer-banner-v2.png" alt="" onerror="this.style.display='none'">
     <div class="offer-stage">
       <div class="offer-text">
         <h2>تخفیف ویژه‌ی ثبت‌نام — <span class="pct">۱۵٪ تخفیف</span></h2>
@@ -495,7 +482,7 @@
   <section class="cards">
 
     <article class="card reveal" style="--d:.35s">
-      <img class="bg-slot" src="assets/card-servers.png" alt="" onerror="this.style.display='none'">
+      <img class="bg-slot" src="assets/product-superpack.png" alt="" onerror="this.style.display='none'">
       <div class="card-body">
         <span class="icon-tile"><svg><use href="#i-cube"/></svg></span>
         <span class="eyebrow">هم‌سیر در یک مسیر</span>
@@ -513,7 +500,7 @@
     </article>
 
     <article class="card reveal" style="--d:.47s">
-      <img class="bg-slot" src="assets/card-laptop.png" alt="" onerror="this.style.display='none'">
+      <img class="bg-slot" src="assets/product-takdore.png" alt="" onerror="this.style.display='none'">
       <div class="card-body">
         <span class="icon-tile"><svg><use href="#i-book"/></svg></span>
         <span class="eyebrow">انتشار تازه و جذاب‌ترین‌ها</span>
@@ -570,17 +557,17 @@
 
 <!-- ================= MOBILE SITE ================= -->
 <div class="m-site">
-  <div class="m-topbar">با نخبان، هوشمندانه‌تر برای آینده‌ات قدم بردار <b>✦</b></div>
+  <div class="m-topbar">یادگیری هدفمند. آینده‌ای روشن <b>✦</b></div>
 
   <header class="m-header">
     <div class="m-nav">
       <a class="m-brand" href="#">
-        <img src="assets/logo-shield.png" alt="لوگوی مدرسه کنکور نخبان">
+        <svg class="logo-book"><use href="#i-book"/></svg>
         <span>مدرسه کنکور نخبان</span>
       </a>
       <div class="m-actions">
-        <a class="m-btn m-btn-gold" href="#m-courses">ورود به حساب <svg><use href="#i-arrow-left"/></svg></a>
-        <button class="m-menu-btn" aria-label="منو" onclick="document.getElementById('m-courses').scrollIntoView({behavior:'smooth'})">☰</button>
+        <a class="m-btn m-btn-gold" href="#">ورود به حساب <svg><use href="#i-arrow-left"/></svg></a>
+        <button class="m-menu-btn" aria-label="منو">☰</button>
       </div>
     </div>
   </header>
@@ -588,16 +575,11 @@
   <div class="m-main">
 
     <section class="m-hero">
-      <div class="m-eyebrow"><i></i> مسیر موفقیت از همین‌جا شروع می‌شود</div>
-      <h1>یادگیری هدفمند،<br><span>آینده‌ای روشن</span></h1>
-      <p>با آموزش‌های دقیق، دوره‌های کاربردی و برنامه‌ریزی هوشمند، قدم‌به‌قدم به نتیجه‌ای که می‌خواهی نزدیک شو.</p>
+      <div class="m-eyebrow"><i></i> مدرسه کنکور نخبان</div>
+      <h1>یادگیری هدفمند.<br><span>آینده‌ای روشن</span></h1>
       <div class="m-hero-btns">
-        <a class="m-btn m-btn-gold" href="#m-courses">مشاهده دوره‌ها <svg><use href="#i-arrow-left"/></svg></a>
-        <a class="m-btn m-btn-ghost" href="#m-courses">آشنایی با سوپرپک</a>
-      </div>
-      <div class="m-note">
-        <div class="m-avatars"><span>ن</span><span>م</span><span>ع</span><span>+</span></div>
-        همراه دانش‌آموزان پرتلاش در مسیر کنکور
+        <a class="m-btn m-btn-gold" href="#">دوره‌های من <svg><use href="#i-arrow-left"/></svg></a>
+        <a class="m-btn m-btn-ghost" href="#">پشتیبانی</a>
       </div>
     </section>
 
@@ -605,8 +587,8 @@
     <section class="m-discount" id="m-special">
       <img class="m-ob-left" src="assets/offer-art-left.png" alt="">
       <div class="m-ob-text">
-        <b>تخفیف ویژه ثبت‌نام — ۱۵٪</b>
-        <small>روی تمامی دوره‌ها؛ فقط تا پایان شمارش معکوس</small>
+        <b>تخفیف ویژه‌ی ثبت‌نام — ۱۵٪ تخفیف</b>
+        <small>این تخفیف روی تمامی دوره‌ها اعمال می‌شود و فقط تا پایان شمارش معکوس فعال است.</small>
         <div class="m-cd">
           <div class="cd-box"><b id="mcd-s">۱۳</b><span>ثانیه</span></div>
           <div class="cd-box"><b id="mcd-m">۲۸</b><span>دقیقه</span></div>
@@ -618,35 +600,31 @@
     </section>
 
     <section class="m-section" id="m-courses">
-      <div class="m-sec-head">
-        <span class="m-kicker">انتخاب مسیر یادگیری</span>
-        <h2>دوره‌ای که به هدفت می‌رسونه</h2>
-        <p>با توجه به نیازت، بهترین مسیر رو انتخاب کن.</p>
-      </div>
-
       <article class="m-course">
-        <img src="assets/card-servers.png" alt="سوپر پک تکنیکی">
+        <img src="assets/product-superpack.png" alt="سوپر پک تکنیکی">
         <div class="m-course-body">
-          <span class="m-tag">پیشنهاد ویژه نخبان</span>
+          <span class="m-tag">هم‌سیر در یک مسیر</span>
           <h3>سوپر پک تکنیکی</h3>
           <p>همه‌ی درس‌های کلیدی رشته‌ات، یک‌جا و با برنامه‌ی مطالعه؛ انتخاب کامل برای رسیدن به نتیجه.</p>
-          <div class="m-course-bottom">
-            <div><span class="m-price-label">شروع قیمت از</span><div class="m-price">۲٬۶۸۰٬۰۰۰ <small>تومان</small></div></div>
-            <a class="m-btn m-btn-gold" href="#">مشاهده سرو پک‌ها</a>
+          <div class="m-chips">
+            <span class="m-chip"><svg><use href="#i-layers"/></svg>۱ سرو پک</span>
+            <span class="m-chip"><svg><use href="#i-card"/></svg>از ۲٬۶۸۰٬۰۰۰ تومان</span>
           </div>
+          <a class="m-btn m-btn-gold" href="#">مشاهده سرو پک‌ها</a>
         </div>
       </article>
 
       <article class="m-course">
-        <img src="assets/card-laptop.png" alt="تک دوره">
+        <img src="assets/product-takdore.png" alt="تک دوره">
         <div class="m-course-body">
-          <span class="m-tag mint">انتخاب منعطف</span>
+          <span class="m-tag">انتشار تازه و جذاب‌ترین‌ها</span>
           <h3>تک دوره</h3>
-          <p>فقط درس‌هایی را که می‌خواهی انتخاب کن؛ چند دوره را هم می‌توانی یک‌جا و در یک پرداخت بخری.</p>
-          <div class="m-course-bottom">
-            <div><span class="m-price-label">شروع قیمت از</span><div class="m-price">۵۸۶٬۰۰۰ <small>تومان</small></div></div>
-            <a class="m-btn m-btn-light" href="#">انتخاب تک دوره‌ها</a>
+          <p>فقط درس‌هایی را که می‌خواهی انتخاب کن؛ چند دوره یا هم می‌توانی یک‌جا و در یک پرداخت بخری.</p>
+          <div class="m-chips">
+            <span class="m-chip"><svg><use href="#i-book"/></svg>۱ تک دوره</span>
+            <span class="m-chip"><svg><use href="#i-card"/></svg>از ۵۸۶٬۰۰۰ تومان</span>
           </div>
+          <a class="m-btn m-btn-gold" href="#">انتخاب تک دوره‌ها</a>
         </div>
       </article>
     </section>
@@ -654,23 +632,22 @@
     <section class="m-support">
       <span class="m-support-icon"><svg><use href="#i-headset"/></svg></span>
       <div>
-        <h3>برای انتخاب دوره نیاز به راهنمایی داری؟</h3>
-        <p>بین دو انتخاب گیر کردی؟ تیم پشتیبانی نخبان کنارت هست تا بهترین تصمیم رو بگیری.</p>
+        <h3>درد دل داری؟ بین دو انتخاب گیر کرده‌ای؟</h3>
+        <p>همین‌جا با تیم پشتیبانی گفتگو کن؛ سریع راهنماییت می‌کنیم.</p>
       </div>
-      <a class="m-btn m-btn-gold" href="#">گفتگو با پشتیبانی</a>
+      <a class="m-btn m-btn-gold" href="#">شروع گفتگو</a>
     </section>
 
   </div>
 
   <footer class="m-footer">
     <a class="m-brand" href="#">
-      <img src="assets/logo-shield.png" alt="لوگوی مدرسه کنکور نخبان">
+      <svg class="logo-book"><use href="#i-book"/></svg>
       <span>مدرسه کنکور نخبان</span>
     </a>
-    <p>یادگیری هدفمند، آینده‌ای روشن. همراه تو در مسیر ساختن آینده‌ای که آرزوش رو داری.</p>
-    <div class="m-foot-links"><a href="#">درباره ما</a><a href="#">قوانین و مقررات</a><a href="#">تماس با ما</a></div>
+    <div class="m-foot-links"><a href="#">قوانین و مقررات</a><a href="#">درباره ما</a><a href="#">تماس با ما</a></div>
     <div class="m-foot-bottom">
-      <span>© ۱۴۰۴ مدرسه کنکور نخبان. ساخته‌شده برای یادگیری بهتر ✦</span>
+      <span>© ۱۴۰۴ - مدرسه کنکور نخبان. تمامی حقوق محفوظ است.</span>
       <div class="m-socials">
         <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
         <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
@@ -678,7 +655,7 @@
     </div>
   </footer>
 
-  <div class="m-dock"><a class="m-btn m-btn-gold" href="#m-courses">مشاهده و انتخاب دوره‌ها <svg><use href="#i-arrow-left"/></svg></a></div>
+  <div class="m-dock"><a class="m-btn m-btn-gold" href="#">دوره‌های من <svg><use href="#i-arrow-left"/></svg></a></div>
 </div>
 
 <script>
@@ -731,6 +708,11 @@
   }
   render();
   setInterval(tick, 1000);
+
+  /* دکمه‌ها فعلا بدون کاربرد: هیچ کلیکی عملی انجام نمی‌دهد */
+  document.querySelectorAll('.d-site a[href], .m-site a[href]').forEach(function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); });
+  });
 })();
 </script>
 </body>
