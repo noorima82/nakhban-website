@@ -92,7 +92,7 @@
   .brand .img-slot.logo-book svg{width:82%;height:82%}
   .brand-text h1{font-size:clamp(15px,2.2vh,17px);font-weight:800;color:#fff;line-height:1.4}
   .brand-text p{font-size:clamp(10px,1.5vh,11.5px);color:#C8B57C;font-weight:500}
-  .menu{display:flex;align-items:center;gap:var(--sp-1);margin-right:var(--sp-2);
+  .menu{display:flex;align-items:center;gap:14px;margin-right:var(--sp-2);
     overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
   .menu::-webkit-scrollbar{display:none}
   .menu a{display:flex;align-items:center;gap:7px;padding:clamp(7px,1.2vh,10px) clamp(14px,1.6vw,18px);
@@ -103,7 +103,7 @@
   .menu a svg{width:18px;height:18px;color:var(--gold);flex:0 0 auto}
   .menu a.active{background:var(--gold-grad);color:#0A1631;font-weight:800;box-shadow:0 4px 14px rgba(233,185,74,.35)}
   .menu a.active svg{color:#0A1631}
-  .header-actions{display:flex;align-items:center;gap:var(--sp-1);margin-right:auto;flex:0 0 auto}
+  .header-actions{display:flex;align-items:center;gap:11px;margin-right:auto;flex:0 0 auto}
   .hpill{display:flex;align-items:center;gap:7px;background:rgba(8,18,40,.58);
     border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);padding:5px 10px;
     color:#E8ECF4;white-space:nowrap;transition:background .2s}
@@ -131,7 +131,7 @@
   /* ---- offer banner: the artwork at its EXACT natural ratio; cap's 3D pop fully visible ---- */
   .offer{position:relative;flex:0 0 auto;width:100%;aspect-ratio:var(--offer-ratio);
     color:#fff;overflow:hidden;border-radius:var(--r-lg)}
-  .offer .bg-slot{object-fit:fill;filter:drop-shadow(0 10px 22px rgba(8,20,49,.28))}
+  .offer .bg-slot{object-fit:fill}
   .offer-stage{position:absolute;top:0;right:0;left:0;height:var(--band-h);z-index:2;
     display:flex;align-items:center}
   .offer-text{margin-right:11%;flex:1;min-width:0}
@@ -153,11 +153,8 @@
   .cards{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-cards)}
   .card{position:relative;border-radius:var(--r-lg);overflow:hidden;
     background:linear-gradient(120deg,#122A5C 0%,#0A1A3C 55%,#081431 100%);
-    box-shadow:0 10px 30px rgba(16,28,51,.14);
-    transition:transform .35s ease,box-shadow .35s ease}
-  .card:hover{transform:translateY(-5px);box-shadow:0 20px 46px rgba(16,28,51,.22)}
-  .card .bg-slot{transition:transform .6s ease}
-  .card:hover .bg-slot{transform:scale(1.025)}
+    box-shadow:0 10px 30px rgba(16,28,51,.14)}
+  .card .bg-slot{object-fit:contain}
   .card-body{position:absolute;top:0;bottom:clamp(86px,12.5vh,108px);right:0;width:47%;z-index:1;
     padding:clamp(14px,2.6vh,24px) clamp(14px,2.4vw,22px) 0 0;
     display:flex;flex-direction:column;align-items:flex-start}
@@ -288,27 +285,22 @@
     .m-btn-gold{background:var(--gold-grad);color:#131F3D;box-shadow:0 8px 18px rgba(216,162,43,.32)}
     .m-btn-gold:hover{filter:brightness(1.05)}
     .m-btn-light{background:#FFF4D6;color:#8A6A14}
-    .m-btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.28)}
+    .m-btn-ghost{background:rgba(10,27,56,.92);color:#fff;border:1px solid rgba(255,255,255,.2)}
     .m-actions .m-btn{padding:10px 14px}
     .m-btn svg{width:15px;height:15px;flex:0 0 auto}
 
     .m-main{width:min(100% - 28px,600px);margin:auto;padding-top:20px}
-    .m-hero{position:relative;isolation:isolate;overflow:hidden;border-radius:24px;padding:30px 22px 26px;color:#fff;
-      background:linear-gradient(115deg,rgba(12,30,70,.86) 0%,rgba(8,20,49,.94) 70%),url(assets/header-bg.png) center/cover;
-      box-shadow:var(--shadow-navy)}
-    .m-hero::before{content:'';position:absolute;inset:0;z-index:-1;
-      background:radial-gradient(300px 130px at 85% 0%,rgba(233,185,74,.18),transparent 60%)}
-    .m-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);
-      background:rgba(255,255,255,.08);padding:6px 12px;border-radius:99px;color:#EFE6C8;font-size:11px;font-weight:700}
-    .m-eyebrow i{width:7px;height:7px;border-radius:50%;background:#8DF0C8;box-shadow:0 0 0 4px rgba(141,240,200,.15)}
-    .m-hero h1{font-size:29px;line-height:1.55;margin:14px 0 18px;font-weight:800}
-    .m-hero h1 span{color:var(--gold-2)}
-    .m-hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+    /* hero: exactly the uploaded artwork + the two buttons, nothing else added */
+    .m-hero-img{display:block;width:100%;height:auto}
+    .m-hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
     .m-hero-btns .m-btn{padding:12px 18px}
 
     /* discount: the exact banner file, untouched — only a slightly rounder radius */
     .m-discount{margin-top:16px}
     .m-offer-img{display:block;width:100%;height:auto;border-radius:16px}
+    .m-offer-info{margin-top:12px;text-align:center}
+    .m-offer-info b{display:block;font-size:15px;font-weight:800;color:var(--mink)}
+    .m-offer-info small{display:block;color:var(--mmuted);font-size:10.5px;line-height:1.75;margin-top:3px}
     .m-cd{display:flex;justify-content:center;gap:5px;margin-top:9px}
     .m-cd .cd-box{min-width:46px;padding:5px 6px;border-radius:10px;background:#FFF9E8;
       border:1px solid rgba(233,185,74,.5);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -572,18 +564,17 @@
 
   <div class="m-main">
 
-    <section class="m-hero">
-      <div class="m-eyebrow"><i></i> مدرسه کنکور نخبان</div>
-      <h1>یادگیری هدفمند.<br><span>آینده‌ای روشن</span></h1>
+    <section class="m-hero" id="top">
+      <img class="m-hero-img" src="assets/hero-art.png" alt="یادگیری هدفمند، آینده‌ای روشن">
       <div class="m-hero-btns">
         <a class="m-btn m-btn-gold" href="#">دوره‌های من <svg><use href="#i-arrow-left"/></svg></a>
         <a class="m-btn m-btn-ghost" href="#">پشتیبانی</a>
       </div>
     </section>
 
-    <!-- تخفیف: دقیقاً همان فایل بنر، بدون هیچ تغییری؛ فقط رادیوس کمی بیشتر -->
+    <!-- تخفیف موبایل: دقیقاً همان تصویر بنفش، بدون هیچ تغییری؛ فقط رادیوس کمی بیشتر -->
     <section class="m-discount" id="m-special">
-      <img class="m-offer-img" src="assets/offer-banner-v3.png" alt="">
+      <img class="m-offer-img" src="assets/offer-banner-light.png" alt="">
       <div class="m-offer-info">
         <b>تخفیف ویژه‌ی ثبت‌نام — ۱۵٪ تخفیف</b>
         <small>این تخفیف روی تمامی دوره‌ها اعمال می‌شود و فقط تا پایان شمارش معکوس فعال است.</small>
