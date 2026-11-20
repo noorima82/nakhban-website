@@ -150,8 +150,9 @@
   @keyframes cdPop{40%{transform:scale(1.14)}100%{transform:scale(1)}}
 
   /* ---- cards ---- */
-  .cards{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-cards);align-items:center}
+  .cards{flex:1 1 auto;min-height:0;display:flex;gap:var(--gap-cards)}
   .card{position:relative;border-radius:var(--r-lg);overflow:hidden;max-height:100%;
+    flex:1 1 0;min-width:0;
     background:linear-gradient(120deg,#122A5C 0%,#0A1A3C 55%,#081431 100%);
     box-shadow:0 10px 30px rgba(16,28,51,.14);aspect-ratio:1609/977}
   .card .bg-slot{object-fit:contain}
@@ -164,11 +165,11 @@
   .icon-tile svg{width:52%;height:52%;color:#101C33}
   .eyebrow{font-size:clamp(10.5px,1.7vh,12px);color:#9FB0CC;font-weight:500}
   .card-body h3{font-size:clamp(19px,3.4vh,25px);font-weight:800;color:#fff;margin-top:3px;line-height:1.45}
-  .card-body .desc{font-size:clamp(11px,1.9vh,12.5px);color:#B9C4D8;line-height:1.8;margin-top:clamp(4px,1vh,8px)}
+  .card-body .desc{font-size:clamp(10.5px,1.75vh,12px);color:#B9C4D8;line-height:1.8;margin-top:clamp(4px,1vh,8px)}
   .chips{display:flex;gap:var(--sp-1);margin-top:auto;flex-wrap:wrap;padding-top:clamp(6px,1.2vh,10px)}
   .chip{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.09);
-    border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:clamp(4px,0.9vh,6px) clamp(9px,1.1vw,12px);
-    font-size:clamp(10px,1.65vh,11.5px);font-weight:700;color:#DCE4F2;white-space:nowrap}
+    border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:clamp(5px,1vh,7px) clamp(9px,1vw,13px);
+    font-size:clamp(10px,0.95vw + 2px,12px);font-weight:700;color:#DCE4F2;white-space:nowrap}
   .chip svg{width:14px;height:14px;color:#C8B57C;flex:0 0 auto}
   .btn-gold{position:absolute;z-index:2;right:var(--sp-4);left:var(--sp-4);bottom:clamp(14px,2.2vh,20px);
     height:clamp(42px,6.6vh,54px);display:flex;align-items:center;justify-content:space-between;
@@ -250,8 +251,8 @@
     .cd-box{min-width:0;flex:1}
 
     /* cards: stacked, normal document flow — nothing overlaps */
-    .cards{grid-template-columns:1fr}
-    .card{min-height:0;display:flex;flex-direction:column}
+    .cards{flex-direction:column}
+    .card{flex:0 0 auto;min-height:0;display:flex;flex-direction:column}
     .card .bg-slot{position:relative;inset:auto;width:100%;height:210px;object-position:left center}
     .card-body{position:relative;inset:auto;width:100%;padding:var(--sp-4) var(--sp-4) 0}
     .card-body h3{font-size:21px}
@@ -294,7 +295,7 @@
     .m-hero{position:relative}
     .m-hero-img{display:block;width:100%;height:auto;border-radius:20px}
     .m-hero-btns{position:absolute;left:12px;right:12px;bottom:12px;z-index:1;
-      display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+      display:flex;justify-content:flex-start;gap:12px;flex-wrap:wrap}
     .m-hero-btns .m-btn{padding:9px 16px;font-size:12.5px}
 
     /* discount: the exact banner file, untouched — only a slightly rounder radius */
@@ -304,7 +305,7 @@
     .m-offer-info{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
       align-items:center;justify-content:center;gap:5px;padding:8px 14px;text-align:center}
     .m-offer-info b{display:block;font-size:13.5px;font-weight:800;color:#16244E}
-    .m-offer-info small{display:block;color:#5A6784;font-size:8.5px;line-height:1.6;margin:0}
+    .m-offer-info small{display:block;color:#5A6784;font-size:8.5px;line-height:1.6;margin:0 auto;max-width:238px}
     .m-cd{display:flex;justify-content:center;gap:8px;margin-top:1px}
     .m-cd .cd-box{min-width:42px;padding:4px 5px;border-radius:9px;background:#FFF9E8;
       border:1px solid rgba(200,150,40,.55);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -320,11 +321,11 @@
     .m-course-img::after{content:'';position:absolute;right:0;left:0;bottom:0;height:56px;
       background:linear-gradient(180deg,rgba(10,30,62,0),#0A1E3E)}
     /* all card content lives INSIDE the artwork (its right navy area) — the image itself untouched */
-    .m-course-body{position:absolute;top:0;bottom:0;right:0;width:64%;z-index:1;
+    .m-course-body{position:absolute;top:0;bottom:0;right:0;width:68%;z-index:1;
       padding:12px 14px 56px;display:flex;flex-direction:column;align-items:flex-start}
     .m-tag{font-size:10px;font-weight:500;color:#B9C4D8}
     .m-course h3{font-size:15.5px;font-weight:800;color:#fff;margin:5px 0 4px}
-    .m-course p{font-size:10px;color:#C7D3E6;line-height:1.75;margin:0}
+    .m-course p{font-size:8.5px;color:#C7D3E6;line-height:1.7;margin:0}
     .m-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .m-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.09);
       border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:4px 8px;font-size:9px;font-weight:700;color:#E9EFF8}
