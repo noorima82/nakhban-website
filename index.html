@@ -24,8 +24,8 @@
     /* cards breathe: a clear, confident gap like the reference */
     --gap-cards: clamp(24px, 3.4vh, 40px);
     /* offer banner keeps the exact natural ratio of the artwork (1261x106, band = 94.3%) */
-    --offer-ratio: 1240 / 100;
-    --band-h: 94.3%;
+    --offer-ratio: 1261 / 160;
+    --band-h: 89%;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -130,8 +130,7 @@
 
   /* ---- offer banner: the artwork at its EXACT natural ratio; cap's 3D pop fully visible ---- */
   .offer{position:relative;flex:0 0 auto;width:100%;aspect-ratio:var(--offer-ratio);
-    color:#fff;overflow:hidden;border-radius:var(--r-lg);
-    background:linear-gradient(105deg,#0D224E 0%,#0A1A3C 55%,#081431 100%)}
+    color:#fff;overflow:hidden;border-radius:var(--r-lg)}
   .offer .bg-slot{object-fit:fill;filter:drop-shadow(0 10px 22px rgba(8,20,49,.28))}
   .offer-stage{position:absolute;top:0;right:0;left:0;height:var(--band-h);z-index:2;
     display:flex;align-items:center}
@@ -307,14 +306,9 @@
     .m-hero-btns{display:flex;gap:10px;flex-wrap:wrap}
     .m-hero-btns .m-btn{padding:12px 18px}
 
-    /* discount: the exact artwork, cut from its navy bg, text lives in the artwork's empty middle */
-    .m-discount{margin-top:16px;background:#fff;border:1px solid #ECECF4;border-radius:20px;padding:16px 12px;
-      display:flex;align-items:center;gap:6px;box-shadow:0 14px 34px rgba(16,28,51,.08)}
-    .m-ob-left{height:clamp(58px,17vw,76px);width:auto;flex:0 0 auto}
-    .m-ob-right{height:clamp(50px,15vw,66px);width:auto;flex:0 0 auto}
-    .m-ob-text{flex:1;min-width:0;text-align:center;padding:0 2px}
-    .m-ob-text b{display:block;font-size:13.5px;font-weight:800;color:var(--mink)}
-    .m-ob-text small{display:block;color:var(--mmuted);font-size:10px;margin-top:2px}
+    /* discount: the exact banner file, untouched — only a slightly rounder radius */
+    .m-discount{margin-top:16px}
+    .m-offer-img{display:block;width:100%;height:auto;border-radius:16px}
     .m-cd{display:flex;justify-content:center;gap:5px;margin-top:9px}
     .m-cd .cd-box{min-width:46px;padding:5px 6px;border-radius:10px;background:#FFF9E8;
       border:1px solid rgba(233,185,74,.5);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -322,16 +316,20 @@
     .m-cd .cd-box span{font-size:8.5px;color:#8A7A45;margin-top:2px}
 
     .m-section{margin-top:28px}
-    .m-course{background:#fff;border:1px solid #ECECF4;border-radius:20px;overflow:hidden;
-      box-shadow:0 10px 30px rgba(16,28,51,.07);margin-bottom:14px}
-    .m-course > img{display:block;width:100%;height:118px;object-fit:cover}
-    .m-course-body{padding:16px}
-    .m-tag{font-size:11px;font-weight:500;color:#8494A7}
-    .m-course h3{font-size:17.5px;font-weight:800;color:var(--mink);margin:10px 0 5px}
-    .m-course p{font-size:11.5px;color:var(--mmuted);line-height:1.9;margin:0}
-    .m-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .m-chip{display:inline-flex;align-items:center;gap:6px;background:#F4F5F8;border:1px solid #E7E9F0;
-      border-radius:10px;padding:6px 10px;font-size:10.5px;font-weight:700;color:#55627A}
+    .m-course{position:relative;border-radius:18px;overflow:hidden;
+      background:linear-gradient(180deg,#0A1E3E,#0A1B38);
+      box-shadow:0 12px 30px rgba(10,22,48,.14);margin-bottom:14px}
+    .m-course-img{position:relative}
+    .m-course-img img{display:block;width:100%;height:auto}
+    .m-course-img::after{content:'';position:absolute;right:0;left:0;bottom:0;height:52px;
+      background:linear-gradient(180deg,rgba(10,30,62,0),#0A1E3E)}
+    .m-course-body{padding:14px 16px 18px}
+    .m-tag{font-size:11px;font-weight:500;color:#9FB0CC}
+    .m-course h3{font-size:17.5px;font-weight:800;color:#fff;margin:8px 0 5px}
+    .m-course p{font-size:11.5px;color:#C7D3E6;line-height:1.9;margin:0}
+    .m-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .m-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:6px 10px;font-size:10.5px;font-weight:700;color:#E9EFF8}
     .m-chip svg{width:13px;height:13px;color:var(--gold)}
     .m-course .m-btn{width:100%;margin-top:12px}
 
@@ -463,7 +461,7 @@
 
   <!-- offer banner: artwork at its exact natural size; the cap's 3D pop is fully visible -->
   <section class="offer reveal" style="--d:.2s">
-    <img class="bg-slot" src="assets/offer-banner-v2.png" alt="" onerror="this.style.display='none'">
+    <img class="bg-slot" src="assets/offer-banner-v3.png" alt="" onerror="this.style.display='none'">
     <div class="offer-stage">
       <div class="offer-text">
         <h2>تخفیف ویژه‌ی ثبت‌نام — <span class="pct">۱۵٪ تخفیف</span></h2>
@@ -583,10 +581,10 @@
       </div>
     </section>
 
-    <!-- تخفیف: همان عکس اصلی، جدا شده از بک‌گراند سرمه‌ای؛ نوشته داخل قسمت خالی خود تصویر -->
+    <!-- تخفیف: دقیقاً همان فایل بنر، بدون هیچ تغییری؛ فقط رادیوس کمی بیشتر -->
     <section class="m-discount" id="m-special">
-      <img class="m-ob-left" src="assets/offer-art-left.png" alt="">
-      <div class="m-ob-text">
+      <img class="m-offer-img" src="assets/offer-banner-v3.png" alt="">
+      <div class="m-offer-info">
         <b>تخفیف ویژه‌ی ثبت‌نام — ۱۵٪ تخفیف</b>
         <small>این تخفیف روی تمامی دوره‌ها اعمال می‌شود و فقط تا پایان شمارش معکوس فعال است.</small>
         <div class="m-cd">
@@ -596,12 +594,11 @@
           <div class="cd-box"><b id="mcd-d">۶۹</b><span>روز</span></div>
         </div>
       </div>
-      <img class="m-ob-right" src="assets/offer-art-right.png" alt="">
     </section>
 
     <section class="m-section" id="m-courses">
       <article class="m-course">
-        <img src="assets/product-superpack.png" alt="سوپر پک تکنیکی">
+        <div class="m-course-img"><img src="assets/product-superpack.png" alt="سوپر پک تکنیکی"></div>
         <div class="m-course-body">
           <span class="m-tag">هم‌سیر در یک مسیر</span>
           <h3>سوپر پک تکنیکی</h3>
@@ -615,7 +612,7 @@
       </article>
 
       <article class="m-course">
-        <img src="assets/product-takdore.png" alt="تک دوره">
+        <div class="m-course-img"><img src="assets/product-takdore.png" alt="تک دوره"></div>
         <div class="m-course-body">
           <span class="m-tag">انتشار تازه و جذاب‌ترین‌ها</span>
           <h3>تک دوره</h3>
