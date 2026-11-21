@@ -153,9 +153,9 @@
   .cards{flex:1 1 auto;min-height:0;display:flex;gap:var(--gap-cards)}
   .card{position:relative;border-radius:var(--r-lg);overflow:hidden;max-height:100%;
     flex:1 1 0;min-width:0;
-    background:linear-gradient(120deg,#122A5C 0%,#0A1A3C 55%,#081431 100%);
+    background:linear-gradient(120deg,#0D224E 0%,#0A1A3C 55%,#081431 100%);
     box-shadow:0 10px 30px rgba(16,28,51,.14);aspect-ratio:1609/977}
-  .card .bg-slot{object-fit:contain}
+  .card .bg-slot{object-fit:cover}
   .card-body{position:absolute;top:0;bottom:clamp(80px,11vh,96px);right:0;width:49%;z-index:1;
     padding:clamp(14px,2.6vh,24px) clamp(14px,2.4vw,22px) 0 0;
     display:flex;flex-direction:column;align-items:flex-start}
@@ -166,7 +166,7 @@
   .eyebrow{font-size:clamp(10.5px,1.7vh,12px);color:#9FB0CC;font-weight:500}
   .card-body h3{font-size:clamp(19px,3.4vh,25px);font-weight:800;color:#fff;margin-top:3px;line-height:1.45}
   .card-body .desc{font-size:clamp(10.5px,1.75vh,12px);color:#B9C4D8;line-height:1.8;margin-top:clamp(4px,1vh,8px)}
-  .chips{display:flex;gap:var(--sp-1);margin-top:auto;flex-wrap:wrap;padding-top:clamp(6px,1.2vh,10px)}
+  .chips{display:flex;gap:12px;margin-top:auto;flex-wrap:wrap;padding-top:clamp(6px,1.2vh,10px)}
   .chip{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.09);
     border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:clamp(5px,1vh,7px) clamp(9px,1vw,13px);
     font-size:clamp(10px,0.95vw + 2px,12px);font-weight:700;color:#DCE4F2;white-space:nowrap}
@@ -253,7 +253,7 @@
     /* cards: stacked, normal document flow — nothing overlaps */
     .cards{flex-direction:column}
     .card{flex:0 0 auto;min-height:0;display:flex;flex-direction:column}
-    .card .bg-slot{position:relative;inset:auto;width:100%;height:210px;object-position:left center}
+    .card .bg-slot{position:relative;inset:auto;width:100%;height:210px;object-fit:cover;object-position:left center}
     .card-body{position:relative;inset:auto;width:100%;padding:var(--sp-4) var(--sp-4) 0}
     .card-body h3{font-size:21px}
     .chips{margin-top:var(--sp-3);margin-bottom:var(--sp-2)}
@@ -326,7 +326,7 @@
     .m-tag{font-size:10px;font-weight:500;color:#B9C4D8}
     .m-course h3{font-size:15.5px;font-weight:800;color:#fff;margin:5px 0 4px}
     .m-course p{font-size:8.5px;color:#C7D3E6;line-height:1.7;margin:0}
-    .m-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .m-chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
     .m-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.09);
       border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:4px 8px;font-size:9px;font-weight:700;color:#E9EFF8}
     .m-chip svg{width:11px;height:11px;color:var(--gold)}
