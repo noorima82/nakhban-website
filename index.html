@@ -228,6 +228,7 @@
     .card-body{width:50%}
   }
   @media (max-width:860px){
+    :root{--ms:clamp(0.78px,calc((100vw - 28px)/362),1px)}   /* fluid scale: =1 at 390px phone, shrinks with the screen */
     html,body{height:auto;min-height:100%}
     html{overflow-x:hidden}          /* scroll fix: page scrolls vertically, never sideways */
     body{height:auto;overflow:visible;overflow-x:clip}
@@ -274,29 +275,30 @@
     .m-topbar b{color:var(--gold-2)}
     .m-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(16,28,51,.08)}
-    .m-nav{width:min(100% - 28px,600px);margin:auto;height:62px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .m-brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:14.5px;color:var(--mink);white-space:nowrap}
-    .m-brand .logo-book{width:36px;height:36px;color:var(--gold)}
-    .m-actions{display:flex;align-items:center;gap:8px}
-    .m-menu-btn{width:38px;height:38px;border:1px solid rgba(16,28,51,.12);background:#fff;border-radius:11px;
-      color:var(--mink);font-size:19px;display:flex;align-items:center;justify-content:center}
-    .m-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:13px;
-      padding:11px 16px;font-weight:800;font-size:13px;font-family:inherit;transition:.2s}
+    .m-nav{width:min(100% - 28px,600px);margin:auto;height:calc(62*var(--ms));display:flex;align-items:center;justify-content:space-between;gap:calc(12*var(--ms))}
+    .m-brand{display:flex;align-items:center;gap:calc(9*var(--ms));font-weight:800;font-size:calc(14.5*var(--ms));color:var(--mink);white-space:nowrap}
+    .m-brand .logo-book{width:calc(36*var(--ms));height:calc(36*var(--ms));color:var(--gold)}
+    .m-actions{display:flex;align-items:center;gap:calc(8*var(--ms))}
+    .m-menu-btn{width:calc(38*var(--ms));height:calc(38*var(--ms));border:1px solid rgba(16,28,51,.12);background:#fff;border-radius:calc(11*var(--ms));
+      color:var(--mink);font-size:calc(19*var(--ms));display:flex;align-items:center;justify-content:center}
+    .m-btn{display:inline-flex;align-items:center;justify-content:center;gap:calc(8*var(--ms));border:0;border-radius:calc(13*var(--ms));
+      padding:calc(11*var(--ms)) calc(16*var(--ms));font-weight:800;font-size:calc(13*var(--ms));font-family:inherit;transition:.2s;white-space:nowrap}
     .m-btn:active{transform:translateY(1px)}
     .m-btn-gold{background:var(--gold-grad);color:#131F3D;box-shadow:0 8px 18px rgba(216,162,43,.32)}
     .m-btn-gold:hover{filter:brightness(1.05)}
     .m-btn-light{background:#FFF4D6;color:#8A6A14}
     .m-btn-ghost{background:rgba(255,255,255,.94);color:#0E1B38;border:1px solid rgba(255,255,255,.6)}
-    .m-actions .m-btn{padding:10px 14px}
-    .m-btn svg{width:15px;height:15px;flex:0 0 auto}
+    .m-actions .m-btn{padding:calc(10*var(--ms)) calc(14*var(--ms))}
+    .m-btn svg{width:calc(15*var(--ms));height:calc(15*var(--ms));flex:0 0 auto}
+    @media (max-width:360px){ .m-actions .m-btn svg{display:none} }
 
     .m-main{width:min(100% - 28px,600px);margin:auto;padding-top:20px}
     /* hero: exactly the uploaded artwork; the two buttons live INSIDE it */
     .m-hero{position:relative}
     .m-hero-img{display:block;width:100%;height:auto;border-radius:20px}
-    .m-hero-btns{position:absolute;left:12px;right:12px;bottom:12px;z-index:1;
-      display:flex;justify-content:flex-start;gap:12px;flex-wrap:wrap}
-    .m-hero-btns .m-btn{padding:9px 16px;font-size:12.5px}
+    .m-hero-btns{position:absolute;left:calc(12*var(--ms));right:calc(12*var(--ms));bottom:calc(12*var(--ms));z-index:1;
+      display:flex;justify-content:flex-start;gap:calc(12*var(--ms));flex-wrap:wrap}
+    .m-hero-btns .m-btn{padding:calc(9*var(--ms)) calc(16*var(--ms));font-size:calc(12.5*var(--ms))}
 
     /* discount: the exact banner file, untouched — only a slightly rounder radius */
     /* discount: the exact banner file; title, note and countdown live INSIDE it */
@@ -304,33 +306,33 @@
     .m-offer-img{display:block;width:100%;height:auto;border-radius:16px}
     .m-offer-info{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
       align-items:center;justify-content:center;gap:5px;padding:8px 14px;text-align:center}
-    .m-offer-info b{display:block;font-size:13.5px;font-weight:800;color:#16244E}
-    .m-offer-info small{display:block;color:#5A6784;font-size:8.5px;line-height:1.6;margin:0 auto;max-width:238px}
-    .m-cd{display:flex;justify-content:center;gap:8px;margin-top:1px}
-    .m-cd .cd-box{min-width:42px;padding:4px 5px;border-radius:9px;background:#FFF9E8;
+    .m-offer-info b{display:block;font-size:calc(13.5*var(--ms));font-weight:800;color:#16244E}
+    .m-offer-info small{display:block;color:#5A6784;font-size:calc(8.5*var(--ms));line-height:1.6;margin:0 auto;max-width:calc(238*var(--ms))}
+    .m-cd{display:flex;justify-content:center;gap:calc(8*var(--ms));margin-top:1px}
+    .m-cd .cd-box{min-width:calc(42*var(--ms));padding:calc(4*var(--ms)) calc(5*var(--ms));border-radius:calc(9*var(--ms));background:#FFF9E8;
       border:1px solid rgba(200,150,40,.55);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
-    .m-cd .cd-box b{font-size:12.5px;color:var(--mgold)}
-    .m-cd .cd-box span{font-size:7.5px;color:#8A7A45;margin-top:1px}
+    .m-cd .cd-box b{font-size:calc(12.5*var(--ms));color:var(--mgold)}
+    .m-cd .cd-box span{font-size:calc(7.5*var(--ms));color:#8A7A45;margin-top:1px}
 
     .m-section{margin-top:28px}
-    .m-course{position:relative;border-radius:18px;overflow:hidden;
+    .m-course{position:relative;border-radius:calc(18*var(--ms));overflow:hidden;
       background:linear-gradient(180deg,#0A1E3E,#0A1B38);
-      box-shadow:0 12px 30px rgba(10,22,48,.14);margin-bottom:14px}
+      box-shadow:0 12px 30px rgba(10,22,48,.14);margin-bottom:calc(14*var(--ms))}
     .m-course-img{position:relative}
     .m-course-img img{display:block;width:100%;height:auto}
-    .m-course-img::after{content:'';position:absolute;right:0;left:0;bottom:0;height:56px;
+    .m-course-img::after{content:'';position:absolute;right:0;left:0;bottom:0;height:calc(56*var(--ms));
       background:linear-gradient(180deg,rgba(10,30,62,0),#0A1E3E)}
     /* all card content lives INSIDE the artwork (its right navy area) — the image itself untouched */
     .m-course-body{position:absolute;top:0;bottom:0;right:0;width:68%;z-index:1;
-      padding:12px 14px 56px;display:flex;flex-direction:column;align-items:flex-start}
-    .m-tag{font-size:10px;font-weight:500;color:#B9C4D8}
-    .m-course h3{font-size:15.5px;font-weight:800;color:#fff;margin:5px 0 4px}
-    .m-course p{font-size:8.5px;color:#C7D3E6;line-height:1.7;margin:0;max-width:66%}
-    .m-chips{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
-    .m-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.09);
-      border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:4px 8px;font-size:9px;font-weight:700;color:#E9EFF8}
-    .m-chip svg{width:11px;height:11px;color:var(--gold)}
-    .m-course .m-btn{position:absolute;left:10px;right:10px;bottom:10px;z-index:2;margin:0;padding:10px 12px}
+      padding:calc(12*var(--ms)) calc(14*var(--ms)) calc(56*var(--ms));display:flex;flex-direction:column;align-items:flex-start}
+    .m-tag{font-size:max(8px,calc(10*var(--ms)));font-weight:500;color:#B9C4D8}
+    .m-course h3{font-size:max(12px,calc(15.5*var(--ms)));font-weight:800;color:#fff;margin:calc(5*var(--ms)) 0 calc(4*var(--ms))}
+    .m-course p{font-size:max(6.5px,calc(8.5*var(--ms)));color:#C7D3E6;line-height:1.7;margin:0;max-width:66%}
+    .m-chips{display:flex;gap:calc(16*var(--ms));flex-wrap:wrap;margin-top:calc(8*var(--ms))}
+    .m-chip{display:inline-flex;align-items:center;gap:calc(5*var(--ms));background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.08);border-radius:calc(9*var(--ms));padding:calc(4*var(--ms)) calc(8*var(--ms));font-size:max(7px,calc(9*var(--ms)));font-weight:700;color:#E9EFF8}
+    .m-chip svg{width:calc(11*var(--ms));height:calc(11*var(--ms));color:var(--gold)}
+    .m-course .m-btn{position:absolute;left:calc(10*var(--ms));right:calc(10*var(--ms));bottom:calc(10*var(--ms));z-index:2;margin:0;padding:calc(10*var(--ms)) calc(12*var(--ms))}
 
     .m-support{background:linear-gradient(110deg,#FFF7E2,#FFFDF5 55%,#EFF8F2);border:1px solid #F2E7C8;
       border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;margin-top:26px}
