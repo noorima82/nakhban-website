@@ -23,9 +23,6 @@
     --gap-v: clamp(14px, 2.6vh, 26px);
     /* cards breathe: a clear, confident gap like the reference */
     --gap-cards: clamp(24px, 3.4vh, 40px);
-    /* offer banner keeps the exact natural ratio of the artwork (1261x106, band = 94.3%) */
-    --offer-ratio: 1261 / 160;
-    --band-h: 89%;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -128,31 +125,37 @@
     padding:var(--gap-v) var(--sp-5) clamp(12px,2vh,22px);
     display:flex;flex-direction:column;gap:var(--gap-v)}
 
-  /* ---- offer banner: the artwork at its EXACT natural ratio; cap's 3D pop fully visible ---- */
-  .offer{position:relative;flex:0 0 auto;width:100%;aspect-ratio:var(--offer-ratio);
-    color:#fff;overflow:hidden;border-radius:var(--r-lg)}
-  .offer .bg-slot{object-fit:fill}
-  .offer-stage{position:absolute;top:0;right:0;left:0;height:var(--band-h);z-index:2;
-    display:flex;align-items:center}
-  .offer-text{margin-right:11%;flex:1;min-width:0}
-  .offer-text h2{font-size:clamp(15px,2.5vh,19px);font-weight:800;line-height:1.6}
-  .offer-text h2 .pct{color:var(--gold-2)}
-  .offer-text p{font-size:clamp(10.5px,1.8vh,12.5px);color:#AEB8CC;margin-top:4px}
-  .countdown{display:flex;gap:clamp(8px,1.2vh,12px);flex:0 0 auto;margin-left:14%}
-  .cd-box{background:rgba(5,12,30,.55);border:1px solid rgba(233,185,74,.42);border-radius:14px;
-    min-width:clamp(52px,7vh,66px);padding:clamp(7px,1.2vh,10px) var(--sp-1);text-align:center;
-    box-shadow:0 4px 14px rgba(4,10,26,.35),inset 0 1px 0 rgba(255,255,255,.06);
-    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-  .cd-box b{display:block;font-size:clamp(16px,2.9vh,21px);font-weight:800;color:var(--gold-2);
-    line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:.01em}
-  .cd-box span{display:block;font-size:clamp(9px,1.5vh,10.5px);color:#D9C68F;margin-top:3px;font-weight:600}
-  .cd-box.pop b{animation:cdPop .35s ease}
-  @keyframes cdPop{40%{transform:scale(1.14)}100%{transform:scale(1)}}
+  /* ---- festival flip-clock countdown (reference video style, no background artwork) ---- */
+  .offer{flex:0 0 auto;width:100%;display:flex;flex-direction:column;align-items:center;
+    gap:clamp(10px,1.6vh,16px)}
+  .flip-title{font-size:clamp(16px,2.4vh,21px);font-weight:800;color:var(--ink);line-height:1.5;text-align:center}
+  .flip-row{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(10px,1.4vw,18px)}
+  .flip{--fw:clamp(56px,5.6vw,80px);position:relative;width:var(--fw);height:calc(var(--fw)*1.42);
+    border-radius:clamp(9px,.9vw,13px);
+    background:linear-gradient(180deg,#F23C41 0%,#E0282E 48%,#C31C22 52%,#D5252B 100%);
+    box-shadow:0 7px 16px rgba(150,15,20,.32),inset 0 1px 0 rgba(255,255,255,.28);perspective:360px}
+  .flip::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;z-index:3;pointer-events:none;
+    background:rgba(0,0,0,.10);border-radius:inherit;border-bottom-left-radius:0;border-bottom-right-radius:0}
+  .flip::after{content:'';position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;z-index:5;pointer-events:none;
+    background:rgba(70,0,2,.55)}
+  .flip .half{position:absolute;left:0;width:100%;height:50%;overflow:hidden;z-index:1}
+  .flip .half b{position:absolute;left:0;width:100%;height:200%;display:flex;align-items:center;justify-content:center;
+    font-size:calc(var(--fw)*.50);font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums;
+    transform:translateY(calc(var(--fw)*-0.085))}
+  .flip .half.top{top:0}
+  .flip .half.top b{top:0}
+  .flip .half.bottom{bottom:0}
+  .flip .half.bottom b{bottom:0}
+  .flip .lbl{position:absolute;bottom:5.5%;left:0;right:0;text-align:center;z-index:6;
+    font-size:calc(var(--fw)*.16);font-weight:700;color:#FFE3E3}
+  .flip .flap{display:none;z-index:4;transform-origin:center bottom;backface-visibility:hidden}
+  .flip.flipping .flap{display:block;animation:flipFall .34s ease-in forwards}
+  @keyframes flipFall{0%{transform:rotateX(0)}100%{transform:rotateX(-90deg)}}
 
   /* ---- cards ---- */
-  .cards{flex:1 1 auto;min-height:0;display:flex;gap:var(--gap-cards)}
+  .cards{flex:1 1 auto;min-height:0;display:flex;justify-content:center;gap:var(--gap-cards)}
   .card{position:relative;border-radius:var(--r-lg);overflow:hidden;max-height:100%;
-    flex:1 1 0;min-width:0;
+    flex:0 1 780px;min-width:0;
     background:linear-gradient(120deg,#0D224E 0%,#0A1A3C 55%,#081431 100%);
     box-shadow:0 10px 30px rgba(16,28,51,.14);aspect-ratio:1609/977}
   .card .bg-slot{object-fit:cover}
@@ -222,9 +225,6 @@
 
   /* ============ responsive ============ */
   @media (max-width:1020px){
-    .offer-text{margin-right:12%}
-    .countdown{margin-left:16%}
-    .cd-box{min-width:48px}
     .card-body{width:50%}
   }
   @media (max-width:860px){
@@ -239,17 +239,10 @@
     .menu{margin-right:0;max-width:100%}
     main{padding:var(--sp-3) var(--sp-3) var(--sp-4);gap:var(--sp-4)}
 
-    /* offer: artwork at natural ratio (pop-out visible) + a readable navy strip below */
-    .offer{aspect-ratio:auto;background:none;border-radius:0;overflow:visible;box-shadow:none}
-    .offer .bg-slot{position:relative;inset:auto;width:100%;height:auto;object-fit:fill;
-      filter:drop-shadow(0 8px 18px rgba(8,20,49,.22))}
-    .offer-stage{position:relative;inset:auto;height:auto;background:linear-gradient(105deg,#0D224E,#0A1A3C 60%,#081431);
-      border-radius:var(--r-lg);margin-top:var(--sp-3);padding:var(--sp-4);
-      flex-wrap:wrap;gap:var(--sp-3);box-shadow:var(--shadow-navy)}
-    .offer-text{margin:0;flex:1 1 100%}
-    .offer-text p{display:none}
-    .countdown{margin:0;flex:1 1 100%;justify-content:space-between;gap:var(--sp-2)}
-    .cd-box{min-width:0;flex:1}
+    /* festival flip-clock on mobile: fluid scale with the screen */
+    .flip-title{font-size:max(12px,calc(15*var(--ms)))}
+    .flip{--fw:calc(66*var(--ms))}
+    .m-discount{display:flex;flex-direction:column;align-items:center;gap:calc(12*var(--ms))}
 
     /* cards: stacked, normal document flow — nothing overlaps */
     .cards{flex-direction:column}
@@ -300,19 +293,7 @@
       display:flex;justify-content:flex-start;gap:calc(12*var(--ms));flex-wrap:wrap}
     .m-hero-btns .m-btn{padding:calc(9*var(--ms)) calc(16*var(--ms));font-size:calc(12.5*var(--ms))}
 
-    /* discount: the exact banner file, untouched — only a slightly rounder radius */
-    /* discount: the exact banner file; title, note and countdown live INSIDE it */
-    .m-discount{position:relative;margin-top:16px}
-    .m-offer-img{display:block;width:100%;height:auto;border-radius:16px}
-    .m-offer-info{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;gap:5px;padding:8px 14px;text-align:center}
-    .m-offer-info b{display:block;font-size:calc(13.5*var(--ms));font-weight:800;color:#16244E}
-    .m-offer-info small{display:block;color:#5A6784;font-size:calc(8.5*var(--ms));line-height:1.6;margin:0 auto;max-width:calc(238*var(--ms))}
-    .m-cd{display:flex;justify-content:center;gap:calc(8*var(--ms));margin-top:1px}
-    .m-cd .cd-box{min-width:calc(42*var(--ms));padding:calc(4*var(--ms)) calc(5*var(--ms));border-radius:calc(9*var(--ms));background:#FFF9E8;
-      border:1px solid rgba(200,150,40,.55);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
-    .m-cd .cd-box b{font-size:calc(12.5*var(--ms));color:var(--mgold)}
-    .m-cd .cd-box span{font-size:calc(7.5*var(--ms));color:#8A7A45;margin-top:1px}
+    .m-discount{margin-top:16px}
 
     .m-section{margin-top:28px}
     .m-course{position:relative;border-radius:calc(18*var(--ms));overflow:hidden;
@@ -425,55 +406,17 @@
 
 <div class="d-site">
 
-<!-- ================= HEADER ================= -->
-<header class="site-header reveal-down" style="--d:.05s">
-  <img class="bg-slot" src="assets/header-bg.png" alt="" onerror="this.style.display='none'">
-  <div class="wrap header-inner">
-
-    <a class="brand" href="#">
-      <span class="img-slot logo-book"><svg><use href="#i-book"/></svg></span>
-      <span class="brand-text">
-        <h1>مدرسه کنکور نخبان</h1>
-        <p>یادگیری هدفمند. آینده‌ای روشن</p>
-      </span>
-    </a>
-
-    <nav class="menu">
-      <a class="active" href="#"><svg><use href="#i-grad"/></svg>دوره‌های من</a>
-      <a href="#"><svg><use href="#i-cart"/></svg>سفارش‌ها</a>
-      <a href="#"><svg><use href="#i-user"/></svg>حساب کاربری</a>
-      <a href="#"><svg><use href="#i-grid"/></svg>پنل مدیریت</a>
-    </nav>
-
-    <div class="header-actions">
-      <a class="hpill" href="#"><svg><use href="#i-headset"/></svg>پشتیبانی</a>
-      <a class="hpill" href="#">
-        <span class="avatar"><svg><use href="#i-person"/></svg></span>
-        <span class="who"><small>خوش آمدی</small><b>کاربر</b></span>
-      </a>
-      <a class="bell" href="#" aria-label="اعلان‌ها"><svg><use href="#i-bell"/></svg></a>
-    </div>
-
-  </div>
-</header>
-
 <!-- ================= MAIN ================= -->
 <main>
 
-  <!-- offer banner: artwork at its exact natural size; the cap's 3D pop is fully visible -->
+  <!-- festival flip-clock countdown -->
   <section class="offer reveal" style="--d:.2s">
-    <img class="bg-slot" src="assets/offer-banner-v3.png" alt="" onerror="this.style.display='none'">
-    <div class="offer-stage">
-      <div class="offer-text">
-        <h2>تخفیف ویژه‌ی ثبت‌نام — <span class="pct">۱۵٪ تخفیف</span></h2>
-        <p>این تخفیف روی تمامی دوره‌ها اعمال می‌شود و فقط تا پایان شمارش معکوس فعال است.</p>
-      </div>
-      <div class="countdown" id="countdown">
-        <div class="cd-box"><b id="cd-s">۱۳</b><span>ثانیه</span></div>
-        <div class="cd-box"><b id="cd-m">۲۸</b><span>دقیقه</span></div>
-        <div class="cd-box"><b id="cd-h">۲۹</b><span>ساعت</span></div>
-        <div class="cd-box"><b id="cd-d">۶۹</b><span>روز</span></div>
-      </div>
+    <h2 class="flip-title">زمان باقی مانده تا پایان تخفیف جشنواره</h2>
+    <div class="flip-row">
+      <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap"><b>00</b></div><span class="lbl">روز</span></div>
+      <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap"><b>11</b></div><span class="lbl">ساعت</span></div>
+      <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap"><b>02</b></div><span class="lbl">دقیقه</span></div>
+      <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap"><b>41</b></div><span class="lbl">ثانیه</span></div>
     </div>
   </section>
 
@@ -494,24 +437,6 @@
       </div>
       <a class="btn-gold" href="#">
         مشاهده سرو پک‌ها
-        <span class="arrow"><svg><use href="#i-arrow-left"/></svg></span>
-      </a>
-    </article>
-
-    <article class="card reveal" style="--d:.47s">
-      <img class="bg-slot" src="assets/product-takdore.png" alt="" onerror="this.style.display='none'">
-      <div class="card-body">
-        <span class="icon-tile"><svg><use href="#i-book"/></svg></span>
-        <span class="eyebrow">انتشار تازه و جذاب‌ترین‌ها</span>
-        <h3>تک دوره</h3>
-        <p class="desc">فقط درس‌هایی را که می‌خواهی انتخاب کن؛ چند دوره یا هم می‌توانی یک‌جا و در یک پرداخت بخری.</p>
-        <div class="chips">
-          <span class="chip"><svg><use href="#i-book"/></svg>۱ تک دوره</span>
-          <span class="chip"><svg><use href="#i-card"/></svg>از ۵۸۶٬۰۰۰ تومان</span>
-        </div>
-      </div>
-      <a class="btn-gold" href="#">
-        انتخاب تک دوره‌ها
         <span class="arrow"><svg><use href="#i-arrow-left"/></svg></span>
       </a>
     </article>
@@ -558,19 +483,6 @@
 <div class="m-site">
   <div class="m-topbar">یادگیری هدفمند. آینده‌ای روشن <b>✦</b></div>
 
-  <header class="m-header">
-    <div class="m-nav">
-      <a class="m-brand" href="#">
-        <svg class="logo-book"><use href="#i-book"/></svg>
-        <span>مدرسه کنکور نخبان</span>
-      </a>
-      <div class="m-actions">
-        <a class="m-btn m-btn-gold" href="#">ورود به حساب <svg><use href="#i-arrow-left"/></svg></a>
-        <button class="m-menu-btn" aria-label="منو">☰</button>
-      </div>
-    </div>
-  </header>
-
   <div class="m-main">
 
     <section class="m-hero" id="top">
@@ -581,18 +493,14 @@
       </div>
     </section>
 
-    <!-- تخفیف موبایل: دقیقاً همان تصویر بنفش، بدون هیچ تغییری؛ فقط رادیوس کمی بیشتر -->
+    <!-- شمارش معکوس جشنواره: فلیپ‌کلاک بدون پس‌زمینه -->
     <section class="m-discount" id="m-special">
-      <img class="m-offer-img" src="assets/offer-banner-light.png" alt="">
-      <div class="m-offer-info">
-        <b>تخفیف ویژه‌ی ثبت‌نام — ۱۵٪ تخفیف</b>
-        <small>این تخفیف روی تمامی دوره‌ها اعمال می‌شود و فقط تا پایان شمارش معکوس فعال است.</small>
-        <div class="m-cd">
-          <div class="cd-box"><b id="mcd-s">۱۳</b><span>ثانیه</span></div>
-          <div class="cd-box"><b id="mcd-m">۲۸</b><span>دقیقه</span></div>
-          <div class="cd-box"><b id="mcd-h">۲۹</b><span>ساعت</span></div>
-          <div class="cd-box"><b id="mcd-d">۶۹</b><span>روز</span></div>
-        </div>
+      <h2 class="flip-title">زمان باقی مانده تا پایان تخفیف جشنواره</h2>
+      <div class="flip-row">
+        <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap"><b>00</b></div><span class="lbl">روز</span></div>
+        <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap"><b>11</b></div><span class="lbl">ساعت</span></div>
+        <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap"><b>02</b></div><span class="lbl">دقیقه</span></div>
+        <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap"><b>41</b></div><span class="lbl">ثانیه</span></div>
       </div>
     </section>
 
@@ -609,20 +517,6 @@
           </div>
         </div>
         <a class="m-btn m-btn-gold" href="#">مشاهده سرو پک‌ها</a>
-      </article>
-
-      <article class="m-course">
-        <div class="m-course-img"><img src="assets/product-takdore.png" alt="تک دوره"></div>
-        <div class="m-course-body">
-          <span class="m-tag">انتشار تازه و جذاب‌ترین‌ها</span>
-          <h3>تک دوره</h3>
-          <p>فقط درس‌هایی را که می‌خواهی انتخاب کن؛ چند دوره یا هم می‌توانی یک‌جا و در یک پرداخت بخری.</p>
-          <div class="m-chips">
-            <span class="m-chip"><svg><use href="#i-book"/></svg>۱ تک دوره</span>
-            <span class="m-chip"><svg><use href="#i-card"/></svg>از ۵۸۶٬۰۰۰ تومان</span>
-          </div>
-        </div>
-        <a class="m-btn m-btn-gold" href="#">انتخاب تک دوره‌ها</a>
       </article>
     </section>
 
@@ -669,31 +563,32 @@
     setTimeout(show, 2200); /* never trap the user behind the loader */
   }
 
-  /* ---- live countdown seeded like the reference: 69d / 29h / 28m / 13s ---- */
+  /* ---- festival flip-clock countdown (Latin digits, like the reference video) ---- */
   var t = { d: 69, h: 29, m: 28, s: 13 };
-  var el = {
-    d: [].slice.call(document.querySelectorAll('#cd-d, #mcd-d')),
-    h: [].slice.call(document.querySelectorAll('#cd-h, #mcd-h')),
-    m: [].slice.call(document.querySelectorAll('#cd-m, #mcd-m')),
-    s: [].slice.call(document.querySelectorAll('#cd-s, #mcd-s'))
-  };
-  function fa(n){
-    return String(n).replace(/\d/g, function(d){ return '۰۱۲۳۴۵۶۷۸۹'[+d]; });
-  }
-  function set(nodes, v){
-    nodes.forEach(function(node){
-      if (node.textContent !== fa(v)) {
-        node.textContent = fa(v);
-        var box = node.closest('.cd-box');
-        if (box) { box.classList.remove('pop'); void box.offsetWidth; box.classList.add('pop'); }
+  var units = {};
+  [].slice.call(document.querySelectorAll('.flip')).forEach(function(u){
+    (units[u.getAttribute('data-u')] = units[u.getAttribute('data-u')] || []).push(u);
+    u.addEventListener('animationend', function(){ u.classList.remove('flipping'); });
+  });
+  function pad2(n){ n = String(n); return n.length < 2 ? '0' + n : n; }
+  function setFlip(key, txt){
+    (units[key] || []).forEach(function(u){
+      var cur = u.getAttribute('data-v');
+      if (cur === txt) return;
+      u.setAttribute('data-v', txt);
+      u.querySelector('.half.top b').textContent = txt;
+      u.querySelector('.half.bottom b').textContent = txt;
+      if (cur !== null) {
+        u.querySelector('.flap b').textContent = cur;
+        u.classList.remove('flipping'); void u.offsetWidth; u.classList.add('flipping');
       }
     });
   }
   function render(){
-    set(el.s, t.s);
-    set(el.m, t.m);
-    set(el.h, t.h);
-    set(el.d, t.d);
+    setFlip('s', pad2(t.s));
+    setFlip('m', pad2(t.m));
+    setFlip('h', pad2(t.h));
+    setFlip('d', String(t.d));
   }
   function tick(){
     t.s -= 1;
