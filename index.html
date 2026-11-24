@@ -120,6 +120,11 @@
   .bell::after{content:'';position:absolute;top:6px;left:8px;width:7px;height:7px;border-radius:50%;
     background:#EA5455;border:1.5px solid #0A142E}
 
+  /* ============ brand logo bar ============ */
+  .d-logo-bar{flex:0 0 auto;background:#fff;border-bottom:1px solid rgba(16,28,51,.08);
+    padding:clamp(9px,1.5vh,14px) 0;text-align:center}
+  .d-logo-bar img{display:block;margin:0 auto;height:clamp(40px,5.8vh,52px);width:auto}
+
   /* ============ main ============ */
   main{flex:1 1 auto;min-height:0;width:100%;max-width:1320px;margin:0 auto;
     padding:var(--gap-v) var(--sp-5) clamp(12px,2vh,22px);
@@ -140,17 +145,20 @@
     background:rgba(70,0,2,.55)}
   .flip .half{position:absolute;left:0;width:100%;height:50%;overflow:hidden;z-index:1}
   .flip .half b{position:absolute;left:0;width:100%;height:200%;display:flex;align-items:center;justify-content:center;
-    font-size:calc(var(--fw)*.50);font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums;
-    transform:translateY(calc(var(--fw)*-0.085))}
+    font-size:calc(var(--fw)*.50);font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
   .flip .half.top{top:0}
   .flip .half.top b{top:0}
   .flip .half.bottom{bottom:0}
   .flip .half.bottom b{bottom:0}
   .flip .lbl{position:absolute;bottom:5.5%;left:0;right:0;text-align:center;z-index:6;
     font-size:calc(var(--fw)*.16);font-weight:700;color:#FFE3E3}
-  .flip .flap{display:none;z-index:4;transform-origin:center bottom;backface-visibility:hidden}
-  .flip.flipping .flap{display:block;animation:flipFall .34s ease-in forwards}
-  @keyframes flipFall{0%{transform:rotateX(0)}100%{transform:rotateX(-90deg)}}
+  .flip .flap{backface-visibility:hidden}
+  .flip .flap1{display:none;z-index:4;transform-origin:center bottom}   /* falling sheet: OLD number's top half */
+  .flip .flap2{display:none;z-index:3;transform-origin:center top}      /* second folded sheet: NEW number's bottom half */
+  .flip.flipping .flap1{display:block;animation:flapFall .26s ease-in forwards}
+  .flip.flipping .flap2{display:block;animation:flapSwing .3s ease-out .26s both}
+  @keyframes flapFall{0%{transform:rotateX(0)}100%{transform:rotateX(-90deg)}}
+  @keyframes flapSwing{0%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
 
   /* ---- cards ---- */
   .cards{flex:1 1 auto;min-height:0;display:flex;justify-content:center;gap:var(--gap-cards)}
@@ -264,8 +272,9 @@
     .m-site{display:block}
     :root{--mgold:#A87B14;--mink:#101C33;--mmuted:#777B96}
 
-    .m-topbar{background:#060F24;color:#D9DAF0;font-size:11.5px;text-align:center;padding:8px 12px}
-    .m-topbar b{color:var(--gold-2)}
+    .m-topbar{background:#fff;text-align:center;padding:calc(9*var(--ms)) 12px calc(8*var(--ms));
+      border-bottom:1px solid rgba(16,28,51,.08)}
+    .m-topbar img{display:block;margin:0 auto;height:calc(40*var(--ms));width:auto}
     .m-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.93);
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(16,28,51,.08)}
     .m-nav{width:min(100% - 28px,600px);margin:auto;height:calc(62*var(--ms));display:flex;align-items:center;justify-content:space-between;gap:calc(12*var(--ms))}
@@ -406,6 +415,9 @@
 
 <div class="d-site">
 
+<!-- ================= BRAND ================= -->
+<header class="d-logo-bar"><img src="assets/noknban-logo.png" alt="نخبان — Noknban"></header>
+
 <!-- ================= MAIN ================= -->
 <main>
 
@@ -413,10 +425,10 @@
   <section class="offer reveal" style="--d:.2s">
     <h2 class="flip-title">زمان باقی مانده تا پایان تخفیف جشنواره</h2>
     <div class="flip-row">
-      <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap"><b>00</b></div><span class="lbl">روز</span></div>
-      <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap"><b>11</b></div><span class="lbl">ساعت</span></div>
-      <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap"><b>02</b></div><span class="lbl">دقیقه</span></div>
-      <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap"><b>41</b></div><span class="lbl">ثانیه</span></div>
+      <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap flap1"><b>00</b></div><div class="half bottom flap flap2"><b>00</b></div><span class="lbl">روز</span></div>
+      <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap flap1"><b>11</b></div><div class="half bottom flap flap2"><b>11</b></div><span class="lbl">ساعت</span></div>
+      <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap flap1"><b>02</b></div><div class="half bottom flap flap2"><b>02</b></div><span class="lbl">دقیقه</span></div>
+      <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap flap1"><b>41</b></div><div class="half bottom flap flap2"><b>41</b></div><span class="lbl">ثانیه</span></div>
     </div>
   </section>
 
@@ -481,7 +493,7 @@
 
 <!-- ================= MOBILE SITE ================= -->
 <div class="m-site">
-  <div class="m-topbar">یادگیری هدفمند. آینده‌ای روشن <b>✦</b></div>
+  <header class="m-topbar"><img src="assets/noknban-logo.png" alt="نخبان — Noknban"></header>
 
   <div class="m-main">
 
@@ -497,10 +509,10 @@
     <section class="m-discount" id="m-special">
       <h2 class="flip-title">زمان باقی مانده تا پایان تخفیف جشنواره</h2>
       <div class="flip-row">
-        <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap"><b>00</b></div><span class="lbl">روز</span></div>
-        <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap"><b>11</b></div><span class="lbl">ساعت</span></div>
-        <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap"><b>02</b></div><span class="lbl">دقیقه</span></div>
-        <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap"><b>41</b></div><span class="lbl">ثانیه</span></div>
+        <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap flap1"><b>00</b></div><div class="half bottom flap flap2"><b>00</b></div><span class="lbl">روز</span></div>
+        <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap flap1"><b>11</b></div><div class="half bottom flap flap2"><b>11</b></div><span class="lbl">ساعت</span></div>
+        <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap flap1"><b>02</b></div><div class="half bottom flap flap2"><b>02</b></div><span class="lbl">دقیقه</span></div>
+        <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap flap1"><b>41</b></div><div class="half bottom flap flap2"><b>41</b></div><span class="lbl">ثانیه</span></div>
       </div>
     </section>
 
@@ -568,7 +580,11 @@
   var units = {};
   [].slice.call(document.querySelectorAll('.flip')).forEach(function(u){
     (units[u.getAttribute('data-u')] = units[u.getAttribute('data-u')] || []).push(u);
-    u.addEventListener('animationend', function(){ u.classList.remove('flipping'); });
+    u.querySelector('.flap2').addEventListener('animationend', function(){
+      /* second sheet landed: bake the new value into the static bottom, hide the sheets */
+      u.querySelector('.half.bottom b').textContent = u.getAttribute('data-v');
+      u.classList.remove('flipping');
+    });
   });
   function pad2(n){ n = String(n); return n.length < 2 ? '0' + n : n; }
   function setFlip(key, txt){
@@ -576,10 +592,11 @@
       var cur = u.getAttribute('data-v');
       if (cur === txt) return;
       u.setAttribute('data-v', txt);
-      u.querySelector('.half.top b').textContent = txt;
-      u.querySelector('.half.bottom b').textContent = txt;
+      u.querySelector('.half.top b').textContent = txt;                       /* revealed as sheet 1 falls */
+      u.querySelector('.half.bottom b').textContent = (cur !== null ? cur : txt); /* covered by sheet 2 */
       if (cur !== null) {
-        u.querySelector('.flap b').textContent = cur;
+        u.querySelector('.flap1 b').textContent = cur;
+        u.querySelector('.flap2 b').textContent = txt;
         u.classList.remove('flipping'); void u.offsetWidth; u.classList.add('flipping');
       }
     });
