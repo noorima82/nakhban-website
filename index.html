@@ -134,31 +134,35 @@
   .offer{flex:0 0 auto;width:100%;display:flex;flex-direction:column;align-items:center;
     gap:clamp(10px,1.6vh,16px)}
   .flip-title{font-size:clamp(16px,2.4vh,21px);font-weight:800;color:var(--ink);line-height:1.5;text-align:center}
-  .flip-row{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(10px,1.4vw,18px)}
-  .flip{--fw:clamp(56px,5.6vw,80px);position:relative;width:var(--fw);height:calc(var(--fw)*1.42);
-    border-radius:clamp(9px,.9vw,13px);
-    background:linear-gradient(180deg,#F23C41 0%,#E0282E 48%,#C31C22 52%,#D5252B 100%);
-    box-shadow:0 7px 16px rgba(150,15,20,.32),inset 0 1px 0 rgba(255,255,255,.28);perspective:360px}
-  .flip::before{content:'';position:absolute;top:0;left:0;right:0;height:50%;z-index:3;pointer-events:none;
-    background:rgba(0,0,0,.10);border-radius:inherit;border-bottom-left-radius:0;border-bottom-right-radius:0}
-  .flip::after{content:'';position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;z-index:5;pointer-events:none;
-    background:rgba(70,0,2,.55)}
-  .flip .half{position:absolute;left:0;width:100%;height:50%;overflow:hidden;z-index:1}
-  .flip .half b{position:absolute;left:0;width:100%;height:200%;display:flex;align-items:center;justify-content:center;
-    font-size:calc(var(--fw)*.50);font-weight:800;color:#fff;line-height:1;font-variant-numeric:tabular-nums}
-  .flip .half.top{top:0}
-  .flip .half.top b{top:0}
-  .flip .half.bottom{bottom:0}
-  .flip .half.bottom b{bottom:0}
-  .flip .lbl{position:absolute;bottom:5.5%;left:0;right:0;text-align:center;z-index:6;
-    font-size:calc(var(--fw)*.16);font-weight:700;color:#FFE3E3}
-  .flip .flap{backface-visibility:hidden}
-  .flip .flap1{display:none;z-index:4;transform-origin:center bottom}   /* falling sheet: OLD number's top half */
-  .flip .flap2{display:none;z-index:3;transform-origin:center top}      /* second folded sheet: NEW number's bottom half */
-  .flip.flipping .flap1{display:block;animation:flapFall .26s ease-in forwards}
-  .flip.flipping .flap2{display:block;animation:flapSwing .3s ease-out .26s both}
-  @keyframes flapFall{0%{transform:rotateX(0)}100%{transform:rotateX(-90deg)}}
-  @keyframes flapSwing{0%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+  /* flip-clock: architecture ported verbatim from the reference page (ساعت فلیپ.html),
+     wearing the festival red skin */
+  .clock{display:flex;align-items:flex-start;gap:clamp(10px,1.6vw,22px);padding:6px;max-width:100%}
+  .group{display:flex;flex-direction:column;align-items:center;gap:clamp(6px,1vh,10px)}
+  .pair{direction:ltr;display:flex;gap:clamp(3px,.5vw,7px)}
+  .label{font-size:clamp(10px,1.5vh,12.5px);color:#6b6b6b;letter-spacing:.02em;font-weight:600}
+  .sep{display:flex;flex-direction:column;gap:clamp(10px,1.6vh,18px);padding-top:clamp(18px,3.4vh,34px)}
+  .sep i{width:clamp(5px,.55vw,8px);height:clamp(5px,.55vw,8px);border-radius:50%;background:var(--ink);opacity:.85;
+    animation:blink 2s steps(1) infinite}
+  @keyframes blink{50%{opacity:.15}}
+  .fcard{--w:clamp(30px,3.6vw,50px);--h:calc(var(--w)*1.45);position:relative;width:var(--w);height:var(--h);perspective:700px;
+    font-size:calc(var(--w)*1.12);font-weight:700;font-variant-numeric:tabular-nums;
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;filter:drop-shadow(0 10px 14px rgba(150,15,20,.30))}
+  .fhalf{position:absolute;left:0;right:0;height:50%;overflow:hidden;color:#fff}
+  .fhalf span{position:absolute;left:0;right:0;height:200%;display:flex;align-items:center;justify-content:center;line-height:1}
+  .ftop,.fft{top:0;border-radius:calc(var(--w)*.12) calc(var(--w)*.12) 0 0;background:linear-gradient(#F04046,#D92227)}
+  .fbot,.ffb{bottom:0;border-radius:0 0 calc(var(--w)*.12) calc(var(--w)*.12);background:linear-gradient(#C41A20,#E23339)}
+  .ftop span,.fft span{top:0}
+  .fbot span,.ffb span{bottom:0}
+  .fft{transform-origin:50% 100%;backface-visibility:hidden;z-index:3}
+  .ffb{transform-origin:50% 0;transform:rotateX(90deg);backface-visibility:hidden;z-index:2}
+  .fgo .fft{animation:ft .32s ease-in forwards}
+  .fgo .ffb{animation:fb .32s ease-out .32s forwards}
+  @keyframes ft{to{transform:rotateX(-90deg)}}
+  @keyframes fb{to{transform:rotateX(0)}}
+  .fcard::before{content:"";position:absolute;left:0;right:0;top:calc(50% - 1px);height:2px;background:rgba(70,0,2,.55);z-index:5}
+  .fcard::after{content:"";position:absolute;left:0;right:0;top:50%;height:calc(var(--h)*.5);border-radius:0 0 calc(var(--w)*.12) calc(var(--w)*.12);
+    box-shadow:inset 0 10px 12px -10px rgba(0,0,0,.6);pointer-events:none;z-index:4}
+  @media (prefers-reduced-motion:reduce){.fgo .fft,.fgo .ffb{animation-duration:.01s}.sep i{animation:none}}
 
   /* ---- cards ---- */
   .cards{flex:1 1 auto;min-height:0;display:flex;justify-content:center;gap:var(--gap-cards)}
@@ -249,7 +253,12 @@
 
     /* festival flip-clock on mobile: fluid scale with the screen */
     .flip-title{font-size:max(12px,calc(15*var(--ms)))}
-    .flip{--fw:calc(66*var(--ms))}
+    .clock{gap:calc(10*var(--ms))}
+    .fcard{--w:calc(34*var(--ms))}
+    .pair{gap:calc(3*var(--ms))}
+    .label{font-size:max(9px,calc(11*var(--ms)))}
+    .sep{gap:calc(12*var(--ms));padding-top:calc(22*var(--ms))}
+    .sep i{width:calc(6*var(--ms));height:calc(6*var(--ms))}
     .m-discount{display:flex;flex-direction:column;align-items:center;gap:calc(12*var(--ms))}
 
     /* cards: stacked, normal document flow — nothing overlaps */
@@ -295,11 +304,11 @@
     @media (max-width:360px){ .m-actions .m-btn svg{display:none} }
 
     .m-main{width:min(100% - 28px,600px);margin:auto;padding-top:20px}
-    /* hero: exactly the uploaded artwork; the two buttons live INSIDE it */
-    .m-hero{position:relative}
-    .m-hero-img{display:block;width:100%;height:auto;border-radius:20px}
-    .m-hero-btns{position:absolute;left:calc(12*var(--ms));right:calc(12*var(--ms));bottom:calc(12*var(--ms));z-index:1;
-      display:flex;justify-content:flex-start;gap:calc(12*var(--ms));flex-wrap:wrap}
+    /* hero: the Noknban logotype with the two actions centered below it */
+    .m-hero{display:flex;flex-direction:column;align-items:center;gap:calc(16*var(--ms));
+      padding:calc(4*var(--ms)) 0 calc(2*var(--ms))}
+    .m-hero-logo{display:block;height:calc(104*var(--ms));width:auto}
+    .m-hero-btns{display:flex;justify-content:center;gap:calc(12*var(--ms));flex-wrap:wrap}
     .m-hero-btns .m-btn{padding:calc(9*var(--ms)) calc(16*var(--ms));font-size:calc(12.5*var(--ms))}
 
     .m-discount{margin-top:16px}
@@ -424,11 +433,14 @@
   <!-- festival flip-clock countdown -->
   <section class="offer reveal" style="--d:.2s">
     <h2 class="flip-title">زمان باقی مانده تا پایان تخفیف جشنواره</h2>
-    <div class="flip-row">
-      <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap flap1"><b>00</b></div><div class="half bottom flap flap2"><b>00</b></div><span class="lbl">روز</span></div>
-      <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap flap1"><b>11</b></div><div class="half bottom flap flap2"><b>11</b></div><span class="lbl">ساعت</span></div>
-      <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap flap1"><b>02</b></div><div class="half bottom flap flap2"><b>02</b></div><span class="lbl">دقیقه</span></div>
-      <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap flap1"><b>41</b></div><div class="half bottom flap flap2"><b>41</b></div><span class="lbl">ثانیه</span></div>
+    <div class="clock" role="timer" aria-label="شمارش معکوس جشنواره">
+      <div class="group"><div class="pair" data-u="d"></div><div class="label">روز</div></div>
+      <div class="sep"><i></i><i></i></div>
+      <div class="group"><div class="pair" data-u="h"></div><div class="label">ساعت</div></div>
+      <div class="sep"><i></i><i></i></div>
+      <div class="group"><div class="pair" data-u="m"></div><div class="label">دقیقه</div></div>
+      <div class="sep"><i></i><i></i></div>
+      <div class="group"><div class="pair" data-u="s"></div><div class="label">ثانیه</div></div>
     </div>
   </section>
 
@@ -498,7 +510,7 @@
   <div class="m-main">
 
     <section class="m-hero" id="top">
-      <img class="m-hero-img" src="assets/hero-art.png" alt="یادگیری هدفمند، آینده‌ای روشن">
+      <img class="m-hero-logo" src="assets/noknban-fa.png" alt="نخبان — مدرسه کنکور نخبان">
       <div class="m-hero-btns">
         <a class="m-btn m-btn-gold" href="#">دوره‌های من <svg><use href="#i-arrow-left"/></svg></a>
         <a class="m-btn m-btn-ghost" href="#">پشتیبانی</a>
@@ -508,11 +520,14 @@
     <!-- شمارش معکوس جشنواره: فلیپ‌کلاک بدون پس‌زمینه -->
     <section class="m-discount" id="m-special">
       <h2 class="flip-title">زمان باقی مانده تا پایان تخفیف جشنواره</h2>
-      <div class="flip-row">
-        <div class="flip" data-u="d"><div class="half top"><b>00</b></div><div class="half bottom"><b>00</b></div><div class="half top flap flap1"><b>00</b></div><div class="half bottom flap flap2"><b>00</b></div><span class="lbl">روز</span></div>
-        <div class="flip" data-u="h"><div class="half top"><b>11</b></div><div class="half bottom"><b>11</b></div><div class="half top flap flap1"><b>11</b></div><div class="half bottom flap flap2"><b>11</b></div><span class="lbl">ساعت</span></div>
-        <div class="flip" data-u="m"><div class="half top"><b>02</b></div><div class="half bottom"><b>02</b></div><div class="half top flap flap1"><b>02</b></div><div class="half bottom flap flap2"><b>02</b></div><span class="lbl">دقیقه</span></div>
-        <div class="flip" data-u="s"><div class="half top"><b>41</b></div><div class="half bottom"><b>41</b></div><div class="half top flap flap1"><b>41</b></div><div class="half bottom flap flap2"><b>41</b></div><span class="lbl">ثانیه</span></div>
+      <div class="clock" role="timer" aria-label="شمارش معکوس جشنواره">
+        <div class="group"><div class="pair" data-u="d"></div><div class="label">روز</div></div>
+        <div class="sep"><i></i><i></i></div>
+        <div class="group"><div class="pair" data-u="h"></div><div class="label">ساعت</div></div>
+        <div class="sep"><i></i><i></i></div>
+        <div class="group"><div class="pair" data-u="m"></div><div class="label">دقیقه</div></div>
+        <div class="sep"><i></i><i></i></div>
+        <div class="group"><div class="pair" data-u="s"></div><div class="label">ثانیه</div></div>
       </div>
     </section>
 
@@ -575,47 +590,58 @@
     setTimeout(show, 2200); /* never trap the user behind the loader */
   }
 
-  /* ---- festival flip-clock countdown (Latin digits, like the reference video) ---- */
+  /* ---- festival countdown: flip-clock architecture ported verbatim from the reference ---- */
   var t = { d: 69, h: 29, m: 28, s: 13 };
-  var units = {};
-  [].slice.call(document.querySelectorAll('.flip')).forEach(function(u){
-    (units[u.getAttribute('data-u')] = units[u.getAttribute('data-u')] || []).push(u);
-    u.querySelector('.flap2').addEventListener('animationend', function(){
-      /* second sheet landed: bake the new value into the static bottom, hide the sheets */
-      u.querySelector('.half.bottom b').textContent = u.getAttribute('data-v');
-      u.classList.remove('flipping');
-    });
-  });
-  function pad2(n){ n = String(n); return n.length < 2 ? '0' + n : n; }
-  function setFlip(key, txt){
-    (units[key] || []).forEach(function(u){
-      var cur = u.getAttribute('data-v');
-      if (cur === txt) return;
-      u.setAttribute('data-v', txt);
-      u.querySelector('.half.top b').textContent = txt;                       /* revealed as sheet 1 falls */
-      u.querySelector('.half.bottom b').textContent = (cur !== null ? cur : txt); /* covered by sheet 2 */
-      if (cur !== null) {
-        u.querySelector('.flap1 b').textContent = cur;
-        u.querySelector('.flap2 b').textContent = txt;
-        u.classList.remove('flipping'); void u.offsetWidth; u.classList.add('flipping');
-      }
-    });
+  function mk(){
+    var c=document.createElement('div');c.className='fcard';
+    c.innerHTML='<div class="fhalf ftop"><span>0</span></div><div class="fhalf fbot"><span>0</span></div><div class="fhalf fft"><span>0</span></div><div class="fhalf ffb"><span>0</span></div>';
+    c.v='0';return c;
   }
-  function render(){
-    setFlip('s', pad2(t.s));
-    setFlip('m', pad2(t.m));
-    setFlip('h', pad2(t.h));
-    setFlip('d', String(t.d));
+  function set(c,n,anim){
+    if(c.v===n)return;
+    var sp=c.querySelectorAll('span');
+    if(!anim){sp.forEach(function(x){x.textContent=n});c.v=n;return}
+    sp[0].textContent=n;      /* static top: new */
+    sp[2].textContent=c.v;    /* falling sheet: old */
+    sp[3].textContent=n;      /* swinging sheet: new */
+    c.classList.remove('fgo');void c.offsetWidth;c.classList.add('fgo');
+    sp[1].textContent=c.v;c.v=n;
+    clearTimeout(c.t);
+    c.t=setTimeout(function(){sp.forEach(function(x){x.textContent=n});c.classList.remove('fgo')},650);
+  }
+  var cards={};
+  document.querySelectorAll('.pair').forEach(function(p){
+    var k=p.getAttribute('data-u');
+    if(!cards[k])cards[k]=[];
+    cards[k].push([mk(),mk()]);
+    cards[k][cards[k].length-1].forEach(function(c){p.appendChild(c)});
+  });
+  function fmt(k){
+    var v=String(t[k]);
+    if(k!=='d')v=('0'+v).slice(-2);
+    return v;
   }
   function tick(){
-    t.s -= 1;
-    if(t.s < 0){ t.s = 59; t.m -= 1; }
-    if(t.m < 0){ t.m = 59; t.h -= 1; }
-    if(t.h < 0){ t.h = 23; t.d -= 1; }
-    if(t.d < 0){ t.d = 0; t.h = 0; t.m = 0; t.s = 0; }
-    render();
+    t.s-=1;
+    if(t.s<0){t.s=59;t.m-=1}
+    if(t.m<0){t.m=59;t.h-=1}
+    if(t.h<0){t.h=23;t.d-=1}
+    if(t.d<0){t.d=0;t.h=0;t.m=0;t.s=0}
+    ['s','m','h','d'].forEach(function(k){
+      var v=fmt(k);
+      cards[k].forEach(function(pair){
+        set(pair[0],v[0],true);
+        set(pair[1],v[1],true);
+      });
+    });
   }
-  render();
+  ['s','m','h','d'].forEach(function(k){
+    var v=fmt(k);
+    cards[k].forEach(function(pair){
+      set(pair[0],v[0],false);
+      set(pair[1],v[1],false);
+    });
+  });
   setInterval(tick, 1000);
 
   /* دکمه‌ها فعلا بدون کاربرد: هیچ کلیکی عملی انجام نمی‌دهد */
