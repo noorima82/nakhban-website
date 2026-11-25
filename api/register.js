@@ -12,13 +12,13 @@ module.exports = async (req, res) => {
     const b = req.body || {};
     const phone = toEnDigits(b.phone).replace(/\D/g, '');
     const name = String(b.name || '').trim().replace(/\s+/g, ' ');
-    const pin = toEnDigits(b.pin).replace(/\D/g, '');
+    const pin = String(b.pin || '').trim();
     const field = String(b.field || '').trim();
     const grade = String(b.grade || '').trim();
 
     if (!/^09\d{9}$/.test(phone)) return json(res, 400, { error: 'شماره موبایل باید ۱۱ رقم و با ۰۹ شروع شود' });
     if (name.length < 3) return json(res, 400, { error: 'نام و نام خانوادگی را کامل وارد کنید' });
-    if (!/^\d{4}$/.test(pin)) return json(res, 400, { error: 'رمز باید ۴ رقم باشد' });
+    if (!pin || pin.length < 4 || pin.length > 30) return json(res, 400, { error: 'رمز دلخواه باید بین ۴ تا ۳۰ کاراکتر باشد' });
     if (!['ریاضی', 'تجربی', 'انسانی'].includes(field)) return json(res, 400, { error: 'رشته را انتخاب کنید' });
     if (!['دهم', 'یازدهم', 'دوازدهم', 'فارغ‌التحصیل'].includes(grade)) return json(res, 400, { error: 'پایه تحصیلی را انتخاب کنید' });
 

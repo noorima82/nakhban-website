@@ -11,8 +11,8 @@ module.exports = async (req, res) => {
     if (req.method !== 'POST') return json(res, 405, { error: 'method' });
     const b = req.body || {};
     const phone = toEnDigits(b.phone).replace(/\D/g, '');
-    const pin = toEnDigits(b.pin).replace(/\D/g, '');
-    if (!/^09\d{9}$/.test(phone) || !/^\d{4}$/.test(pin)) {
+    const pin = String(b.pin || '').trim();
+    if (!/^09\d{9}$/.test(phone) || !pin) {
       return json(res, 400, { error: 'شماره یا رمز اشتباه است' });
     }
     const { data } = await readDB();

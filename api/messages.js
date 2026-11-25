@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
         return json(res, 200, { admin: true, registrants: data.registrants.map(r => ({ phone: r.phone, name: r.name, field: r.field, grade: r.grade, at: r.at })), threads: data.threads });
       }
       const phone = toEnDigits(q.get('phone')).replace(/\D/g, '');
-      const pin = toEnDigits(q.get('pin')).replace(/\D/g, '');
+      const pin = String(q.get('pin') || '').trim();
       const { data } = await readDB();
       if (!authUser(data, phone, pin)) return json(res, 401, { error: 'احراز هویت نشد' });
       return json(res, 200, { admin: false, thread: data.threads[phone] || [] });   /* own thread ONLY */
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
       }
 
       const phone = toEnDigits(b.phone).replace(/\D/g, '');
-      const pin = toEnDigits(b.pin).replace(/\D/g, '');
+      const pin = String(b.pin || '').trim();
       let ok = false;
       await updateDB(d => {
         if (!authUser(d, phone, pin)) return null;
