@@ -1148,8 +1148,8 @@
     return fetch(url, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(body) })
       .then(function(r){ return r.json().then(function(j){ return { s: r.status, j: j } }) });
   }
-  function finishAuth(u, isNew){
-    setSess(u); applyGate();
+  function finishAuth(u, isNew, pin){
+    setSess({ phone:u.phone, name:u.name, field:u.field, grade:u.grade, pin:pin }); applyGate();
     document.getElementById('regHead').hidden = true;
     document.getElementById('regForm').hidden = true;
     document.getElementById('loginForm').hidden = true;
@@ -1170,7 +1170,7 @@
         var p = toEn(document.getElementById('lgPhone').value).replace(/\D/g, '');
         var q = toEn(document.getElementById('lgPin').value).replace(/\D/g, '');
         postJSON(API + '/login', { phone: p, pin: q })
-          .then(function(o){ if(o.s === 200){ finishAuth(o.j.user, false) } else { err('lgErr', o.j.error || 'خطا') } })
+          .then(function(o){ if(o.s === 200){ finishAuth(o.j.user, false, q) } else { err('lgErr', o.j.error || 'خطا') } })
           .catch(function(){ err('lgErr', 'ارتباط با سرور برقرار نشد؛ اتصال اینترنت را بررسی کن') });
       } else {
         var field = optVal('rgField'), grade = optVal('rgGrade');
@@ -1178,7 +1178,7 @@
         if(!grade){ err('regErr2', 'پایه‌ی تحصیلی را انتخاب کن'); return }
         clr('regErr2');
         postJSON(API + '/register', { phone: rgPhone, name: rgName, pin: rgPin, field: field, grade: grade })
-          .then(function(o){ if(o.s === 200){ finishAuth(o.j.user, true) } else { err('regErr2', o.j.error || 'خطا') } })
+          .then(function(o){ if(o.s === 200){ finishAuth(o.j.user, true, rgPin) } else { err('regErr2', o.j.error || 'خطا') } })
           .catch(function(){ err('regErr2', 'ارتباط با سرور برقرار نشد؛ اتصال اینترنت را بررسی کن') });
       }
     });
