@@ -20,6 +20,6 @@ module.exports = async (req, res) => {
     if (!me || me.pin !== pin) return json(res, 401, { error: 'حسابی با این شماره و رمز پیدا نشد' });
     return json(res, 200, { ok: true, user: { phone, name: me.name, field: me.field, grade: me.grade } });
   } catch (e) {
-    return json(res, 500, { error: 'خطای سرور: ' + (e && e.message || 'نامشخص') });
+    return json(res, 500, { error: 'ارتباط با سرور برقرار نشد؛ چند لحظه بعد دوباره تلاش کن' });
   }
 };
