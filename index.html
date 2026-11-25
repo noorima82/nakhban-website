@@ -229,7 +229,209 @@
   .socials{display:flex;align-items:center;gap:var(--sp-3);flex:1;justify-content:flex-start}
   .socials a{display:flex;color:#C9D2E2;transition:color .2s,transform .2s}
   .socials a:hover{color:var(--gold-2);transform:translateY(-2px)}
-  .socials svg{width:19px;height:19px}
+  .socials svg{width:17px;height:17px}
+
+  /* ---- price row & discount box (super-pack card) ---- */
+  .price-row{position:relative;z-index:1;display:flex;align-items:center;gap:var(--sp-2);flex-wrap:wrap}
+  .price-old{font-size:clamp(11px,1.9vh,13px);color:#F3C6C6;position:relative;font-weight:700}
+  .price-old::after{content:'';position:absolute;left:-6%;right:-6%;top:52%;height:2.5px;background:#FF5257;
+    border-radius:2px;transform:rotate(-7deg)}
+  .price-badge{font-size:clamp(10px,1.7vh,12px);font-weight:800;color:#5C1A00;background:linear-gradient(120deg,#FFD65C,#FFB020);
+    border-radius:999px;padding:3px 10px;box-shadow:0 3px 8px rgba(140,90,0,.25)}
+  .price-box{position:relative;z-index:1;display:flex;align-items:baseline;gap:8px;align-self:flex-start;
+    background:linear-gradient(120deg,#FFF3D6,#FFE9B8);border:1.5px solid rgba(214,160,30,.45);
+    border-radius:14px;padding:clamp(7px,1.3vh,11px) clamp(12px,1.6vw,18px);box-shadow:0 6px 14px rgba(120,70,0,.18)}
+  .price-new{font-size:clamp(20px,3.4vh,27px);font-weight:900;color:#7A4B00;letter-spacing:.01em}
+  .price-unit{font-size:clamp(11px,1.8vh,13px);font-weight:700;color:#9C6A10}
+  .price-note{font-size:clamp(9.5px,1.6vh,11px);color:#A97F2A;margin-inline-start:6px}
+
+  /* ---- registration gate on the super-pack card ---- */
+  .sp-gate{display:none;position:absolute;inset:0;z-index:6;flex-direction:column;align-items:center;justify-content:center;
+    gap:8px;text-align:center;padding:var(--sp-4);border-radius:var(--r-lg);
+    background:rgba(9,17,36,.55);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+  .sp-card.locked .sp-gate{display:flex}
+  .sp-card.locked .card-body,.sp-card.locked .btn-gold{filter:blur(6px);opacity:.45;pointer-events:none;user-select:none}
+  .sp-gate-lock{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#5C1A00;
+    background:linear-gradient(120deg,#FFD65C,#FFB020);box-shadow:0 6px 16px rgba(140,90,0,.35)}
+  .sp-gate-lock svg{width:22px;height:22px}
+  .sp-gate b{font-size:clamp(13px,2.3vh,16px);color:#fff}
+  .sp-gate p{font-size:clamp(10.5px,1.9vh,12.5px);color:#C9D2E2;margin:0;max-width:34ch;line-height:1.9}
+  .sp-gate-btn{pointer-events:auto;margin-top:4px}
+
+  /* ---- help banner social grid (2x2) ---- */
+  .help-socials{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+  .help-socials a{width:clamp(26px,4vh,32px);height:clamp(26px,4vh,32px);border-radius:10px;display:grid;place-items:center;
+    background:rgba(255,255,255,.08);border:1px solid rgba(233,185,74,.35);color:#EAD9A6;transition:transform .2s,background .2s,color .2s}
+  .help-socials a:hover{transform:translateY(-2px);background:rgba(233,185,74,.2);color:#FFE9B8}
+  .help-socials svg{width:15px;height:15px}
+
+  /* ---- footer socials (prominent) ---- */
+  .contact-tag{font-size:clamp(11px,1.9vh,13px);font-weight:900;color:#FFE9B8;border:1.5px solid rgba(233,185,74,.5);
+    border-radius:999px;padding:4px 14px;background:rgba(233,185,74,.1);white-space:nowrap}
+  .socials a.social-yt:hover{color:#FF4444}
+  .socials a.social-ig:hover{color:#E1306C}
+  .socials a.social-rb:hover{color:#5CB3FF}
+  .socials a.social-tg:hover{color:#4FC3F7}
+  .socials a{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12)}
+
+  /* ---- overlays: modals, chat, fab ---- */
+  .modal-root,.chat-root{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center}
+  .modal-root.open,.chat-root.open{display:flex}
+  .modal-backdrop{position:absolute;inset:0;background:rgba(6,12,26,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    opacity:0;transition:opacity .25s}
+  .modal-root.open .modal-backdrop,.chat-root.open .modal-backdrop{opacity:1}
+  .modal-panel{position:relative;z-index:1;width:min(430px,calc(100% - 32px));max-height:min(86vh,720px);overflow:auto;
+    background:#fff;border-radius:22px;box-shadow:0 30px 70px rgba(4,10,26,.45);
+    transform:translateY(56px) scale(.96);opacity:0;transition:transform .34s cubic-bezier(.2,.9,.25,1.1),opacity .25s}
+  .modal-root.open .modal-panel,.chat-root.open .modal-panel{transform:translateY(0) scale(1);opacity:1}
+  .modal-x{position:absolute;top:12px;inset-inline-start:12px;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;
+    background:#F1F2F5;color:#33415C;display:grid;place-items:center;z-index:3;transition:background .2s}
+  .modal-x:hover{background:#E4E6EC}
+  .modal-x svg{width:17px;height:17px}
+
+  /* registration */
+  .reg-panel{padding:24px 22px 22px;text-align:center}
+  .reg-logo{display:block;margin:2px auto 6px;height:56px;width:auto}
+  .reg-head h3{margin:0;font-size:19px;font-weight:900;color:var(--mink,#101C33)}
+  .reg-head>p{margin:6px 0 0;font-size:12px;color:#6B7385;line-height:1.9}
+  .reg-tabs{display:flex;gap:6px;background:#F1F2F5;border-radius:999px;padding:4px;margin:14px auto 0;width:max-content}
+  .reg-tab{border:0;background:transparent;cursor:pointer;border-radius:999px;padding:7px 16px;font-family:inherit;
+    font-size:12.5px;font-weight:800;color:#5A6478;transition:all .2s}
+  .reg-tab.active{background:#fff;color:#101C33;box-shadow:0 2px 8px rgba(16,28,51,.14)}
+  .reg-steps{display:flex;gap:6px;justify-content:center;margin:14px 0 4px}
+  .reg-steps i{width:34px;height:5px;border-radius:99px;background:#E4E6EC;transition:background .3s}
+  .reg-steps i.on{background:linear-gradient(90deg,#F5B841,#E88A00)}
+  .reg-step label,.reg-panel form>label{display:block;text-align:right;font-size:12px;font-weight:800;color:#33415C;margin:12px 0 6px}
+  .reg-step input,.reg-panel form>input{width:100%;border:1.5px solid #E0E3EA;border-radius:13px;background:#FAFBFC;
+    padding:12px 14px;font-family:inherit;font-size:14.5px;font-weight:700;color:#101C33;outline:none;transition:border .2s,box-shadow .2s}
+  .reg-step input:focus,.reg-panel form>input:focus{border-color:#F0A63C;box-shadow:0 0 0 3px rgba(240,166,60,.15)}
+  .reg-hint{font-size:10.5px;color:#8A93A5;margin:7px 0 0;text-align:right}
+  .reg-err{display:none;font-size:11.5px;font-weight:700;color:#D3273A;background:#FDECEF;border-radius:10px;padding:8px 12px;margin:10px 0 0}
+  .reg-err.show{display:block}
+  .reg-next,.reg-submit{width:100%;justify-content:center;margin-top:16px;border:0;cursor:pointer;font-family:inherit}
+  .opt-row{display:flex;gap:8px;flex-wrap:wrap}
+  .opt{flex:1 1 30%;border:1.5px solid #E0E3EA;background:#FAFBFC;border-radius:13px;padding:11px 8px;cursor:pointer;
+    font-family:inherit;font-size:12.5px;font-weight:800;color:#33415C;transition:all .18s;min-width:70px}
+  .opt.on{border-color:#F0A63C;background:#FFF6E6;color:#9C5A00;box-shadow:0 3px 10px rgba(240,166,60,.22)}
+  .reg-done{padding:10px 0 4px}
+  .reg-done-ico{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;margin:6px auto 10px;
+    background:#E9F9EF;color:#1F9D55}
+  .reg-done-ico svg{width:30px;height:30px}
+  .reg-done h4{margin:0;font-size:17.5px;font-weight:900;color:#101C33}
+  .reg-done p{font-size:12px;color:#6B7385;line-height:1.9;margin:8px 0 4px}
+  .reg-done .btn-gold{width:100%;justify-content:center;display:inline-flex}
+
+  /* course modal */
+  .course-panel{width:min(560px,calc(100% - 32px))}
+  .course-cover{display:block;width:100%;height:auto;border-radius:22px 22px 0 0}
+  .course-body{padding:20px 22px 22px}
+  .course-body h3{margin:0;font-size:19px;font-weight:900;color:#101C33;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .course-badge{font-size:11px;font-weight:800;color:#7A4B00;background:linear-gradient(120deg,#FFD65C,#FFB020);
+    border-radius:999px;padding:3px 10px}
+  .course-body>p{font-size:12.5px;color:#5A6478;line-height:2;margin:8px 0 0}
+  .course-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0}
+  .course-field{display:flex;gap:10px;align-items:flex-start;background:#FAFBFC;border:1.5px solid #ECEEF3;
+    border-radius:15px;padding:12px;transition:border .2s,transform .2s}
+  .course-field:hover{border-color:#F0C56A;transform:translateY(-2px)}
+  .cf-ico{flex:0 0 auto;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;
+    background:linear-gradient(120deg,#FFF1D4,#FFE3AE);color:#9C5A00}
+  .cf-ico svg{width:18px;height:18px}
+  .course-field b{display:block;font-size:12.5px;color:#101C33}
+  .course-field small{display:block;font-size:10.8px;color:#77809A;line-height:1.8;margin-top:3px}
+  .course-off{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 0;background:#FFF9EC;
+    border:1.5px dashed #E8B45A;border-radius:15px;padding:12px 14px}
+  .co-chip{font-size:12px;font-weight:900;color:#fff;background:linear-gradient(120deg,#F03A40,#C31C22);
+    border-radius:999px;padding:6px 13px;box-shadow:0 4px 10px rgba(150,15,20,.3)}
+  .co-old{font-size:12.5px;color:#9AA2B4;position:relative;font-weight:700}
+  .co-old::after{content:'';position:absolute;left:-5%;right:-5%;top:52%;height:2px;background:#FF5257;transform:rotate(-7deg)}
+  .co-new{font-size:17px;font-weight:900;color:#7A4B00;margin-inline-start:auto}
+  .course-cta{width:100%;justify-content:center;display:inline-flex;margin-top:16px;border:0;cursor:pointer;font-family:inherit}
+  .course-note{font-size:10.5px;color:#8A93A5;margin:10px 0 0;text-align:center}
+
+  /* payment modal */
+  .pay-panel{padding:22px;text-align:center}
+  .pay-panel h3{margin:0;font-size:18px;font-weight:900;color:#101C33}
+  .pay-amount{margin:14px 0 0;background:linear-gradient(120deg,#0F2351,#081431);border-radius:16px;padding:13px;
+    color:#fff;box-shadow:0 8px 20px rgba(8,20,49,.3)}
+  .pay-amount small{display:block;font-size:11px;color:#AEB8CC}
+  .pay-amount b{font-size:22px;font-weight:900;color:#FFD65C}
+  .pay-amount i{font-style:normal;font-size:12px;font-weight:700}
+  .pay-card{margin:12px 0 0;background:#FAFBFC;border:1.5px solid #ECEEF3;border-radius:16px;padding:12px 14px}
+  .pay-card small{display:block;font-size:11px;color:#77809A;text-align:right}
+  .pay-card-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
+  .pay-card-row b{font-size:17.5px;font-weight:900;color:#101C33;letter-spacing:.06em}
+  .pay-copy{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #E0E3EA;background:#fff;border-radius:10px;
+    padding:7px 12px;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:800;color:#33415C;transition:all .2s}
+  .pay-copy:hover{border-color:#F0A63C;color:#9C5A00}
+  .pay-copy svg{width:14px;height:14px}
+  .pay-steps{margin:16px 0 0;padding:0 4px 0 0;list-style:none;text-align:right;counter-reset:ps}
+  .pay-steps li{position:relative;padding:0 34px 12px 0;font-size:12px;color:#4A5568;line-height:1.9;counter-increment:ps}
+  .pay-steps li::before{content:counter(ps);position:absolute;right:0;top:0;width:24px;height:24px;border-radius:50%;
+    display:grid;place-items:center;font-size:12px;font-weight:900;color:#fff;background:linear-gradient(120deg,#F5B841,#E88A00)}
+  .pay-steps li b{color:#101C33}
+  .pay-steps li:nth-child(2) b{color:#D3273A}
+  .pay-tg{width:100%;justify-content:center;display:inline-flex;margin-top:8px;text-decoration:none}
+  .pay-tg svg{width:17px;height:17px}
+  .pay-warn{font-size:11px;font-weight:700;color:#8A6A00;background:#FFF7DC;border:1px solid #F2DFA0;
+    border-radius:12px;padding:9px 12px;margin:12px 0 0;line-height:1.9}
+
+  /* chat sheet */
+  .chat-root{align-items:flex-end;justify-content:center}
+  .chat-panel{position:relative;z-index:1;width:min(430px,calc(100% - 32px));height:min(66vh,560px);display:flex;flex-direction:column;
+    background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -14px 50px rgba(4,10,26,.4);overflow:hidden;
+    transform:translateY(100%);transition:transform .38s cubic-bezier(.2,.9,.25,1.05)}
+  .chat-root.open .chat-panel{transform:translateY(0)}
+  .chat-head{display:flex;align-items:center;gap:11px;padding:14px 16px;background:linear-gradient(120deg,#0F2351,#081431);color:#fff}
+  .chat-ava{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto;
+    background:linear-gradient(120deg,#F5B841,#E88A00);color:#5C1A00}
+  .chat-ava svg{width:19px;height:19px}
+  .chat-who{flex:1;min-width:0}
+  .chat-who b{display:block;font-size:13.5px}
+  .chat-who small{font-size:10px;color:#9FB0CE}
+  .chat-head .modal-x{background:rgba(255,255,255,.14);color:#fff;top:12px;inset-inline-start:12px}
+  .chat-msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:9px;background:#F5F6F8}
+  .chat-msg{max-width:78%;padding:10px 13px;border-radius:16px;font-size:12.5px;line-height:1.9;
+    box-shadow:0 2px 6px rgba(16,28,51,.07);white-space:pre-wrap;word-break:break-word}
+  .chat-msg.me{align-self:flex-start;background:linear-gradient(120deg,#F5B841,#EE9C1A);color:#3E2600;
+    border-bottom-right-radius:5px}
+  .chat-msg.admin{align-self:flex-end;background:#fff;color:#22283A;border-bottom-left-radius:5px}
+  .chat-msg time{display:block;font-size:9px;opacity:.65;margin-top:4px}
+  .chat-empty{margin:auto;text-align:center;font-size:11.5px;color:#8A93A5;line-height:2;padding:0 26px}
+  .chat-form{display:flex;gap:8px;padding:11px;background:#fff;border-top:1px solid #ECEEF3}
+  .chat-form input{flex:1;border:1.5px solid #E0E3EA;border-radius:999px;padding:11px 16px;font-family:inherit;
+    font-size:12.5px;outline:none;background:#F5F6F8;min-width:0}
+  .chat-form input:focus{border-color:#F0A63C;background:#fff}
+  .chat-form button{flex:0 0 auto;width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;
+    background:linear-gradient(120deg,#F5B841,#E88A00);color:#5C1A00;display:grid;place-items:center;transition:transform .15s}
+  .chat-form button:active{transform:scale(.92)}
+  .chat-form button svg{width:18px;height:18px}
+
+  /* support FAB (circular) */
+  .chat-fab{position:fixed;bottom:22px;inset-inline-start:22px;z-index:400;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;
+    background:linear-gradient(135deg,#F5B841,#E88A00);color:#5C1A00;display:grid;place-items:center;
+    box-shadow:0 12px 26px rgba(160,100,0,.42),inset 0 1px 0 rgba(255,255,255,.4);
+    transition:transform .45s cubic-bezier(.4,0,.8,.6),opacity .45s;animation:fabPulse 2.6s ease-in-out infinite}
+  .chat-fab svg{width:25px;height:25px}
+  .chat-fab.hide{transform:translateY(110px) scale(.5);opacity:0;pointer-events:none}
+  .chat-fab:hover{transform:scale(1.07)}
+  @keyframes fabPulse{0%,100%{box-shadow:0 12px 26px rgba(160,100,0,.42),0 0 0 0 rgba(245,184,65,.45)}
+    50%{box-shadow:0 12px 26px rgba(160,100,0,.42),0 0 0 14px rgba(245,184,65,0)}}
+  .chat-fab-tip{position:absolute;inset-inline-start:66px;white-space:nowrap;font-size:11.5px;font-weight:800;color:#fff;
+    background:rgba(9,17,36,.85);border-radius:999px;padding:6px 12px;pointer-events:none;opacity:0;transform:translateX(-6px);
+    transition:opacity .25s,transform .25s}
+  .chat-fab:hover .chat-fab-tip{opacity:1;transform:translateX(0)}
+
+  @media (max-width:640px){
+    .modal-panel{width:calc(100% - 22px);max-height:88vh;border-radius:22px 22px 0 0;position:fixed;bottom:0;left:0;right:0;
+      transform:translateY(100%)}
+    .modal-root{align-items:flex-end}
+    .modal-root.open .modal-panel{transform:translateY(0)}
+    .modal-x{top:10px}
+    .course-grid{grid-template-columns:1fr}
+    .chat-fab{bottom:calc(70px + env(safe-area-inset-bottom,0px));inset-inline-start:14px;width:52px;height:52px}
+  }
+
 
   /* ===== mobile-only site (template-style) — hidden on desktop ===== */
   .d-site{display:contents}   /* wrapper must not break the body flex layout */
@@ -339,6 +541,28 @@
     .m-support h3{font-size:14.5px;color:var(--mink);margin:0}
     .m-support p{font-size:11px;color:var(--mmuted);margin:3px 0 0;line-height:1.9}
     .m-support .m-btn{width:100%}
+    .m-course{position:relative}
+    .m-price-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;z-index:1;margin-top:9px}
+    .m-price-old{font-size:11px;color:#C44A4E;font-weight:700;position:relative}
+    .m-price-old::after{content:'';position:absolute;left:-5%;right:-5%;top:52%;height:2px;background:#FF5257;transform:rotate(-7deg)}
+    .m-price-badge{font-size:10px;font-weight:900;color:#5C1A00;background:linear-gradient(120deg,#FFD65C,#FFB020);border-radius:999px;padding:2px 9px}
+    .m-price-box{display:flex;align-items:baseline;gap:6px;background:linear-gradient(120deg,#FFF3D6,#FFE9B8);
+      border:1.5px solid rgba(214,160,30,.45);border-radius:13px;padding:8px 13px;position:relative;z-index:1;
+      box-shadow:0 5px 12px rgba(120,70,0,.16);width:max-content;margin-top:7px}
+    .m-price-new{font-size:19px;font-weight:900;color:#7A4B00}
+    .m-price-unit{font-size:11px;font-weight:700;color:#9C6A10}
+    .m-sp-gate{display:none;position:absolute;inset:-1px;z-index:6;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+      text-align:center;padding:14px;border-radius:18px;background:rgba(9,17,36,.55);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+    .m-course.locked .m-sp-gate{display:flex}
+    .m-course.locked .m-course-img,.m-course.locked .m-course-body,.m-course.locked>#mSpJoin{filter:blur(6px);opacity:.45;pointer-events:none;user-select:none}
+    .m-sp-gate b{font-size:13px;color:#fff}
+    .m-sp-gate p{font-size:10.5px;color:#C9D2E2;margin:0;line-height:1.8}
+    .m-sp-gate .sp-gate-btn{pointer-events:auto;width:auto;padding:8px 18px;margin-top:2px}
+    .m-help-socials{display:grid;grid-template-columns:repeat(2,max-content);gap:7px;margin-top:9px;width:max-content}
+    .m-help-socials a{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#fff;
+      border:1px solid #E8DFC2;color:#8A6A00;transition:transform .2s}
+    .m-help-socials a:hover{transform:translateY(-2px)}
+    .m-help-socials svg{width:14px;height:14px}
 
     .m-footer{margin-top:32px;background:linear-gradient(180deg,#0A142E,#060F24);color:#C9D2E2;
       padding:26px 20px 18px}
@@ -411,6 +635,28 @@
     <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
       <path d="M12 2.5 20 6v6c0 4.9-3.4 9.4-8 10.9C7.4 21.4 4 16.9 4 12V6l8-3.5z"/><rect x="9.4" y="10" width="5.2" height="4.6" rx="1"/><path d="M10.6 10V8.6a1.4 1.4 0 0 1 2.8 0V10"/>
     </symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+      <path d="M21.582 7.186a2.513 2.513 0 0 0-1.768-1.78C18.254 5 12 5 12 5s-6.254 0-7.814.406a2.513 2.513 0 0 0-1.768 1.78C2 8.75 2 12 2 12s0 3.25.418 4.814a2.513 2.513 0 0 0 1.768 1.78C5.746 19 12 19 12 19s6.254 0 7.814-.406a2.513 2.513 0 0 0 1.768-1.78C22 15.25 22 12 22 12s0-3.25-.418-4.814ZM10 15.25V8.75L15.5 12 10 15.25Z"/>
+    </symbol>
+    <symbol id="i-rubika" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2.6 20 7v10l-8 4.4L4 17V7l8-4.4Z"/><path d="M12 12 20 7M12 12v9.4M12 12 4 7"/>
+      <circle cx="12" cy="12" r="2.1" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m4.5 12.5 5 5 10-11"/>
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 3 10.5 13.5M21 3l-6.8 18-3.7-7.5L3 9.8 21 3Z"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 5l14 14M19 5 5 19"/>
+    </symbol>
     <symbol id="i-telegram" viewBox="0 0 24 24" fill="currentColor" stroke="none">
       <path d="M9.04 15.51l-.38 5.32c.54 0 .78-.23 1.06-.51l2.55-2.44 5.28 3.87c.97.53 1.66-.25 1.66-1.01L21.5 2.9 2.9 9.86c-1.16.44-1.14 1.1-.2 1.39l4.42 1.38L18.3 5.7c.48-.32.92-.14.56.18L9.04 15.5z"/>
     </symbol>
@@ -445,22 +691,33 @@
   <!-- cards -->
   <section class="cards">
 
-    <article class="card reveal" style="--d:.35s">
-      <img class="bg-slot" src="assets/product-superpack.png" alt="" onerror="this.style.display='none'">
+    <article class="card reveal sp-card" style="--d:.35s" id="spCard">
+      <img class="bg-slot" src="assets/superpack-cover.png" alt="سوپر پک تکنیکی">
       <div class="card-body">
         <span class="icon-tile"><svg><use href="#i-cube"/></svg></span>
         <span class="eyebrow">هم‌سیر در یک مسیر</span>
         <h3>سوپر پک تکنیکی</h3>
         <p class="desc">همه‌ی درس‌های کلیدی رشته‌ات، یک‌جا و با برنامه‌ی مطالعه؛ انتخاب کامل برای رسیدن به نتیجه.</p>
-        <div class="chips">
-          <span class="chip"><svg><use href="#i-layers"/></svg>۱ سرو پک</span>
-          <span class="chip"><svg><use href="#i-card"/></svg>از ۲٬۶۸۰٬۰۰۰ تومان</span>
+        <div class="price-row">
+          <span class="price-old">۲٬۶۸۰٬۰۰۰ <i>تومان</i></span>
+          <span class="price-badge">۵۰٪ تخفیف جشنواره</span>
+        </div>
+        <div class="price-box">
+          <span class="price-new">۱٬۳۴۰٬۰۰۰</span>
+          <span class="price-unit">تومان</span>
+          <span class="price-note">پرداخت یک‌جا، بدون هزینه‌ی پنهان</span>
         </div>
       </div>
-      <a class="btn-gold" href="#">
-        مشاهده سرو پک‌ها
+      <a class="btn-gold" id="spJoin" href="#">
+        شرکت در دوره
         <span class="arrow"><svg><use href="#i-arrow-left"/></svg></span>
       </a>
+      <div class="sp-gate" id="spGate">
+        <span class="sp-gate-lock"><svg><use href="#i-lock"/></svg></span>
+        <b>مشاهده و خرید سوپر پک تکنیکی</b>
+        <p>برای ورود به این بخش، ابتدا ثبت‌نام کن؛ کمتر از یک دقیقه طول می‌کشد.</p>
+        <button class="btn-gold sp-gate-btn" id="spGateBtn" type="button">ثبت‌نام و ورود</button>
+      </div>
     </article>
 
   </section>
@@ -473,10 +730,16 @@
     </svg>
     <span class="help-icon"><svg><use href="#i-headset"/></svg></span>
     <div class="help-text">
-      <h3>درد دل داری؟ بین دو انتخاب گیر کرده‌ای؟</h3>
+      <h3>هر سوالی داشتی از پشتیبان‌هامون بپرس</h3>
       <p>همین‌جا با تیم پشتیبانی گفتگو کن؛ سریع راهنماییت می‌کنیم.</p>
     </div>
-    <a class="btn-outline" href="#">
+    <div class="help-socials">
+      <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
+      <a href="#" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
+      <a href="#" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
+      <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+    </div>
+    <a class="btn-outline" id="helpChat" href="#">
       شروع گفتگو
       <svg><use href="#i-arrow-left"/></svg>
     </a>
@@ -493,9 +756,12 @@
       <a href="#">درباره ما</a><span class="sep">|</span>
       <a href="#">تماس با ما</a>
     </nav>
+    <span class="contact-tag">ارتباط با ما</span>
     <div class="socials">
-      <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
-      <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
+      <a href="#" class="social-tg" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+      <a href="#" class="social-yt" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
+      <a href="#" class="social-ig" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
+      <a href="#" class="social-rb" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
     </div>
   </div>
 </footer>
@@ -526,28 +792,44 @@
     </section>
 
     <section class="m-section" id="m-courses">
-      <article class="m-course">
-        <div class="m-course-img"><img src="assets/product-superpack.png" alt="سوپر پک تکنیکی"></div>
+      <article class="m-course" id="mCourseCard">
+        <div class="m-course-img"><img src="assets/superpack-cover.png" alt="سوپر پک تکنیکی"></div>
         <div class="m-course-body">
           <span class="m-tag">هم‌سیر در یک مسیر</span>
           <h3>سوپر پک تکنیکی</h3>
           <p>همه‌ی درس‌های کلیدی رشته‌ات، یک‌جا و با برنامه‌ی مطالعه؛ انتخاب کامل برای رسیدن به نتیجه.</p>
-          <div class="m-chips">
-            <span class="m-chip"><svg><use href="#i-layers"/></svg>۱ سرو پک</span>
-            <span class="m-chip"><svg><use href="#i-card"/></svg>از ۲٬۶۸۰٬۰۰۰ تومان</span>
+          <div class="m-price-row">
+            <span class="m-price-old">۲٬۶۸۰٬۰۰۰ <i>تومان</i></span>
+            <span class="m-price-badge">۵۰٪ تخفیف</span>
+          </div>
+          <div class="m-price-box">
+            <span class="m-price-new">۱٬۳۴۰٬۰۰۰</span>
+            <span class="m-price-unit">تومان</span>
           </div>
         </div>
-        <a class="m-btn m-btn-gold" href="#">مشاهده سرو پک‌ها</a>
+        <a class="m-btn m-btn-gold" id="mSpJoin" href="#">شرکت در دوره</a>
+        <div class="m-sp-gate" id="mSpGate">
+          <span class="sp-gate-lock"><svg><use href="#i-lock"/></svg></span>
+          <b>مشاهده و خرید سوپر پک</b>
+          <p>برای ورود به این بخش، ابتدا ثبت‌نام کن.</p>
+          <button class="m-btn m-btn-gold sp-gate-btn" id="mSpGateBtn" type="button">ثبت‌نام و ورود</button>
+        </div>
       </article>
     </section>
 
     <section class="m-support">
       <span class="m-support-icon"><svg><use href="#i-headset"/></svg></span>
       <div>
-        <h3>درد دل داری؟ بین دو انتخاب گیر کرده‌ای؟</h3>
+        <h3>هر سوالی داشتی از پشتیبان‌هامون بپرس</h3>
         <p>همین‌جا با تیم پشتیبانی گفتگو کن؛ سریع راهنماییت می‌کنیم.</p>
+        <div class="m-help-socials">
+          <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
+          <a href="#" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
+          <a href="#" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
+          <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+        </div>
       </div>
-      <a class="m-btn m-btn-gold" href="#">شروع گفتگو</a>
+      <a class="m-btn m-btn-gold" id="mHelpChat" href="#">شروع گفتگو</a>
     </section>
 
   </div>
@@ -561,14 +843,161 @@
     <div class="m-foot-bottom">
       <span>© ۱۴۰۴ - مدرسه کنکور نخبان. تمامی حقوق محفوظ است.</span>
       <div class="m-socials">
-        <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
-        <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
+        <a href="#" class="social-tg" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+        <a href="#" class="social-yt" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
+        <a href="#" class="social-ig" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
+        <a href="#" class="social-rb" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
       </div>
     </div>
   </footer>
 
   <div class="m-dock"><a class="m-btn m-btn-gold" href="#">دوره‌های من <svg><use href="#i-arrow-left"/></svg></a></div>
 </div>
+
+
+<!-- ================= OVERLAYS ================= -->
+<div class="modal-root" id="regModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel reg-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <div class="reg-head" id="regHead">
+      <img class="reg-logo" src="assets/noknban-fa.png" alt="نخبان">
+      <h3 id="regTitle">ثبت‌نام در نخبان</h3>
+      <p>برای ورود به صفحه‌ی خرید سوپر پک تکنیکی، مشخصاتت را ثبت کن</p>
+      <div class="reg-tabs">
+        <button class="reg-tab active" data-tab="reg" type="button">ثبت‌نام</button>
+        <button class="reg-tab" data-tab="login" type="button">ورود حساب موجود</button>
+      </div>
+      <div class="reg-steps" id="regSteps"><i class="on"></i><i></i><i></i></div>
+    </div>
+    <form id="regForm" novalidate>
+      <div class="reg-step" data-step="1">
+        <label>شماره موبایل</label>
+        <input id="rgPhone" type="tel" inputmode="numeric" dir="ltr" maxlength="11" placeholder="09xxxxxxxxx">
+        <p class="reg-hint">از این شماره برای ورود مجدد به حساب خودت استفاده می‌شود</p>
+        <p class="reg-err" id="regErr1"></p>
+        <button class="btn-gold reg-next" type="button">ادامه</button>
+      </div>
+      <div class="reg-step" data-step="2" hidden>
+        <label>نام و نام خانوادگی</label>
+        <input id="rgName" type="text" placeholder="مثلاً سارا محمدی">
+        <label>رمز ۴ رقمی (برای ورود مجدد)</label>
+        <input id="rgPin" type="password" inputmode="numeric" dir="ltr" maxlength="4" placeholder="****">
+        <p class="reg-err" id="regErr"></p>
+        <button class="btn-gold reg-next" type="button">ادامه</button>
+      </div>
+      <div class="reg-step" data-step="3" hidden>
+        <label>رشته‌ی تحصیلی</label>
+        <div class="opt-row" id="rgField">
+          <button type="button" class="opt" data-v="ریاضی">ریاضی</button>
+          <button type="button" class="opt" data-v="تجربی">تجربی</button>
+          <button type="button" class="opt" data-v="انسانی">انسانی</button>
+        </div>
+        <label>پایه‌ی تحصیلی</label>
+        <div class="opt-row" id="rgGrade">
+          <button type="button" class="opt" data-v="دهم">دهم</button>
+          <button type="button" class="opt" data-v="یازدهم">یازدهم</button>
+          <button type="button" class="opt" data-v="دوازدهم">دوازدهم</button>
+          <button type="button" class="opt" data-v="فارغ‌التحصیل">فارغ‌التحصیل</button>
+        </div>
+        <p class="reg-err" id="regErr2"></p>
+        <button class="btn-gold reg-submit" type="button">ثبت‌نام و ورود به صفحه‌ی خرید</button>
+      </div>
+    </form>
+    <form id="loginForm" novalidate hidden>
+      <label>شماره موبایل</label>
+      <input id="lgPhone" type="tel" inputmode="numeric" dir="ltr" maxlength="11" placeholder="09xxxxxxxxx">
+      <label>رمز ۴ رقمی</label>
+      <input id="lgPin" type="password" inputmode="numeric" dir="ltr" maxlength="4" placeholder="****">
+      <p class="reg-err" id="lgErr"></p>
+      <button class="btn-gold reg-submit" type="button">ورود به حساب</button>
+    </form>
+    <div class="reg-done" id="regDone" hidden>
+      <span class="reg-done-ico"><svg><use href="#i-check"/></svg></span>
+      <h4 id="regDoneTitle">خوش آمدی!</h4>
+      <p id="regDoneText">حسابت ساخته شد و به صفحه‌ی خرید دسترسی داری.</p>
+      <button class="btn-gold" id="regDoneBtn" type="button">ادامه</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-root" id="courseModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel course-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <img class="course-cover" src="assets/superpack-cover.png" alt="سوپر پک تکنیکی — کنکور و نهایی">
+    <div class="course-body">
+      <h3>سوپر پک تکنیکی <span class="course-badge">ویژه‌ی کنکور و نهایی</span></h3>
+      <p>همه‌ی آنچه برای ترک‌های تکنیکی کنکور نیاز داری، در یک پکیج کامل و برنامه‌ریزی‌شده:</p>
+      <div class="course-grid">
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-book"/></svg></span><div><b>جزوه‌های جامع درس‌ها</b><small>ریاضی، فیزیک، شیمی و دروس اختصاصی — خلاصه و کنکوری</small></div></div>
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-layers"/></svg></span><div><b>دفترچه‌های تست با پاسخ تشریحی</b><small>طبقه‌بندی‌شده بر اساس کنکور و نهایی سال‌های اخیر</small></div></div>
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-grid"/></svg></span><div><b>برنامه‌ی مطالعه‌ی هفتگی</b><small>مسیر روزانه تا روز کنکور، متناسب با پایه‌ی خودت</small></div></div>
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-shield"/></svg></span><div><b>پشتیبانی و رفع اشکال</b><small>تا روز کنکور کنارت هستیم؛ از پشتیبان‌ها بپرس</small></div></div>
+      </div>
+      <div class="course-off">
+        <span class="co-chip">۵۰٪ تخفیف جشنواره</span>
+        <span class="co-old">۲٬۶۸۰٬۰۰۰ تومان</span>
+        <span class="co-new">۱٬۳۴۰٬۰۰۰ تومان</span>
+      </div>
+      <button class="btn-gold course-cta" id="payOpen" type="button">
+        تکمیل خرید و پرداخت
+        <span class="arrow"><svg><use href="#i-arrow-left"/></svg></span>
+      </button>
+      <p class="course-note">پس از تکمیل خرید، رسید واریز را برای پشتیبانی بفرست تا دسترسی‌ات فعال شود.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-root" id="payModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel pay-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <h3>تکمیل خرید سوپر پک تکنیکی</h3>
+    <div class="pay-amount">
+      <small>مبلغ قابل پرداخت</small>
+      <b>۱٬۳۴۰٬۰۰۰ <i>تومان</i></b>
+    </div>
+    <div class="pay-card">
+      <small>شماره کارت (واریز مستقیم)</small>
+      <div class="pay-card-row">
+        <b id="payCardNo" dir="ltr">6037-9975-1234-5678</b>
+        <button class="pay-copy" id="payCopy" type="button"><svg><use href="#i-copy"/></svg><span id="payCopyTxt">کپی</span></button>
+      </div>
+    </div>
+    <ol class="pay-steps">
+      <li><b>اول مبلغ را واریز کن</b> — به همان شماره کارت بالا</li>
+      <li><b>حتماً حتماً حتماً از فیش یا رسید واریز عکس بگیر</b> (اسکرین‌شات یا عکس فیش)</li>
+      <li>عکس رسید را <b>همراه با نام و نام خانوادگی و شماره موبایل خودت</b> به تلگرام پشتیبانی بفرست تا دسترسی‌ات فعال شود</li>
+    </ol>
+    <a class="btn-gold pay-tg" href="https://t.me/noknban_support" target="_blank" rel="noopener">
+      ارسال رسید در تلگرام
+      <svg><use href="#i-telegram"/></svg>
+    </a>
+    <p class="pay-warn">⚠️ بدون ارسال فیش واریز، فعال‌سازی دسترسی انجام نمی‌شود؛ حتماً رسید را بفرست.</p>
+  </div>
+</div>
+
+<div class="chat-root" id="chatModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="chat-panel">
+    <header class="chat-head">
+      <span class="chat-ava"><svg><use href="#i-headset"/></svg></span>
+      <div class="chat-who"><b>پشتیبانی نخبان</b><small>آنلاین — سریع جواب می‌دهیم</small></div>
+      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    </header>
+    <div class="chat-msgs" id="chatMsgs"><div class="chat-empty">سلام 👋 سوالت را بپرس؛ پشتیبان‌های نخبان همین‌جا هستند.</div></div>
+    <form class="chat-form" id="chatForm">
+      <input id="chatText" type="text" placeholder="پیامت را بنویس..." autocomplete="off">
+      <button type="submit" aria-label="ارسال"><svg><use href="#i-send"/></svg></button>
+    </form>
+  </div>
+</div>
+
+<button class="chat-fab" id="chatFab" aria-label="پشتیبانی و گفتگو">
+  <svg><use href="#i-headset"/></svg>
+  <span class="chat-fab-tip">پشتیبانی نخبان</span>
+</button>
 
 <script>
 (function(){
@@ -636,6 +1065,222 @@
   }
   tick(true);
   setInterval(tick, 250);
+
+  /* ===== registration gate, modals, chat, support FAB ===== */
+  var API = '/api';
+  var SKEY = 'nb_session';
+  function sess(){ try{ return JSON.parse(localStorage.getItem(SKEY) || 'null') }catch(e){ return null } }
+  function setSess(u){ try{ localStorage.setItem(SKEY, JSON.stringify(u)) }catch(e){} }
+  function isReg(){ return !!sess(); }
+  var toEn = function(v){ return String(v || '').replace(/[۰-۹]/g, function(d){ return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)) }) };
+  var pending = null;
+
+  function openOverlay(id){ var m = document.getElementById(id); if(!m) return; m.classList.add('open'); m.setAttribute('aria-hidden','false'); }
+  function closeOverlay(id){ var m = document.getElementById(id); if(!m) return; m.classList.remove('open'); m.setAttribute('aria-hidden','true'); if(id==='chatModal') clearInterval(chatTimer); }
+  document.addEventListener('click', function(e){
+    var c = e.target.closest('[data-close]');
+    if(c){ var root = c.closest('.modal-root,.chat-root'); if(root) closeOverlay(root.id); }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'Escape') return;
+    ['regModal','courseModal','payModal','chatModal'].forEach(function(id){
+      var m = document.getElementById(id);
+      if(m && m.classList.contains('open')) closeOverlay(id);
+    });
+  });
+
+  /* ---- gate: page 2 requires registration ---- */
+  function applyGate(){
+    var reg = isReg();
+    var d = document.getElementById('spCard'); if(d) d.classList.toggle('locked', !reg);
+    var m = document.getElementById('mCourseCard'); if(m) m.classList.toggle('locked', !reg);
+  }
+  applyGate();
+
+  /* ---- registration / login modal ---- */
+  var curStep = 1, rgPhone = '', rgPin = '', rgName = '';
+  function showStep(n){
+    curStep = n;
+    document.querySelectorAll('.reg-step').forEach(function(el){ el.hidden = el.getAttribute('data-step') !== String(n) });
+    document.querySelectorAll('#regSteps i').forEach(function(el, i){ el.classList.toggle('on', i < n) });
+  }
+  function showTab(t){
+    document.querySelectorAll('.reg-tab').forEach(function(el){ el.classList.toggle('active', el.getAttribute('data-tab') === t) });
+    document.getElementById('regForm').hidden = t !== 'reg';
+    document.getElementById('loginForm').hidden = t !== 'login';
+    document.getElementById('regSteps').hidden = t !== 'reg';
+    document.getElementById('regTitle').textContent = t === 'reg' ? 'ثبت‌نام در نخبان' : 'ورود به حساب';
+  }
+  document.querySelectorAll('.reg-tab').forEach(function(el){
+    el.addEventListener('click', function(){ showTab(el.getAttribute('data-tab')) });
+  });
+  function err(id, msg){ var el = document.getElementById(id); el.textContent = msg; el.classList.add('show') }
+  function clr(id){ var el = document.getElementById(id); el.textContent = ''; el.classList.remove('show') }
+
+  document.querySelectorAll('.reg-next').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(curStep === 1){
+        var p = toEn(document.getElementById('rgPhone').value).replace(/\D/g, '');
+        if(!/^09\d{9}$/.test(p)){ err('regErr1', 'شماره موبایل باید ۱۱ رقم و با ۰۹ شروع شود'); return }
+        clr('regErr1'); rgPhone = p; showStep(2);
+      } else if(curStep === 2){
+        rgName = document.getElementById('rgName').value.trim();
+        rgPin = toEn(document.getElementById('rgPin').value).replace(/\D/g, '');
+        if(rgName.length < 3){ err('regErr', 'نام و نام خانوادگی را کامل بنویس'); return }
+        if(!/^\d{4}$/.test(rgPin)){ err('regErr', 'رمز باید دقیقاً ۴ رقم باشد'); return }
+        clr('regErr'); showStep(3);
+      }
+    });
+  });
+
+  function optGroup(id){
+    var g = document.getElementById(id);
+    g.addEventListener('click', function(e){
+      var b = e.target.closest('.opt'); if(!b) return;
+      g.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('on') });
+      b.classList.add('on');
+    });
+  }
+  optGroup('rgField'); optGroup('rgGrade');
+  function optVal(id){ var on = document.querySelector('#' + id + ' .opt.on'); return on ? on.getAttribute('data-v') : null }
+
+  function postJSON(url, body){
+    return fetch(url, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(body) })
+      .then(function(r){ return r.json().then(function(j){ return { s: r.status, j: j } }) });
+  }
+  function finishAuth(u, isNew){
+    setSess(u); applyGate();
+    document.getElementById('regHead').hidden = true;
+    document.getElementById('regForm').hidden = true;
+    document.getElementById('loginForm').hidden = true;
+    document.getElementById('regDone').hidden = false;
+    document.getElementById('regDoneTitle').textContent = isNew ? 'خوش آمدی، ' + u.name.split(' ')[0] + '!' : 'خوش برگشتی، ' + u.name.split(' ')[0] + '!';
+    document.getElementById('regDoneText').textContent = isNew ? 'حسابت ساخته شد و به صفحه‌ی خرید سوپر پک دسترسی داری.' : 'به حساب خودت وارد شدی.';
+  }
+  function resetReg(){
+    document.getElementById('regHead').hidden = false;
+    document.getElementById('regDone').hidden = true;
+    showTab('reg'); showStep(1);
+    ['regErr','regErr1','regErr2','lgErr'].forEach(clr);
+  }
+  document.querySelectorAll('.reg-submit').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var isLogin = document.getElementById('loginForm').contains(btn);
+      if(isLogin){
+        var p = toEn(document.getElementById('lgPhone').value).replace(/\D/g, '');
+        var q = toEn(document.getElementById('lgPin').value).replace(/\D/g, '');
+        postJSON(API + '/login', { phone: p, pin: q })
+          .then(function(o){ if(o.s === 200){ finishAuth(o.j.user, false) } else { err('lgErr', o.j.error || 'خطا') } })
+          .catch(function(){ err('lgErr', 'ارتباط با سرور برقرار نشد؛ اتصال اینترنت را بررسی کن') });
+      } else {
+        var field = optVal('rgField'), grade = optVal('rgGrade');
+        if(!field){ err('regErr2', 'رشته‌ی تحصیلی را انتخاب کن'); return }
+        if(!grade){ err('regErr2', 'پایه‌ی تحصیلی را انتخاب کن'); return }
+        clr('regErr2');
+        postJSON(API + '/register', { phone: rgPhone, name: rgName, pin: rgPin, field: field, grade: grade })
+          .then(function(o){ if(o.s === 200){ finishAuth(o.j.user, true) } else { err('regErr2', o.j.error || 'خطا') } })
+          .catch(function(){ err('regErr2', 'ارتباط با سرور برقرار نشد؛ اتصال اینترنت را بررسی کن') });
+      }
+    });
+  });
+  document.getElementById('regDoneBtn').addEventListener('click', function(){
+    closeOverlay('regModal');
+    var act = pending; pending = null;
+    resetReg();
+    if(act === 'chat'){ openChat(); }
+    else if(act === 'buy'){ openOverlay('courseModal'); }
+    else { var t = document.getElementById('spCard'); if(t) t.scrollIntoView({ behavior:'smooth', block:'center' }) }
+  });
+
+  function openReg(action){
+    pending = action || null;
+    resetReg();
+    openOverlay('regModal');
+  }
+
+  ['spGateBtn','mSpGateBtn'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('click', function(){ openReg('buy') });
+  });
+  ['spJoin','mSpJoin'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('click', function(e){ e.preventDefault(); isReg() ? openOverlay('courseModal') : openReg('buy') });
+  });
+  ['helpChat','mHelpChat'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el) el.addEventListener('click', function(e){ e.preventDefault(); isReg() ? openChat() : openReg('chat') });
+  });
+
+  /* ---- course → payment ---- */
+  document.getElementById('payOpen').addEventListener('click', function(){
+    closeOverlay('courseModal'); openOverlay('payModal');
+  });
+  document.getElementById('payCopy').addEventListener('click', function(){
+    var no = document.getElementById('payCardNo').textContent.replace(/\D/g, '');
+    var done = function(){ var t = document.getElementById('payCopyTxt'); t.textContent = 'کپی شد ✓';
+      setTimeout(function(){ t.textContent = 'کپی' }, 1800) };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(no).then(done, done) } else { done() }
+  });
+
+  /* ---- chat (only own thread ever returns from the server) ---- */
+  var chatTimer = null;
+  function esc(t){ var d = document.createElement('div'); d.textContent = t; return d.innerHTML }
+  function renderChat(thread){
+    var box = document.getElementById('chatMsgs');
+    if(!thread || !thread.length){
+      box.innerHTML = '<div class="chat-empty">سلام 👋 سوالت را بپرس؛ پشتیبان‌های نخبان همین‌جا هستند.</div>';
+      return;
+    }
+    var atBottom = box.scrollHeight - box.scrollTop - box.clientHeight < 60;
+    box.innerHTML = thread.map(function(m){
+      var time = new Date(m.at).toLocaleTimeString('fa-IR', { hour:'2-digit', minute:'2-digit' });
+      return '<div class="chat-msg ' + (m.from === 'user' ? 'me' : 'admin') + '">' + esc(m.text) +
+             '<time>' + time + '</time></div>';
+    }).join('');
+    if(atBottom) box.scrollTop = box.scrollHeight;
+  }
+  function loadChat(){
+    var u = sess(); if(!u) return;
+    fetch(API + '/messages?phone=' + encodeURIComponent(u.phone) + '&pin=' + encodeURIComponent(u.pin))
+      .then(function(r){ return r.json() })
+      .then(function(j){ if(j.thread) renderChat(j.thread) })
+      .catch(function(){});
+  }
+  function openChat(){
+    if(!isReg()){ openReg('chat'); return }
+    openOverlay('chatModal');
+    loadChat();
+    clearInterval(chatTimer);
+    chatTimer = setInterval(loadChat, 4000);
+  }
+  document.getElementById('chatForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var inp = document.getElementById('chatText');
+    var txt = inp.value.trim(); if(!txt) return;
+    var u = sess(); if(!u){ openReg('chat'); return }
+    inp.value = '';
+    postJSON(API + '/messages', { phone: u.phone, pin: u.pin, text: txt })
+      .then(function(o){ loadChat() })
+      .catch(function(){ loadChat() });
+  });
+  document.getElementById('chatFab').addEventListener('click', function(){
+    isReg() ? openChat() : openReg('chat');
+  });
+
+  /* ---- support FAB: visible until the chat feed scrolls into view ---- */
+  var fab = document.getElementById('chatFab');
+  var vis = { desktop: false, mobile: false };
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.target.classList.contains('help')) vis.desktop = en.isIntersecting;
+        if(en.target.classList.contains('m-support')) vis.mobile = en.isIntersecting;
+        fab.classList.toggle('hide', vis.desktop || vis.mobile);
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.help, .m-support').forEach(function(t){ io.observe(t) });
+  }
+
 
   /* دکمه‌ها فعلا بدون کاربرد: هیچ کلیکی عملی انجام نمی‌دهد */
   document.querySelectorAll('.d-site a[href], .m-site a[href]').forEach(function(a){
