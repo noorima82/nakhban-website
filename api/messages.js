@@ -28,30 +28,30 @@ module.exports = async (req, res) => {
       const key = q.get('key');
       if (isAdmin(key)) {
         const { data } = await readDB();
-        return json(200, { admin: true, registrants: data.registrants.map(r => ({ phone: r.phone, name: r.name, field: r.field, grade: r.grade, at: r.at })), threads: data.threads });
+        return json(res, 200, { admin: true, registrants: data.registrants.map(r => ({ phone: r.phone, name: r.name, field: r.field, grade: r.grade, at: r.at })), threads: data.threads });
       }
       const phone = toEnDigits(q.get('phone')).replace(/\D/g, '');
       const pin = toEnDigits(q.get('pin')).replace(/\D/g, '');
       const { data } = await readDB();
-      if (!authUser(data, phone, pin)) return json(401, { error: 'احراز هویت نشد' });
-      return json(200, { admin: false, thread: data.threads[phone] || [] });   /* own thread ONLY */
+      if (!authUser(data, phone, pin)) return json(res, 401, { error: 'احراز هویت نشد' });
+      return json(res, 200, { admin: false, thread: data.threads[phone] || [] });   /* own thread ONLY */
     }
 
     if (req.method === 'POST') {
       const b = req.body || {};
       const text = String(b.text || '').trim().slice(0, 1000);
-      if (!text) return json(400, { error: 'متن پیام خالی است' });
+      if (!text) return json(res, 400, { error: 'متن پیام خالی است' });
       const at = new Date().toISOString();
 
       if (isAdmin(b.key)) {
         const phone = toEnDigits(b.phone).replace(/\D/g, '');
-        if (!phone) return json(400, { error: 'کاربر مشخص نیست' });
+        if (!phone) return json(res, 400, { error: 'کاربر مشخص نیست' });
         await updateDB(d => {
           if (!d.threads[phone]) d.threads[phone] = [];
           d.threads[phone].push({ from: 'admin', text, at });
           return true;
         });
-        return json(200, { ok: true });
+        return json(res, 200, { ok: true });
       }
 
       const phone = toEnDigits(b.phone).replace(/\D/g, '');
@@ -64,12 +64,12 @@ module.exports = async (req, res) => {
         ok = true;
         return true;
       });
-      if (!ok) return json(401, { error: 'احراز هویت نشد' });
-      return json(200, { ok: true });
+      if (!ok) return json(res, 401, { error: 'احراز هویت نشد' });
+      return json(res, 200, { ok: true });
     }
 
-    return json(405, { error: 'method' });
+    return json(res, 405, { error: 'method' });
   } catch (e) {
-    return json(500, { error: 'خطای سرور، دوباره تلاش کنید' });
+    return json(res, 500, { error: 'خطای سرور، دوباره تلاش کنید' });
   }
 };

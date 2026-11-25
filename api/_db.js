@@ -68,12 +68,11 @@ async function updateDB(mutator, tries = 4) {
   throw new Error('db busy');
 }
 
-function json(status, obj) {
-  return {
-    status,
-    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
-    body: JSON.stringify(obj)
-  };
+function json(res, status, obj) {
+  res.statusCode = status;
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-store');
+  res.end(JSON.stringify(obj));
 }
 
 module.exports = { readDB, updateDB, json, empty };

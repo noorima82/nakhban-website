@@ -8,18 +8,18 @@ function toEnDigits(s) {
 
 module.exports = async (req, res) => {
   try {
-    if (req.method !== 'POST') return json(405, { error: 'method' });
+    if (req.method !== 'POST') return json(res, 405, { error: 'method' });
     const b = req.body || {};
     const phone = toEnDigits(b.phone).replace(/\D/g, '');
     const pin = toEnDigits(b.pin).replace(/\D/g, '');
     if (!/^09\d{9}$/.test(phone) || !/^\d{4}$/.test(pin)) {
-      return json(400, { error: 'شماره یا رمز اشتباه است' });
+      return json(res, 400, { error: 'شماره یا رمز اشتباه است' });
     }
     const { data } = await readDB();
     const me = data.registrants.find(r => r.phone === phone);
-    if (!me || me.pin !== pin) return json(401, { error: 'حسابی با این شماره و رمز پیدا نشد' });
-    return json(200, { ok: true, user: { phone, name: me.name, field: me.field, grade: me.grade } });
+    if (!me || me.pin !== pin) return json(res, 401, { error: 'حسابی با این شماره و رمز پیدا نشد' });
+    return json(res, 200, { ok: true, user: { phone, name: me.name, field: me.field, grade: me.grade } });
   } catch (e) {
-    return json(500, { error: 'خطای سرور، دوباره تلاش کنید' });
+    return json(res, 500, { error: 'خطای سرور، دوباره تلاش کنید' });
   }
 };
