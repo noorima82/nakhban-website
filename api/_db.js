@@ -52,7 +52,7 @@ async function writeDB(sha, data) {
 }
 
 /* read → mutate → write with conflict retry (another instance may commit first) */
-async function updateDB(mutator, tries = 4) {
+async function updateDB(mutator, tries = 6) {
   for (let i = 0; i < tries; i++) {
     const { sha, data } = await readDB();
     const result = mutator(data);
@@ -62,7 +62,7 @@ async function updateDB(mutator, tries = 4) {
       return { skipped: false, data };
     } catch (e) {
       if (i === tries - 1) throw e;
-      await new Promise(res => setTimeout(res, 300 + Math.random() * 400));
+      await new Promise(res => setTimeout(res, 600 + Math.random() * 900));
     }
   }
   throw new Error('db busy');
