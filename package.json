@@ -1,0 +1,7 @@
+{
+  "name": "nakhban-website",
+  "private": true,
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}
