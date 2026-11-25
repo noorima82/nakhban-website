@@ -330,13 +330,21 @@
   .opt{flex:1 1 30%;border:1.5px solid #E0E3EA;background:#FAFBFC;border-radius:13px;padding:11px 8px;cursor:pointer;
     font-family:inherit;font-size:12.5px;font-weight:800;color:#33415C;transition:all .18s;min-width:70px}
   .opt.on{border-color:#F0A63C;background:#FFF6E6;color:#9C5A00;box-shadow:0 3px 10px rgba(240,166,60,.22)}
-  .reg-done{padding:10px 0 4px}
-  .reg-done-ico{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;margin:6px auto 10px;
-    background:#E9F9EF;color:#1F9D55}
-  .reg-done-ico svg{width:30px;height:30px}
-  .reg-done h4{margin:0;font-size:17.5px;font-weight:900;color:#101C33}
-  .reg-done p{font-size:12px;color:#6B7385;line-height:1.9;margin:8px 0 4px}
-  .reg-done .btn-gold{width:100%;justify-content:center;display:inline-flex}
+  .reg-done{position:relative;overflow:hidden;text-align:center;padding:12px 0 6px}
+  .reg-done-ico{display:grid;place-items:center;width:72px;height:72px;border-radius:50%;margin:8px auto 12px;
+    color:#fff;background:linear-gradient(135deg,#FFD65C,#FF9E2C);box-shadow:0 10px 24px rgba(200,110,0,.4);
+    animation:popIn .55s cubic-bezier(.2,1.4,.4,1)}
+  .reg-done-ico svg{width:34px;height:34px}
+  .reg-done h4{margin:0;font-size:clamp(21px,3.4vh,27px);font-weight:900;
+    background:linear-gradient(120deg,#8A4B00,#E8930C 45%,#FFB020);-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 2px 6px rgba(200,120,0,.25))}
+  .reg-done p{font-size:12.5px;color:#6B7385;line-height:1.9;margin:10px 0 4px}
+  .reg-done .btn-gold{width:auto;min-width:min(240px,100%);justify-content:center;display:inline-flex;margin:14px auto 0;
+    animation:popIn .6s .15s cubic-bezier(.2,1.4,.4,1) backwards}
+  @keyframes popIn{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.07)}100%{transform:scale(1);opacity:1}}
+  .confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .confetti i{position:absolute;top:-16px;border-radius:2px;opacity:0;animation:confFall linear forwards}
+  @keyframes confFall{0%{transform:translateY(-24px) rotate(0);opacity:0}8%{opacity:1}100%{transform:translateY(320px) rotate(560deg);opacity:0}}
 
   /* course modal */
   .course-panel{width:min(560px,calc(100% - 32px))}
