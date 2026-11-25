@@ -543,6 +543,8 @@
 
     /* ===== dedicated mobile site (user template structure, nakhban theme) ===== */
     body{padding-bottom:0}
+    /* the card number must never overflow the card on narrow screens */
+    .bc-num{font-size:clamp(14px,4.6vw,19px)}
     .d-site{display:none}
     .m-site{display:block}
     :root{--mgold:#A87B14;--mink:#101C33;--mmuted:#777B96}
