@@ -482,7 +482,11 @@
   }
 
   /* ---- v23: centered price block, countdown glow ---- */
-  .sp-card .card-body{text-align:center}
+  .sp-card .card-body{text-align:center;
+    top:14px;right:14px;width:calc(49% - 14px);border-radius:18px;
+    background:linear-gradient(180deg,rgba(9,18,40,.68),rgba(9,18,40,.5));
+    backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    border:1px solid rgba(255,255,255,.16);box-shadow:0 12px 30px rgba(4,10,26,.35)}
   .sp-card .price-row{justify-content:center}
   .sp-card .price-box{align-self:center;flex-direction:column;align-items:center;text-align:center;gap:2px;margin-inline:auto}
   .sp-card .price-note{margin-inline-start:0}
