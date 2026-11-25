@@ -398,7 +398,7 @@
     box-shadow:0 5px 0 rgba(122,75,0,.5),0 10px 0 rgba(122,75,0,.5)}
   .bc-bank{font-size:12px;font-weight:800;color:#FFD65C;letter-spacing:.02em}
   .bc-num{display:block;position:relative;z-index:1;margin:16px 0 0;font-size:clamp(18px,2.6vh,22px);font-weight:800;
-    letter-spacing:.14em;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap;text-shadow:0 2px 8px rgba(0,0,0,.35)}
+    letter-spacing:.14em;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:center;text-shadow:0 2px 8px rgba(0,0,0,.35)}
   .bc-holder{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:14px;position:relative;z-index:1}
   .bc-holder small{display:block;font-size:9.5px;color:#9FB0D0;letter-spacing:.05em}
   .bc-holder b{font-size:13px;font-weight:800;color:#fff;white-space:nowrap}
@@ -490,17 +490,11 @@
   .sp-card .price-row{justify-content:center}
   .sp-card .price-box{align-self:center;flex-direction:column;align-items:center;text-align:center;gap:2px;margin-inline:auto}
   .sp-card .price-note{margin-inline-start:0}
-  .clock{filter:drop-shadow(0 16px 26px rgba(4,12,30,.32))}
-  .clock .fcard{border:1px solid rgba(255,214,92,.35);box-shadow:0 10px 22px rgba(4,12,30,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+  .clock .fcard{border:1px solid rgba(255,214,92,.32);box-shadow:0 2px 6px rgba(4,12,30,.2),inset 0 1px 0 rgba(255,255,255,.08)}
   .flip-title{position:relative;padding-bottom:12px}
   .flip-title::after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:150px;height:3px;border-radius:2px;
     background:linear-gradient(90deg,transparent,#FFB020,transparent)}
 
-  @media (max-width:640px){
-    .m-course-body{text-align:center}
-    .m-price-row{justify-content:center}
-    .m-price-box{justify-content:center;margin-inline:auto}
-  }
 
 
   /* ===== mobile-only site (template-style) — hidden on desktop ===== */
@@ -644,6 +638,16 @@
     .m-socials svg{width:18px;height:18px}
 
   }
+  /* ---- v24: mobile centering that actually wins + centered support texts ---- */
+  .help-text{text-align:center}
+  @media (max-width:640px){
+    .m-course-body{align-items:center;text-align:center}
+    .m-course h3,.m-course p{text-align:center}
+    .m-price-row{justify-content:center}
+    .m-price-box{justify-content:center;margin-inline:auto}
+    .m-support{align-items:center;text-align:center}
+    .m-support-icon{margin-inline:auto}
+  }
 </style>
 </head>
 <body>
@@ -770,7 +774,6 @@
           <span class="price-unit">تومان</span>
           <span class="price-note">پرداخت یک‌جا، بدون هزینه‌ی پنهان</span>
         </div>
-        <button class="ask-sup" type="button"><svg><use href="#i-headset"/></svg><span>سؤال از پشتیبانی</span></button>
       </div>
       <a class="btn-gold" id="spJoin" href="#">
         شرکت در دوره
@@ -872,7 +875,6 @@
           </div>
         </div>
         <a class="m-btn m-btn-gold" id="mSpJoin" href="#">شرکت در دوره</a>
-        <button class="ask-sup" type="button"><svg><use href="#i-headset"/></svg><span>سؤال از پشتیبانی</span></button>
         <div class="m-sp-gate" id="mSpGate">
           <span class="sp-gate-lock"><svg><use href="#i-lock"/></svg></span>
           <b>مشاهده و خرید سوپر پک</b>
