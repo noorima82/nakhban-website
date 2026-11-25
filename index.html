@@ -299,7 +299,7 @@
   .ask-sup:hover{background:#FFF3D6;border-color:#D6A01E}
   .ask-sup svg{width:15px;height:15px}
   .modal-wrap{position:relative;z-index:1;display:flex;justify-content:center;max-width:100%}
-  .modal-x{position:absolute;top:12px;inset-inline-end:12px;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
+  .modal-x{position:absolute;top:9px;inset-inline-end:9px;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;
     background:rgba(255,255,255,.94);color:#33415C;display:grid;place-items:center;z-index:6;box-shadow:0 3px 10px rgba(4,10,26,.18);
     transition:transform .15s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
   #chatModal .modal-x{background:rgba(255,255,255,.16);color:#fff;top:10px;inset-inline-end:10px;box-shadow:none}
@@ -348,7 +348,7 @@
 
   /* course modal */
   .course-panel{width:min(560px,calc(100% - 32px))}
-  .course-cover{display:block;width:calc(100% - 28px);height:auto;margin:14px 14px 0;border-radius:16px;box-shadow:0 4px 14px rgba(4,10,26,.12)}
+  .course-cover{display:block;width:calc(100% - 28px);height:auto;margin:52px 14px 0;border-radius:16px;box-shadow:0 4px 14px rgba(4,10,26,.12)}
   .course-body{padding:20px 22px 22px}
   .course-body h3{margin:0;font-size:19px;font-weight:900;color:#101C33;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .course-badge{font-size:11px;font-weight:800;color:#7A4B00;background:linear-gradient(120deg,#FFD65C,#FFB020);
@@ -918,9 +918,9 @@
 <!-- ================= OVERLAYS ================= -->
 <div class="modal-root" id="regModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-wrap">
-      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
-    <div class="modal-panel reg-panel">
+  <div class="modal-wrap"><div class="modal-panel reg-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    
     <div class="reg-head" id="regHead">
       <img class="reg-logo" src="assets/noknban-fa.png" alt="نخبان">
       <h3 id="regTitle">ثبت‌نام در نخبان</h3>
@@ -987,9 +987,9 @@
 
 <div class="modal-root" id="courseModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-wrap">
-      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
-    <div class="modal-panel course-panel">
+  <div class="modal-wrap"><div class="modal-panel course-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    
     <img class="course-cover" src="assets/superpack-cover.png" alt="سوپر پک تکنیکی — کنکور و نهایی">
     <div class="course-body">
       <h3>سوپر پک تکنیکی <span class="course-badge">ویژه‌ی کنکور و نهایی</span></h3>
@@ -1016,9 +1016,9 @@
 
 <div class="modal-root" id="payModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-wrap">
-      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
-    <div class="modal-panel pay-panel">
+  <div class="modal-wrap"><div class="modal-panel pay-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    
     <h3>تکمیل خرید سوپر پک تکنیکی</h3>
     <div class="pay-amount">
       <small>مبلغ قابل پرداخت</small>
@@ -1050,9 +1050,9 @@
 
 <div class="chat-root" id="chatModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-wrap">
-      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
-    <div class="chat-panel">
+  <div class="modal-wrap"><div class="chat-panel">
+    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    
     <header class="chat-head">
       <span class="chat-ava"><svg><use href="#i-headset"/></svg></span>
       <div class="chat-who"><b>پشتیبانی نخبان</b><small>آنلاین — سریع جواب می‌دهیم</small></div>
