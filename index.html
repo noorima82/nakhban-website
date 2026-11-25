@@ -6,6 +6,7 @@
 <title>مدرسه کنکور نخبان</title>
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23E9B94A" d="M12 5.6C10 4 7.5 3.6 4 3.8c-.55.03-1 .48-1 1.03v12.9c0 .6.5 1.06 1.1 1.03 3.1-.16 5.4.3 7.4 1.77.3.23.7.23 1 0 2-1.47 4.3-1.93 7.4-1.77.6.03 1.1-.43 1.1-1.03V4.83c0-.55-.45-1-1-1.03-3.5-.2-6 .2-8 1.8z"/><path d="M12 5.6v14.4" stroke="%230A1631" stroke-width="1.4" fill="none"/></svg>'>
 <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
+<link rel="preload" as="image" href="assets/superpack-cover.png">
 <style>
   /* ===== tokens ===== */
   :root{
@@ -285,10 +286,11 @@
     background:#fff;border-radius:22px;box-shadow:0 30px 70px rgba(4,10,26,.45);
     transform:translateY(56px) scale(.96);opacity:0;transition:transform .34s cubic-bezier(.2,.9,.25,1.1),opacity .25s}
   .modal-root.open .modal-panel,.chat-root.open .modal-panel{transform:translateY(0) scale(1);opacity:1}
-  .modal-x{position:absolute;top:12px;inset-inline-start:12px;width:34px;height:34px;border-radius:50%;border:0;cursor:pointer;
-    background:#F1F2F5;color:#33415C;display:grid;place-items:center;z-index:3;transition:background .2s}
-  .modal-x:hover{background:#E4E6EC}
-  .modal-x svg{width:17px;height:17px}
+  .modal-wrap{position:relative;z-index:1;display:flex;justify-content:center;max-width:100%}
+  .modal-x{position:absolute;top:-14px;inset-inline-end:-14px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;
+    background:#fff;color:#33415C;display:grid;place-items:center;z-index:6;box-shadow:0 6px 16px rgba(4,10,26,.3);transition:transform .15s}
+  .modal-x:hover{transform:scale(1.08)}
+  .modal-x svg{width:18px;height:18px}
 
   /* registration */
   .reg-panel{padding:24px 22px 22px;text-align:center}
@@ -377,9 +379,9 @@
     border-radius:12px;padding:9px 12px;margin:12px 0 0;line-height:1.9}
 
   /* chat sheet */
-  .chat-root{align-items:flex-end;justify-content:center}
-  .chat-panel{position:relative;z-index:1;width:min(430px,calc(100% - 32px));height:min(66vh,560px);display:flex;flex-direction:column;
-    background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -14px 50px rgba(4,10,26,.4);overflow:hidden;
+  .chat-root{align-items:center;justify-content:center}
+  .chat-panel{position:relative;z-index:1;width:min(430px,calc(100% - 32px));height:min(68vh,560px);display:flex;flex-direction:column;
+    background:#fff;border-radius:24px;box-shadow:0 30px 70px rgba(4,10,26,.45);overflow:hidden;
     transform:translateY(100%);transition:transform .38s cubic-bezier(.2,.9,.25,1.05)}
   .chat-root.open .chat-panel{transform:translateY(0)}
   .chat-head{display:flex;align-items:center;gap:11px;padding:14px 16px;background:linear-gradient(120deg,#0F2351,#081431);color:#fff}
@@ -389,7 +391,6 @@
   .chat-who{flex:1;min-width:0}
   .chat-who b{display:block;font-size:13.5px}
   .chat-who small{font-size:10px;color:#9FB0CE}
-  .chat-head .modal-x{background:rgba(255,255,255,.14);color:#fff;top:12px;inset-inline-start:12px}
   .chat-msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:9px;background:#F5F6F8}
   .chat-msg{max-width:78%;padding:10px 13px;border-radius:16px;font-size:12.5px;line-height:1.9;
     box-shadow:0 2px 6px rgba(16,28,51,.07);white-space:pre-wrap;word-break:break-word}
@@ -411,26 +412,31 @@
   .chat-fab{position:fixed;bottom:22px;inset-inline-start:22px;z-index:400;width:58px;height:58px;border-radius:50%;border:0;cursor:pointer;
     background:linear-gradient(135deg,#F5B841,#E88A00);color:#5C1A00;display:grid;place-items:center;
     box-shadow:0 12px 26px rgba(160,100,0,.42),inset 0 1px 0 rgba(255,255,255,.4);
-    transition:transform .45s cubic-bezier(.4,0,.8,.6),opacity .45s;animation:fabPulse 2.6s ease-in-out infinite}
+    transition:transform .45s cubic-bezier(.4,0,.8,.6),opacity .45s}
   .chat-fab svg{width:25px;height:25px}
   .chat-fab.hide{transform:translateY(110px) scale(.5);opacity:0;pointer-events:none}
   .chat-fab.force{transform:none !important;opacity:1 !important;pointer-events:auto !important;animation:none}
   .chat-fab:hover{transform:scale(1.07)}
-  @keyframes fabPulse{0%,100%{box-shadow:0 12px 26px rgba(160,100,0,.42),0 0 0 0 rgba(245,184,65,.45)}
-    50%{box-shadow:0 12px 26px rgba(160,100,0,.42),0 0 0 14px rgba(245,184,65,0)}}
+  .chat-fab::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:2px solid rgba(245,184,65,.55);
+    animation:fabRing 2.4s ease-out infinite;pointer-events:none}
+  @keyframes fabRing{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(1.5);opacity:0}}
   .chat-fab-tip{position:absolute;inset-inline-start:66px;white-space:nowrap;font-size:11.5px;font-weight:800;color:#fff;
     background:rgba(9,17,36,.85);border-radius:999px;padding:6px 12px;pointer-events:none;opacity:0;transform:translateX(-6px);
     transition:opacity .25s,transform .25s}
   .chat-fab:hover .chat-fab-tip{opacity:1;transform:translateX(0)}
 
+  /* full-page lock for unregistered visitors */
+  body.site-locked{overflow:hidden}
+  body.site-locked .d-site,body.site-locked .m-site{filter:blur(10px) saturate(.85);pointer-events:none;user-select:none}
+
   @media (max-width:640px){
-    .modal-panel{width:calc(100% - 22px);max-height:88vh;border-radius:22px 22px 0 0;position:fixed;bottom:0;left:0;right:0;
-      transform:translateY(100%)}
-    .modal-root{align-items:flex-end}
-    .modal-root.open .modal-panel{transform:translateY(0)}
-    .modal-x{top:10px}
+    .modal-panel{width:calc(100% - 26px);max-height:86vh}
+    .modal-wrap{width:calc(100% - 26px)}
+    .modal-x{top:-13px;inset-inline-end:-13px;width:34px;height:34px}
     .course-grid{grid-template-columns:1fr}
+    .chat-panel{height:min(72vh,560px);width:calc(100% - 26px)}
     .chat-fab{bottom:calc(70px + env(safe-area-inset-bottom,0px));inset-inline-start:14px;width:52px;height:52px}
+    .chat-fab.force{display:none}
   }
 
 
@@ -857,8 +863,9 @@
 <!-- ================= OVERLAYS ================= -->
 <div class="modal-root" id="regModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel reg-panel">
-    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+  <div class="modal-wrap">
+      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <div class="modal-panel reg-panel">
     <div class="reg-head" id="regHead">
       <img class="reg-logo" src="assets/noknban-fa.png" alt="نخبان">
       <h3 id="regTitle">ثبت‌نام در نخبان</h3>
@@ -918,12 +925,15 @@
       <button class="btn-gold" id="regDoneBtn" type="button">ادامه</button>
     </div>
   </div>
+  </div>
 </div>
+
 
 <div class="modal-root" id="courseModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel course-panel">
-    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+  <div class="modal-wrap">
+      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <div class="modal-panel course-panel">
     <img class="course-cover" src="assets/superpack-cover.png" alt="سوپر پک تکنیکی — کنکور و نهایی">
     <div class="course-body">
       <h3>سوپر پک تکنیکی <span class="course-badge">ویژه‌ی کنکور و نهایی</span></h3>
@@ -946,12 +956,15 @@
       <p class="course-note">پس از تکمیل خرید، رسید واریز را برای پشتیبانی بفرست تا دسترسی‌ات فعال شود.</p>
     </div>
   </div>
+  </div>
 </div>
+
 
 <div class="modal-root" id="payModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="modal-panel pay-panel">
-    <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+  <div class="modal-wrap">
+      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <div class="modal-panel pay-panel">
     <h3>تکمیل خرید سوپر پک تکنیکی</h3>
     <div class="pay-amount">
       <small>مبلغ قابل پرداخت</small>
@@ -975,23 +988,28 @@
     </a>
     <p class="pay-warn">⚠️ بدون ارسال فیش واریز، فعال‌سازی دسترسی انجام نمی‌شود؛ حتماً رسید را بفرست.</p>
   </div>
+  </div>
 </div>
+
 
 <div class="chat-root" id="chatModal" aria-hidden="true">
   <div class="modal-backdrop" data-close></div>
-  <div class="chat-panel">
+  <div class="modal-wrap">
+      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
+    <div class="chat-panel">
     <header class="chat-head">
       <span class="chat-ava"><svg><use href="#i-headset"/></svg></span>
       <div class="chat-who"><b>پشتیبانی نخبان</b><small>آنلاین — سریع جواب می‌دهیم</small></div>
-      <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
-    </header>
+      </header>
     <div class="chat-msgs" id="chatMsgs"><div class="chat-empty">سلام 👋 سوالت را بپرس؛ پشتیبان‌های نخبان همین‌جا هستند.</div></div>
     <form class="chat-form" id="chatForm">
       <input id="chatText" type="text" placeholder="پیامت را بنویس..." autocomplete="off">
       <button type="submit" aria-label="ارسال"><svg><use href="#i-send"/></svg></button>
     </form>
   </div>
+  </div>
 </div>
+
 
 <button class="chat-fab" id="chatFab" aria-label="پشتیبانی و گفتگو">
   <svg><use href="#i-headset"/></svg>
@@ -1074,10 +1092,18 @@
   var toEn = function(v){ return String(v || '').replace(/[۰-۹]/g, function(d){ return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)) }) };
   var pending = null;
 
+  var overlayOpen = null;
+  function updateFab(){
+    var f = document.getElementById('chatFab'); if(!f) return;
+    f.classList.remove('force');
+    if(overlayOpen === 'chatModal'){ f.classList.add('hide'); return }
+    if(overlayOpen){ f.classList.add('force'); f.classList.remove('hide'); return }
+    f.classList.toggle('hide', vis.desktop || vis.mobile);
+  }
   function openOverlay(id){ var m = document.getElementById(id); if(!m) return; m.classList.add('open'); m.setAttribute('aria-hidden','false');
-    var f = document.getElementById('chatFab'); if(f) f.classList.add('force'); }
+    overlayOpen = id; updateFab(); }
   function closeOverlay(id){ var m = document.getElementById(id); if(!m) return; m.classList.remove('open'); m.setAttribute('aria-hidden','true');
-    var f = document.getElementById('chatFab'); if(f) f.classList.remove('force'); if(id==='chatModal') clearInterval(chatTimer); }
+    if(overlayOpen === id) overlayOpen = null; updateFab(); if(id==='chatModal') clearInterval(chatTimer); }
   document.addEventListener('click', function(e){
     var c = e.target.closest('[data-close]');
     if(c){ var root = c.closest('.modal-root,.chat-root'); if(root) closeOverlay(root.id); }
@@ -1093,10 +1119,14 @@
   /* ---- gate: page 2 requires registration ---- */
   function applyGate(){
     var reg = isReg();
+    document.body.classList.toggle('site-locked', !reg);
     var d = document.getElementById('spCard'); if(d) d.classList.toggle('locked', !reg);
     var m = document.getElementById('mCourseCard'); if(m) m.classList.toggle('locked', !reg);
   }
   applyGate();
+  if(!isReg()){ setTimeout(function(){
+    if(!isReg() && !document.querySelector('.modal-root.open,.chat-root.open')) openReg(null);
+  }, 1200); }
 
   /* ---- registration / login modal ---- */
   var curStep = 1, rgPhone = '', rgPin = '', rgName = '';
@@ -1276,7 +1306,7 @@
       entries.forEach(function(en){
         if(en.target.classList.contains('help')) vis.desktop = en.isIntersecting;
         if(en.target.classList.contains('m-support')) vis.mobile = en.isIntersecting;
-        fab.classList.toggle('hide', vis.desktop || vis.mobile);
+        updateFab();
       });
     }, { threshold: 0.3 });
     document.querySelectorAll('.help, .m-support').forEach(function(t){ io.observe(t) });
