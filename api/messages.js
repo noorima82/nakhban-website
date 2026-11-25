@@ -70,6 +70,6 @@ module.exports = async (req, res) => {
 
     return json(res, 405, { error: 'method' });
   } catch (e) {
-    return json(res, 500, { error: 'خطای سرور، دوباره تلاش کنید' });
+    return json(res, 500, { error: 'خطای سرور: ' + (e && e.message || 'نامشخص') });
   }
 };

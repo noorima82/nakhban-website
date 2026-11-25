@@ -38,6 +38,6 @@ module.exports = async (req, res) => {
     }
     return json(res, 200, { ok: true, user: { phone, name, field, grade } });
   } catch (e) {
-    return json(res, 500, { error: 'خطای سرور، دوباره تلاش کنید' });
+    return json(res, 500, { error: 'خطای سرور: ' + (e && e.message || 'نامشخص') });
   }
 };
