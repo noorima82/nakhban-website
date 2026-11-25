@@ -456,8 +456,8 @@
 
     /* festival flip-clock on mobile: fluid scale with the screen */
     .flip-title{font-size:max(12px,calc(15*var(--ms)))}
-    .clock{gap:calc(10*var(--ms))}
-    .fcard{--w:calc(34*var(--ms))}
+    .clock{gap:calc(8*var(--ms))}
+    .fcard{--w:calc(32*var(--ms))}
     .pair{gap:calc(3*var(--ms))}
     .label{font-size:max(9px,calc(11*var(--ms)))}
     .sep{gap:calc(12*var(--ms));padding-top:calc(22*var(--ms))}
@@ -515,24 +515,22 @@
     .m-discount{margin-top:16px}
 
     .m-section{margin-top:28px}
-    .m-course{position:relative;border-radius:calc(18*var(--ms));overflow:hidden;
-      background:linear-gradient(180deg,#0A1E3E,#0A1B38);
+    .m-course{position:relative;border-radius:calc(18*var(--ms));overflow:hidden;background:#fff;
       box-shadow:0 12px 30px rgba(10,22,48,.14);margin-bottom:calc(14*var(--ms))}
     .m-course-img{position:relative}
     .m-course-img img{display:block;width:100%;height:auto}
-    .m-course-img::after{content:'';position:absolute;right:0;left:0;bottom:0;height:calc(56*var(--ms));
-      background:linear-gradient(180deg,rgba(10,30,62,0),#0A1E3E)}
-    /* all card content lives INSIDE the artwork (its right navy area) — the image itself untouched */
-    .m-course-body{position:absolute;top:0;bottom:0;right:0;width:68%;z-index:1;
-      padding:calc(12*var(--ms)) calc(14*var(--ms)) calc(56*var(--ms));display:flex;flex-direction:column;align-items:flex-start}
-    .m-tag{font-size:max(8px,calc(10*var(--ms)));font-weight:500;color:#B9C4D8}
-    .m-course h3{font-size:max(12px,calc(15.5*var(--ms)));font-weight:800;color:#fff;margin:calc(5*var(--ms)) 0 calc(4*var(--ms))}
-    .m-course p{font-size:max(6.5px,calc(8.5*var(--ms)));color:#C7D3E6;line-height:1.7;margin:0;max-width:66%}
+    .m-course-img::after{content:none}
+    /* vertical layout: the yellow cover on top, content below it */
+    .m-course-body{position:static;width:100%;z-index:1;
+      padding:calc(12*var(--ms)) calc(14*var(--ms)) calc(4*var(--ms));display:flex;flex-direction:column;align-items:flex-start}
+    .m-tag{font-size:max(8px,calc(10*var(--ms)));font-weight:600;color:#8A93A5}
+    .m-course h3{font-size:max(12px,calc(15.5*var(--ms)));font-weight:800;color:var(--mink);margin:calc(5*var(--ms)) 0 calc(4*var(--ms))}
+    .m-course p{font-size:max(7px,calc(9.5*var(--ms)));color:#5A6478;line-height:1.8;margin:0;max-width:100%}
     .m-chips{display:flex;gap:calc(16*var(--ms));flex-wrap:wrap;margin-top:calc(8*var(--ms))}
     .m-chip{display:inline-flex;align-items:center;gap:calc(5*var(--ms));background:rgba(255,255,255,.09);
       border:1px solid rgba(255,255,255,.08);border-radius:calc(9*var(--ms));padding:calc(4*var(--ms)) calc(8*var(--ms));font-size:max(7px,calc(9*var(--ms)));font-weight:700;color:#E9EFF8}
     .m-chip svg{width:calc(11*var(--ms));height:calc(11*var(--ms));color:var(--gold)}
-    .m-course .m-btn{position:absolute;left:calc(10*var(--ms));right:calc(10*var(--ms));bottom:calc(10*var(--ms));z-index:2;margin:0;padding:calc(10*var(--ms)) calc(12*var(--ms))}
+    .m-course .m-btn{position:static;align-self:stretch;z-index:2;margin:calc(10*var(--ms)) calc(14*var(--ms)) calc(14*var(--ms));padding:calc(10*var(--ms)) calc(12*var(--ms))}
 
     .m-support{background:linear-gradient(110deg,#FFF7E2,#FFFDF5 55%,#EFF8F2);border:1px solid #F2E7C8;
       border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;margin-top:26px}
