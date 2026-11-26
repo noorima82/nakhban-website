@@ -269,6 +269,8 @@
     background:rgba(255,255,255,.08);border:1px solid rgba(233,185,74,.35);color:#EAD9A6;transition:transform .2s,background .2s,color .2s}
   .help-socials a:hover{transform:translateY(-2px);background:rgba(233,185,74,.2);color:#FFE9B8}
   .help-socials svg{width:15px;height:15px}
+  .tg-id{font-weight:900;letter-spacing:.02em;white-space:nowrap;font-size:clamp(12px,1.9vh,14px)}
+  .help-socials .tg-id{color:#FFE9B8}
 
   /* ---- footer socials (prominent) ---- */
   .contact-tag{font-size:clamp(11px,1.9vh,13px);font-weight:900;color:#FFE9B8;border:1.5px solid rgba(233,185,74,.5);
@@ -622,6 +624,7 @@
     .m-sp-gate p{font-size:10.5px;color:#C9D2E2;margin:0;line-height:1.8}
     .m-sp-gate .sp-gate-btn{pointer-events:auto;width:auto;padding:8px 18px;margin-top:2px}
     .m-help-socials{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:9px}
+    .m-help-socials .tg-id{color:#8A6210;font-size:13px}
     .m-help-socials a{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#fff;
       border:1px solid #E8DFC2;color:#8A6A00;transition:transform .2s}
     .m-help-socials a:hover{transform:translateY(-2px)}
@@ -810,7 +813,7 @@
       <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
       <a href="#" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
       <a href="#" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
-      <a href="https://t.me/aryansupp123" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+      <a href="https://t.me/aryansupp123" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a><b class="tg-id" dir="ltr">@aryansupp123</b>
     </div>
     <a class="btn-outline" id="helpChat" href="#">
       شروع گفتگو
@@ -899,7 +902,7 @@
           <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
           <a href="#" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
           <a href="#" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
-          <a href="https://t.me/aryansupp123" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+          <a href="https://t.me/aryansupp123" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a><b class="tg-id" dir="ltr">@aryansupp123</b>
         </div>
       </div>
       <a class="m-btn m-btn-gold" id="mHelpChat" href="#">شروع گفتگو</a>
@@ -1049,8 +1052,8 @@
       <li><b>حتماً حتماً حتماً از فیش یا رسید واریز عکس بگیر</b> (اسکرین‌شات یا عکس فیش)</li>
       <li>عکس رسید را <b>همراه با نام و نام خانوادگی و شماره موبایل خودت</b> به تلگرام پشتیبانی بفرست تا دسترسی‌ات فعال شود</li>
     </ol>
-    <a class="btn-gold pay-tg" href="https://t.me/noknban_support" target="_blank" rel="noopener">
-      ارسال رسید در تلگرام
+    <a class="btn-gold pay-tg" href="https://t.me/aryansupp123" target="_blank" rel="noopener">
+      ارسال رسید در تلگرام <span class="tg-id" dir="ltr">@aryansupp123</span>
       <svg><use href="#i-telegram"/></svg>
     </a>
     <button class="ask-sup" type="button"><svg><use href="#i-headset"/></svg><span>سؤال از پشتیبانی</span></button>
@@ -1099,11 +1102,10 @@
   }
 
   /* ---- festival countdown: flip-clock architecture ported verbatim from the reference ---- */
-  /* deadline: this week's Friday (جمعه) at 23:59:59 local time */
+  /* deadline: امشب ساعت ۲۲:۰۰ به وقت دستگاه کاربر */
   var DEADLINE = (function(){
     var now = new Date(), dl = new Date(now);
-    dl.setHours(23, 59, 59, 999);
-    dl.setDate(dl.getDate() + (5 - dl.getDay() + 7) % 7);   /* 5 = Friday */
+    dl.setHours(22, 0, 0, 0);
     return dl;
   })();
   function mk(){
