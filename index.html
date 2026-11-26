@@ -244,11 +244,11 @@
     background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);animation:badgeShine 2.8s ease-in-out infinite}
   @keyframes badgeShine{0%{inset-inline-start:-55%}55%,100%{inset-inline-start:125%}}
   .price-box{position:relative;z-index:1;display:flex;align-items:baseline;gap:8px;align-self:flex-start;
-    background:linear-gradient(120deg,#FFF3D6,#FFE9B8);border:1.5px solid rgba(214,160,30,.45);
-    border-radius:14px;padding:clamp(7px,1.3vh,11px) clamp(12px,1.6vw,18px);box-shadow:0 6px 14px rgba(120,70,0,.18)}
-  .price-new{font-size:clamp(20px,3.4vh,27px);font-weight:900;color:#7A4B00;letter-spacing:.01em}
-  .price-unit{font-size:clamp(11px,1.8vh,13px);font-weight:700;color:#9C6A10}
-  .price-note{font-size:clamp(9.5px,1.6vh,11px);color:#A97F2A;margin-inline-start:6px}
+    background:linear-gradient(120deg,#E7F8EC,#CDF0D8);border:1.5px solid rgba(34,150,80,.5);
+    border-radius:14px;padding:clamp(7px,1.3vh,11px) clamp(12px,1.6vw,18px);box-shadow:0 6px 14px rgba(12,95,45,.18)}
+  .price-new{font-size:clamp(20px,3.4vh,27px);font-weight:900;color:#0F6B32;letter-spacing:.01em}
+  .price-unit{font-size:clamp(11px,1.8vh,13px);font-weight:700;color:#2E8B4F}
+  .price-note{font-size:clamp(9.5px,1.6vh,11px);color:#3E9459;margin-inline-start:6px}
 
   /* ---- registration gate on the super-pack card ---- */
   .sp-gate{display:none;position:absolute;inset:0;z-index:6;flex-direction:column;align-items:center;justify-content:center;
@@ -350,7 +350,7 @@
   .course-panel{width:min(560px,calc(100% - 32px))}
   .course-cover{display:block;width:calc(100% - 28px);height:auto;margin:52px 14px 0;border-radius:16px;box-shadow:0 4px 14px rgba(4,10,26,.12)}
   .course-body{padding:20px 22px 22px}
-  .course-body h3{margin:0;font-size:19px;font-weight:900;color:#101C33;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .course-body h3{margin:0;font-size:21px;font-weight:900;color:#101C33;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .course-badge{font-size:11px;font-weight:800;color:#7A4B00;background:linear-gradient(120deg,#FFD65C,#FFB020);
     border-radius:999px;padding:3px 10px}
   .course-body>p{font-size:12.5px;color:#5A6478;line-height:2;margin:8px 0 0}
@@ -372,7 +372,7 @@
     box-shadow:0 4px 12px rgba(160,20,25,.4),inset 0 1px 0 rgba(255,255,255,.35)}
   .co-chip::after{content:'';position:absolute;top:0;bottom:0;width:34%;inset-inline-start:-55%;
     background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);animation:badgeShine 3s ease-in-out infinite}
-  .co-new{font-size:17px;font-weight:900;color:#7A4B00;margin-inline-start:auto}
+  .co-new{font-size:17px;font-weight:900;color:#0F6B32;margin-inline-start:auto}
   .course-cta{position:static;width:100%;justify-content:center;display:inline-flex;margin-top:16px;border:0;cursor:pointer;font-family:inherit}
   .course-note{font-size:10.5px;color:#8A93A5;margin:10px 0 0;text-align:center}
 
@@ -589,7 +589,7 @@
     .m-course-body{position:static;width:100%;z-index:1;
       padding:calc(12*var(--ms)) calc(14*var(--ms)) calc(4*var(--ms));display:flex;flex-direction:column;align-items:flex-start}
     .m-tag{font-size:max(8px,calc(10*var(--ms)));font-weight:600;color:#8A93A5}
-    .m-course h3{font-size:max(12px,calc(15.5*var(--ms)));font-weight:800;color:var(--mink);margin:calc(5*var(--ms)) 0 calc(4*var(--ms))}
+    .m-course h3{font-size:max(13px,calc(17.5*var(--ms)));font-weight:800;color:var(--mink);margin:calc(5*var(--ms)) 0 calc(4*var(--ms))}
     .m-course p{font-size:max(7px,calc(9.5*var(--ms)));color:#5A6478;line-height:1.8;margin:0;max-width:100%}
     .m-chips{display:flex;gap:calc(16*var(--ms));flex-wrap:wrap;margin-top:calc(8*var(--ms))}
     .m-chip{display:inline-flex;align-items:center;gap:calc(5*var(--ms));background:rgba(255,255,255,.09);
@@ -609,10 +609,10 @@
     .m-price-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;z-index:1;margin-top:9px}
     .m-price-old{font-size:11px;color:#C44A4E;font-weight:700;position:relative}
     .m-price-old::after{content:'';position:absolute;left:-5%;right:-5%;top:52%;height:2px;background:#FF5257;transform:rotate(-7deg)}
-    .m-price-box{display:flex;align-items:baseline;gap:6px;background:linear-gradient(120deg,#FFF3D6,#FFE9B8);
-      border:1.5px solid rgba(214,160,30,.45);border-radius:13px;padding:8px 13px;position:relative;z-index:1;
-      box-shadow:0 5px 12px rgba(120,70,0,.16);width:max-content;margin-top:7px}
-    .m-price-new{font-size:19px;font-weight:900;color:#7A4B00}
+    .m-price-box{display:flex;align-items:baseline;gap:6px;background:linear-gradient(120deg,#E7F8EC,#CDF0D8);
+      border:1.5px solid rgba(34,150,80,.5);border-radius:13px;padding:8px 13px;position:relative;z-index:1;
+      box-shadow:0 5px 12px rgba(12,95,45,.16);width:max-content;margin-top:7px}
+    .m-price-new{font-size:19px;font-weight:900;color:#0F6B32}
     .m-price-unit{font-size:11px;font-weight:700;color:#9C6A10}
     .m-sp-gate{display:none;position:absolute;inset:-1px;z-index:6;flex-direction:column;align-items:center;justify-content:center;gap:6px;
       text-align:center;padding:14px;border-radius:18px;background:rgba(9,17,36,.55);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
@@ -765,18 +765,18 @@
   <section class="cards">
 
     <article class="card reveal sp-card" style="--d:.35s" id="spCard">
-      <img class="bg-slot" src="assets/superpack-cover.png" alt="سوپر پک تکنیکی">
+      <img class="bg-slot" src="assets/superpack-cover.png" alt="سوپرپک تکنیکی کنکور و نهایی">
       <div class="card-body">
         <span class="icon-tile"><svg><use href="#i-cube"/></svg></span>
         <span class="eyebrow">هم‌سیر در یک مسیر</span>
-        <h3>سوپر پک تکنیکی</h3>
+        <h3>سوپرپک تکنیکی کنکور و نهایی</h3>
         <p class="desc">همه‌ی درس‌های کلیدی رشته‌ات، یک‌جا و با برنامه‌ی مطالعه؛ انتخاب کامل برای رسیدن به نتیجه.</p>
         <div class="price-row">
-          <span class="price-old">۲٬۶۸۰٬۰۰۰ <i>تومان</i></span>
-          <span class="price-badge">۵۰٪ تخفیف جشنواره</span>
+          <span class="price-old">۱۳٬۳۰۰٬۰۰۰ <i>تومان</i></span>
+          <span class="price-badge">۴۸٪ تخفیف جشنواره</span>
         </div>
         <div class="price-box">
-          <span class="price-new">۱٬۳۴۰٬۰۰۰</span>
+          <span class="price-new">۶٬۹۰۰٬۰۰۰</span>
           <span class="price-unit">تومان</span>
           <span class="price-note">پرداخت یک‌جا، بدون هزینه‌ی پنهان</span>
         </div>
@@ -787,7 +787,7 @@
       </a>
       <div class="sp-gate" id="spGate">
         <span class="sp-gate-lock"><svg><use href="#i-lock"/></svg></span>
-        <b>مشاهده و خرید سوپر پک تکنیکی</b>
+        <b>مشاهده و خرید سوپرپک</b>
         <p>برای ورود به این بخش، ابتدا ثبت‌نام کن؛ کمتر از یک دقیقه طول می‌کشد.</p>
         <button class="btn-gold sp-gate-btn" id="spGateBtn" type="button">ثبت‌نام و ورود</button>
       </div>
@@ -810,7 +810,7 @@
       <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
       <a href="#" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
       <a href="#" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
-      <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+      <a href="https://t.me/aryansupp123" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
     </div>
     <a class="btn-outline" id="helpChat" href="#">
       شروع گفتگو
@@ -831,7 +831,7 @@
     </nav>
     <span class="contact-tag">ارتباط با ما</span>
     <div class="socials">
-      <a href="#" class="social-tg" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+      <a href="https://t.me/aryansupp123" class="social-tg" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
       <a href="#" class="social-yt" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
       <a href="#" class="social-ig" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
       <a href="#" class="social-rb" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
@@ -866,24 +866,24 @@
 
     <section class="m-section" id="m-courses">
       <article class="m-course" id="mCourseCard">
-        <div class="m-course-img"><img src="assets/superpack-cover.png" alt="سوپر پک تکنیکی"></div>
+        <div class="m-course-img"><img src="assets/superpack-cover.png" alt="سوپرپک تکنیکی کنکور و نهایی"></div>
         <div class="m-course-body">
           <span class="m-tag">هم‌سیر در یک مسیر</span>
-          <h3>سوپر پک تکنیکی</h3>
+          <h3>سوپرپک تکنیکی کنکور و نهایی</h3>
           <p>همه‌ی درس‌های کلیدی رشته‌ات، یک‌جا و با برنامه‌ی مطالعه؛ انتخاب کامل برای رسیدن به نتیجه.</p>
           <div class="m-price-row">
-            <span class="m-price-old">۲٬۶۸۰٬۰۰۰ <i>تومان</i></span>
-            <span class="m-price-badge">۵۰٪ تخفیف</span>
+            <span class="m-price-old">۱۳٬۳۰۰٬۰۰۰ <i>تومان</i></span>
+            <span class="m-price-badge">۴۸٪ تخفیف</span>
           </div>
           <div class="m-price-box">
-            <span class="m-price-new">۱٬۳۴۰٬۰۰۰</span>
+            <span class="m-price-new">۶٬۹۰۰٬۰۰۰</span>
             <span class="m-price-unit">تومان</span>
           </div>
         </div>
         <a class="m-btn m-btn-gold" id="mSpJoin" href="#">شرکت در دوره</a>
         <div class="m-sp-gate" id="mSpGate">
           <span class="sp-gate-lock"><svg><use href="#i-lock"/></svg></span>
-          <b>مشاهده و خرید سوپر پک</b>
+          <b>مشاهده و خرید سوپرپک</b>
           <p>برای ورود به این بخش، ابتدا ثبت‌نام کن.</p>
           <button class="m-btn m-btn-gold sp-gate-btn" id="mSpGateBtn" type="button">ثبت‌نام و ورود</button>
         </div>
@@ -899,7 +899,7 @@
           <a href="#" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
           <a href="#" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
           <a href="#" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
-          <a href="#" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+          <a href="https://t.me/aryansupp123" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
         </div>
       </div>
       <a class="m-btn m-btn-gold" id="mHelpChat" href="#">شروع گفتگو</a>
@@ -916,7 +916,7 @@
     <div class="m-foot-bottom">
       <span>© ۱۴۰۴ - مدرسه کنکور نخبان. تمامی حقوق محفوظ است.</span>
       <div class="m-socials">
-        <a href="#" class="social-tg" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
+        <a href="https://t.me/aryansupp123" class="social-tg" aria-label="تلگرام"><svg><use href="#i-telegram"/></svg></a>
         <a href="#" class="social-yt" aria-label="یوتیوب"><svg><use href="#i-youtube"/></svg></a>
         <a href="#" class="social-ig" aria-label="اینستاگرام"><svg><use href="#i-instagram"/></svg></a>
         <a href="#" class="social-rb" aria-label="روبیکا"><svg><use href="#i-rubika"/></svg></a>
@@ -1002,20 +1002,20 @@
   <div class="modal-wrap"><div class="modal-panel course-panel">
     <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
     
-    <img class="course-cover" src="assets/superpack-cover.png" alt="سوپر پک تکنیکی — کنکور و نهایی">
+    <img class="course-cover" src="assets/superpack-cover.png" alt="سوپرپک تکنیکی کنکور و نهایی">
     <div class="course-body">
-      <h3>سوپر پک تکنیکی <span class="course-badge">ویژه‌ی کنکور و نهایی</span></h3>
+      <h3>سوپرپک تکنیکی کنکور و نهایی</h3>
       <p>همه‌ی آنچه برای ترک‌های تکنیکی کنکور نیاز داری، در یک پکیج کامل و برنامه‌ریزی‌شده:</p>
       <div class="course-grid">
-        <div class="course-field"><span class="cf-ico"><svg><use href="#i-book"/></svg></span><div><b>جزوه‌های جامع درس‌ها</b><small>ریاضی، فیزیک، شیمی و دروس اختصاصی — خلاصه و کنکوری</small></div></div>
-        <div class="course-field"><span class="cf-ico"><svg><use href="#i-layers"/></svg></span><div><b>دفترچه‌های تست با پاسخ تشریحی</b><small>طبقه‌بندی‌شده بر اساس کنکور و نهایی سال‌های اخیر</small></div></div>
-        <div class="course-field"><span class="cf-ico"><svg><use href="#i-grid"/></svg></span><div><b>برنامه‌ی مطالعه‌ی هفتگی</b><small>مسیر روزانه تا روز کنکور، متناسب با پایه‌ی خودت</small></div></div>
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-book"/></svg></span><div><b>شامل دروس کنکور انسانی</b><small>علوم و فنون ادبی، فلسفه و منطق، ریاضی، عربی، جامعه‌شناسی، اقتصاد، روانشناسی</small></div></div>
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-layers"/></svg></span><div><b>من پایم صفره این دوره بهم کمک میکنه؟</b><small>اموزش‌های دوره کامل از زیر صفر و به ساده‌ترین و خودمونی‌ترین حالت ممکن واستن تدریس شده تا بتونی حتی اگه صفره صفرم که باشی، همه چیزو کامل یاد بگیری و هر سوالی داشتی از پشتیبانی شخصی‌ات بپرسی.</small></div></div>
+        <div class="course-field"><span class="cf-ico"><svg><use href="#i-grid"/></svg></span><div><b>برای هر درس، هر سه پایه تدریس شده؟</b><small>بله، واسه هر درس، هر سه پایه به صورت کامل و صفر تا صدی تدریس شده (اونم هر دوره به صورت مجزا).</small></div></div>
         <div class="course-field"><span class="cf-ico"><svg><use href="#i-shield"/></svg></span><div><b>پشتیبانی و رفع اشکال</b><small>تا روز کنکور کنارت هستیم؛ از پشتیبان‌ها بپرس</small></div></div>
       </div>
       <div class="course-off">
-        <span class="co-chip">۵۰٪ تخفیف جشنواره</span>
-        <span class="co-old">۲٬۶۸۰٬۰۰۰ تومان</span>
-        <span class="co-new">۱٬۳۴۰٬۰۰۰ تومان</span>
+        <span class="co-chip">۴۸٪ تخفیف جشنواره</span>
+        <span class="co-old">۱۳٬۳۰۰٬۰۰۰ تومان</span>
+        <span class="co-new">۶٬۹۰۰٬۰۰۰ تومان</span>
       </div>
       <button class="btn-gold course-cta" id="payOpen" type="button">تکمیل خرید و پرداخت</button>
       <p class="course-note">پس از تکمیل خرید، رسید واریز را برای پشتیبانی بفرست تا دسترسی‌ات فعال شود.</p>
@@ -1031,16 +1031,16 @@
   <div class="modal-wrap"><div class="modal-panel pay-panel">
     <button class="modal-x" data-close type="button"><svg><use href="#i-close"/></svg></button>
     
-    <h3>تکمیل خرید سوپر پک تکنیکی</h3>
+    <h3>تکمیل خرید سوپرپک تکنیکی کنکور و نهایی</h3>
     <div class="pay-amount">
       <small>مبلغ قابل پرداخت</small>
-      <b>۱٬۳۴۰٬۰۰۰ <i>تومان</i></b>
+      <b>۶٬۹۰۰٬۰۰۰ <i>تومان</i></b>
     </div>
     <div class="bank-card">
       <div class="bc-top"><span class="bc-chip"></span><span class="bc-bank">بانک ملی ایران</span></div>
-      <b class="bc-num" id="payCardNo">6037 9975 1234 5678</b>
+      <b class="bc-num" id="payCardNo">6037-7019-1009-9891</b>
       <div class="bc-holder">
-        <span><small>صاحب کارت</small><b>نخبان</b></span>
+        <span><small>صاحب کارت</small><b>علیرضا حاجی هاشمی</b></span>
         <button class="pay-copy" id="payCopy" type="button"><svg><use href="#i-copy"/></svg><span id="payCopyTxt">کپی</span></button>
       </div>
     </div>
